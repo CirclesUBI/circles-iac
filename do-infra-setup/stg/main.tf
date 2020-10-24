@@ -77,8 +77,6 @@ resource "digitalocean_container_registry_docker_credentials" "common" {
   registry_name = "circles-registry"
 }
 
-
-
 resource "kubernetes_secret" "image_pull" {
   metadata {
     name = "docker-cfg"
@@ -92,13 +90,21 @@ resource "kubernetes_secret" "image_pull" {
 
 }
 
-resource "kubernetes_service_account" "circles_sa" {
-  metadata {
-    name = "circles-sa"
+resource "helm_release" "ingress" {
+  name = "nginx-ingress"
+  repository = "https://kubernetes-charts.storage.googleapis.com"
+  chart = "nginx-ingress"
+  set {
+    name = "controller.publishService.enabled"
+    value = "true"
   }
-  image_pull_secret {
-    name = kubernetes_secret.image_pull.metadata.0.name
-  }
+}
+
+resource "helm_release" "cert_manager" {
+  name = "cert-manager"
+  repository = "https://charts.jetstack.io"
+  chart = "cert-manager"
+  version = "v1.0.3"
 }
 
 /*
