@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: graph
+  name: graph
+spec:
+  ports:
+  - name: "8000"
+    port: 8000
+    targetPort: 8000
+  - name: "8001"
+    port: 8001
+    targetPort: 8001
+  - name: "8020"
+    port: 8020
+    targetPort: 8020
+  - name: "8030"
+    port: 8030
+    targetPort: 8030
+  - name: "8040"
+    port: 8040
+    targetPort: 8040
+  selector:
+    io.kompose.service: graph
+status:
+  loadBalancer: {}

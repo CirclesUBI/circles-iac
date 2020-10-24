@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o circles-infra-suite -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: ipfs
+  name: ipfs
+spec:
+  ports:
+  - name: "5001"
+    port: 5001
+    targetPort: 5001
+  selector:
+    io.kompose.service: ipfs
+status:
+  loadBalancer: {}

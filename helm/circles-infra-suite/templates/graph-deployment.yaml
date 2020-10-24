@@ -1,0 +1,64 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: graph
+  name: graph
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: graph
+  strategy: {}
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: graph
+    spec:
+      containers:
+      - env:
+        - name: ipfs
+          value: ipfs:5001
+        - name: postgres_host
+          value: db:5432
+        - name: RUST_BACKTRACE
+          value: "1"
+        - name: postgres_db
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_DATABASE_GRAPH_NODE
+              name: env
+        - name: postgres_pass
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_PASSWORD
+              name: env
+        - name: postgres_user
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_USER
+              name: env
+        - name: ethereum
+          value: sokol:https://sokol.poa.network
+        image: graphprotocol/graph-node:v0.19.0
+        imagePullPolicy: ""
+        name: circles-graph-node
+        ports:
+        - containerPort: 8000
+        - containerPort: 8001
+        - containerPort: 8020
+        - containerPort: 8030
+        - containerPort: 8040
+        resources: {}
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes: null
+status: {}

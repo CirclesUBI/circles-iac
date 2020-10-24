@@ -1,0 +1,314 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
+    kompose.version: 1.21.0 (992df58d8)
+  creationTimestamp: null
+  labels:
+    io.kompose.service: relayer-service
+  name: relayer-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      io.kompose.service: relayer-service
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: relayer-service
+    spec:
+      imagePullSecrets:
+        - name: docker-cfg
+      containers:
+      - args:
+        - ./run.sh
+        env:
+        - name: ACCESS_TOKEN
+          valueFrom:
+            configMapKeyRef:
+              key: ACCESS_TOKEN
+              name: env
+        - name: API_SERVICE_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              key: API_SERVICE_ENDPOINT
+              name: env
+        - name: API_SERVICE_EXTERNAL
+          valueFrom:
+            configMapKeyRef:
+              key: API_SERVICE_EXTERNAL
+              name: env
+        - name: AWS_ACCESS_KEY_ID
+          valueFrom:
+            configMapKeyRef:
+              key: AWS_ACCESS_KEY_ID
+              name: env
+        - name: AWS_REGION
+          valueFrom:
+            configMapKeyRef:
+              key: AWS_REGION
+              name: env
+        - name: AWS_S3_BACKUP_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              key: AWS_S3_BACKUP_BUCKET
+              name: env
+        - name: AWS_S3_BUCKET
+          valueFrom:
+            configMapKeyRef:
+              key: AWS_S3_BUCKET
+              name: env
+        - name: AWS_SECRET_ACCESS_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: AWS_SECRET_ACCESS_KEY
+              name: env
+        - name: BASE_PATH
+          valueFrom:
+            configMapKeyRef:
+              key: BASE_PATH
+              name: env
+        - name: CELERY_BROKER_URL
+          valueFrom:
+            configMapKeyRef:
+              key: CELERY_BROKER_URL
+              name: env
+        - name: CORS_ALLOWED_ORIGINS
+          valueFrom:
+            configMapKeyRef:
+              key: CORS_ALLOWED_ORIGINS
+              name: env
+        - name: C_FORCE_ROOT
+          valueFrom:
+            configMapKeyRef:
+              key: C_FORCE_ROOT
+              name: env
+        - name: DEPLOY_MASTER_COPY_ON_INIT
+          valueFrom:
+            configMapKeyRef:
+              key: DEPLOY_MASTER_COPY_ON_INIT
+              name: env
+        - name: DEPLOY_PROXY_FACTORY_ON_INIT
+          valueFrom:
+            configMapKeyRef:
+              key: DEPLOY_PROXY_FACTORY_ON_INIT
+              name: env
+        - name: DJANGO_ALLOWED_HOSTS
+          valueFrom:
+            configMapKeyRef:
+              key: DJANGO_ALLOWED_HOSTS
+              name: env
+        - name: DJANGO_SECRET_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: DJANGO_SECRET_KEY
+              name: env
+        - name: DJANGO_SETTINGS_MODULE
+          valueFrom:
+            configMapKeyRef:
+              key: DJANGO_SETTINGS_MODULE
+              name: env
+        - name: ETHEREUM_NODE_ARCHIVE_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              key: ETHEREUM_NODE_ARCHIVE_ENDPOINT
+              name: env
+        - name: ETHEREUM_NODE_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              key: ETHEREUM_NODE_ENDPOINT
+              name: env
+        - name: ETHEREUM_NODE_WS
+          valueFrom:
+            configMapKeyRef:
+              key: ETHEREUM_NODE_WS
+              name: env
+        - name: ETHEREUM_POLLING_INTERVAL
+          valueFrom:
+            configMapKeyRef:
+              key: ETHEREUM_POLLING_INTERVAL
+              name: env
+        - name: EXPLORER_URL
+          valueFrom:
+            configMapKeyRef:
+              key: EXPLORER_URL
+              name: env
+        - name: GRAPH_NODE_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              key: GRAPH_NODE_ENDPOINT
+              name: env
+        - name: GRAPH_NODE_EXTERNAL
+          valueFrom:
+            configMapKeyRef:
+              key: GRAPH_NODE_EXTERNAL
+              name: env
+        - name: HUB_ADDRESS
+          valueFrom:
+            configMapKeyRef:
+              key: HUB_ADDRESS
+              name: env
+        - name: IPFS_NODE_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              key: IPFS_NODE_ENDPOINT
+              name: env
+        - name: POSTGRES_DATABASE_API
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_DATABASE_API
+              name: env
+        - name: POSTGRES_DATABASE_GRAPH_NODE
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_DATABASE_GRAPH_NODE
+              name: env
+        - name: POSTGRES_DATABASE_RELAYER
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_DATABASE_RELAYER
+              name: env
+        - name: POSTGRES_HOST
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_HOST
+              name: env
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_PASSWORD
+              name: env
+        - name: POSTGRES_PORT
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_PORT
+              name: env
+        - name: POSTGRES_USER
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_USER
+              name: env
+        - name: PROXY_FACTORY_ADDRESS
+          valueFrom:
+            configMapKeyRef:
+              key: PROXY_FACTORY_ADDRESS
+              name: env
+        - name: RELAYER_REDIS_URL
+          valueFrom:
+            configMapKeyRef:
+              key: RELAYER_REDIS_URL
+              name: env
+        - name: RELAY_SERVICE_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              key: RELAY_SERVICE_ENDPOINT
+              name: env
+        - name: RELAY_SERVICE_EXTERNAL
+          valueFrom:
+            configMapKeyRef:
+              key: RELAY_SERVICE_EXTERNAL
+              name: env
+        - name: SAFE_ADDRESS
+          valueFrom:
+            configMapKeyRef:
+              key: SAFE_ADDRESS
+              name: env
+        - name: SAFE_FUNDER_ADDRESS
+          valueFrom:
+            configMapKeyRef:
+              key: SAFE_FUNDER_ADDRESS
+              name: env
+        - name: SAFE_FUNDER_PRIVATE_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: SAFE_FUNDER_PRIVATE_KEY
+              name: env
+        - name: SAFE_TX_SENDER_PRIVATE_KEY
+          valueFrom:
+            configMapKeyRef:
+              key: SAFE_TX_SENDER_PRIVATE_KEY
+              name: env
+        - name: SENTRY_DSN_URL
+          valueFrom:
+            configMapKeyRef:
+              key: SENTRY_DSN_URL
+              name: env
+        - name: STAGING_NOTIFICATION
+          valueFrom:
+            configMapKeyRef:
+              key: STAGING_NOTIFICATION
+              name: env
+        - name: STORAGE_NAMESPACE
+          valueFrom:
+            configMapKeyRef:
+              key: STORAGE_NAMESPACE
+              name: env
+        - name: SUBGRAPH_NAME
+          valueFrom:
+            configMapKeyRef:
+              key: SUBGRAPH_NAME
+              name: env
+        - name: SUBGRAPH_NETWORK
+          valueFrom:
+            configMapKeyRef:
+              key: SUBGRAPH_NETWORK
+              name: env
+        - name: ethereum
+          valueFrom:
+            configMapKeyRef:
+              key: ethereum
+              name: env
+        - name: ipfs
+          valueFrom:
+            configMapKeyRef:
+              key: ipfs
+              name: env
+        - name: postgres_db
+          valueFrom:
+            configMapKeyRef:
+              key: postgres_db
+              name: env
+        - name: postgres_host
+          valueFrom:
+            configMapKeyRef:
+              key: postgres_host
+              name: env
+        - name: postgres_pass
+          valueFrom:
+            configMapKeyRef:
+              key: postgres_pass
+              name: env
+        - name: postgres_user
+          valueFrom:
+            configMapKeyRef:
+              key: postgres_user
+              name: env
+        image: registry.digitalocean.com/circles-registry/relayer:v4.0.12
+        imagePullPolicy: ""
+        name: circles-relayer-service
+        ports:
+        - containerPort: 8888
+        resources: {}
+        volumeMounts:
+        - mountPath: /nginx
+          name: relayer
+        - mountPath: /usr/share/nginx/html/relayer
+          name: relayer-html
+        workingDir: /safe-relay-service
+      restartPolicy: Always
+      serviceAccountName: ""
+      volumes:
+      - hostPath:
+          path: /home/imw/src/circles/circles-docker
+        name: relayer
+      - hostPath:
+          path: /home/imw/src/circles/circles-docker
+        name: relayer-html
+status: {}

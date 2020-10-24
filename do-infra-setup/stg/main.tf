@@ -15,26 +15,97 @@ provider "digitalocean" {
   token = var.do_token
 }
 
+provider "kubernetes" {
+  load_config_file = false
+  host             = digitalocean_kubernetes_cluster.primary.endpoint
+  token            = digitalocean_kubernetes_cluster.primary.kube_config[0].token
+  cluster_ca_certificate = base64decode(
+    digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
+  )
+}
+
+provider "helm" {
+  version = "~> 1.0.0"
+  kubernetes {
+    load_config_file = false
+    host = digitalocean_kubernetes_cluster.primary.endpoint
+    token = digitalocean_kubernetes_cluster.primary.kube_config[0].token
+    cluster_ca_certificate = base64decode(
+	digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
+    )
+  }
+}
+
+
+
 resource "digitalocean_vpc" "primary" {
   name     = "circles-vpc-${var.environment}"
   region   = "ams3"
   ip_range = "10.10.10.0/24"
 }
 
-resource "digitalocean_droplet" "worker" {
-  count  = var.worker_count
-  image  = "ubuntu-18-04-x64"
-  name   = "worker"
-  region = "ams3"
-  size   = "s-4vcpu-8gb"
-  vpc_uuid    = digitalocean_vpc.primary.id
-}
-
 resource "digitalocean_database_cluster" "postgres" {
-  name       = "primary-postgres-cluster"
+  name       = "staging-primary-postgres-cluster"
   engine     = "pg"
   version    = "11"
-  size       = "db-s-1vcpu-1gb"
+  size       = "db-s-2vcpu-4gb"
   region     = "ams3"
-  node_count = 1
+  private_network_uuid = digitalocean_vpc.primary.id 
+  node_count = 2
 }
+
+resource "digitalocean_kubernetes_cluster" "primary" {
+  name   = "staging-primary-k8s-cluster"
+  region = "ams3"
+  # Grab the latest version slug from `doctl kubernetes options versions`
+  version = "1.18.8-do.1"
+  vpc_uuid = digitalocean_vpc.primary.id
+  tags    = ["staging"]
+
+  node_pool {
+    name       = "worker-pool"
+    size       = "c-4"
+    node_count = 3
+  }
+}
+
+data "digitalocean_container_registry" "common" {
+  name = "circles-registry"
+}
+
+resource "digitalocean_container_registry_docker_credentials" "common" {
+  registry_name = "circles-registry"
+}
+
+
+
+resource "kubernetes_secret" "image_pull" {
+  metadata {
+    name = "docker-cfg"
+  }
+
+  data = {
+    ".dockerconfigjson" = digitalocean_container_registry_docker_credentials.common.docker_credentials
+  }
+
+  type = "kubernetes.io/dockerconfigjson"
+
+}
+
+resource "kubernetes_service_account" "circles_sa" {
+  metadata {
+    name = "circles-sa"
+  }
+  image_pull_secret {
+    name = kubernetes_secret.image_pull.metadata.0.name
+  }
+}
+
+/*
+resource "helm_release" "circles-infra" {
+  depends_on = [kubernetes_secret.image_pull]
+  name = "circles-infra"
+  chart = "${path.module}/../../helm/circles-infra-suite"
+  namespace = "default"
+}
+*/
