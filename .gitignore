@@ -1,5 +1,5 @@
 # Ignore our configmaps
-env-configmap.yaml
+*-configmap.yaml
 
 # Local .terraform directories
 **/.terraform/*
