@@ -4,5 +4,5 @@ variable "do_token" {
 
 variable "environment" {
   type = string
-  default = "stg"
+  default = "prod"
 }

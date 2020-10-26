@@ -1,0 +1,33 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: circles-ingress
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-live
+spec:
+  tls:
+  - hosts:
+    - api.stg.circles.garden
+    - graph.stg.circles.garden
+    - relay.stg.circles.garden
+    secretName: circles-tls
+  rules:
+  - host: api.stg.circles.garden
+    http:
+      paths:
+      - backend:
+          serviceName: api
+          servicePort: 3000
+  - host: graph.stg.circles.garden
+    http:
+      paths:
+      - backend:
+          serviceName: graph
+          servicePort: 8000
+  - host: relay.stg.circles.garden
+    http:
+      paths:
+      - backend:
+          serviceName: relayer-service
+          servicePort: 8888

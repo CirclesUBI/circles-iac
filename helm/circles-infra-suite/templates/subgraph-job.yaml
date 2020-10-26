@@ -1,19 +1,14 @@
-apiVersion: apps/v1
-kind: Deployment
+apiVersion: batch/v1
+kind: Job
 metadata:
   annotations:
     kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
     kompose.version: 1.21.0 (992df58d8)
   creationTimestamp: null
   labels:
-    io.kompose.service: db
-  name: db
+    io.kompose.service: subgraph
+  name: subgraph
 spec:
-  replicas: 1
-  selector:
-    matchLabels:
-      io.kompose.service: db
-  strategy: {}
   template:
     metadata:
       annotations:
@@ -21,7 +16,7 @@ spec:
         kompose.version: 1.21.0 (992df58d8)
       creationTimestamp: null
       labels:
-        io.kompose.service: db
+        io.kompose.service: subgraph
     spec:
       imagePullSecrets:
         - name: docker-cfg
@@ -141,6 +136,11 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: GRAPH_NODE_ENDPOINT
+              name: env
+        - name: GRAPH_ADMIN_NODE_ENDPOINT
+          valueFrom:
+            configMapKeyRef:
+              key: GRAPH_ADMIN_NODE_ENDPOINT
               name: env
         - name: GRAPH_NODE_EXTERNAL
           valueFrom:
@@ -287,13 +287,11 @@ spec:
             configMapKeyRef:
               key: postgres_user
               name: env
-        image: registry.digitalocean.com/circles-registry/db:v.0.0.2
+        image: registry.digitalocean.com/circles-registry/subgraph:v0.1.11
         imagePullPolicy: ""
-        name: circles-db
-        ports:
-        - containerPort: 5432
+        name: subgraph-init
         resources: {}
-      restartPolicy: Always
+      restartPolicy: OnFailure
       serviceAccountName: ""
       volumes: null
 status: {}

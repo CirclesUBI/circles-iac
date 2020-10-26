@@ -2,7 +2,7 @@ terraform {
   backend "s3" {
     endpoint                    = "ams3.digitaloceanspaces.com"
     key                         = "terraform.tfstate"
-    bucket                      = "circles-stg-tf-state"
+    bucket                      = "circles-prod-tf-state"
     region                      = "us-west-1"
     skip_requesting_account_id  = true
     skip_credentials_validation = true
@@ -39,11 +39,11 @@ provider "helm" {
 resource "digitalocean_vpc" "primary" {
   name     = "circles-vpc-${var.environment}"
   region   = "ams3"
-  ip_range = "10.10.10.0/24"
+  ip_range = "10.10.1.0/24"
 }
 
 resource "digitalocean_database_cluster" "postgres" {
-  name       = "staging-primary-postgres-cluster"
+  name       = "prod-primary-postgres-cluster"
   engine     = "pg"
   version    = "11"
   size       = "db-s-2vcpu-4gb"
@@ -77,12 +77,12 @@ resource "digitalocean_database_firewall" "db-fw" {
 }
 
 resource "digitalocean_kubernetes_cluster" "primary" {
-  name   = "staging-primary-k8s-cluster"
+  name   = "prod-primary-k8s-cluster"
   region = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
   version = "1.18.8-do.1"
   vpc_uuid = digitalocean_vpc.primary.id
-  tags    = ["staging"]
+  tags    = ["prod"]
 
   node_pool {
     name       = "worker-pool"

@@ -26,14 +26,15 @@ spec:
       containers:
       - env:
         - name: ipfs
-          value: ipfs:5001
+          valueFrom:
+            configMapKeyRef:
+              key: ipfs
+              name: env
         - name: postgres_host
           valueFrom:
             configMapKeyRef:
               key: postgres_host
               name: env
-        - name: RUST_BACKTRACE
-          value: "1"
         - name: postgres_db
           valueFrom:
             configMapKeyRef:
