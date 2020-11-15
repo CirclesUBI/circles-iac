@@ -35,6 +35,11 @@ spec:
             configMapKeyRef:
               key: ACCESS_TOKEN
               name: env
+        - name: ALLOWED_HOSTS
+          valueFrom:
+            configMapKeyRef:
+              key: ALLOWED_HOSTS
+              name: env
         - name: API_SERVICE_ENDPOINT
           valueFrom:
             configMapKeyRef:
@@ -290,7 +295,7 @@ spec:
             configMapKeyRef:
               key: postgres_user
               name: env
-        image: registry.digitalocean.com/circles-registry/relayer:v4.0.12
+        image: registry.digitalocean.com/circles-registry/relayer:v4.1.2
         imagePullPolicy: ""
         name: circles-relayer-service
         ports:

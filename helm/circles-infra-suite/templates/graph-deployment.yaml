@@ -23,17 +23,27 @@ spec:
       labels:
         io.kompose.service: graph
     spec:
+      affinity:
+        nodeAffinity:
+          requiredDuringSchedulingIgnoredDuringExecution:
+            nodeSelectorTerms:
+            - matchExpressions:
+              - key: pool
+                operator: In
+                values:
+                - b            
       containers:
       - env:
         - name: ipfs
-          value: ipfs:5001
+          valueFrom:
+            configMapKeyRef:
+              key: ipfs
+              name: env
         - name: postgres_host
           valueFrom:
             configMapKeyRef:
               key: postgres_host
               name: env
-        - name: RUST_BACKTRACE
-          value: "1"
         - name: postgres_db
           valueFrom:
             configMapKeyRef:
@@ -49,10 +59,17 @@ spec:
             configMapKeyRef:
               key: postgres_user
               name: env
+        - name: postgres_port
+          valueFrom:
+            configMapKeyRef:
+              key: postgres_port
+              name: env
         - name: ethereum
-          value: sokol:https://sokol.poa.network
-        image: graphprotocol/graph-node:v0.19.0
-        imagePullPolicy: ""
+          valueFrom:
+            configMapKeyRef:
+              key: ethereum
+              name: env
+        image: graphprotocol/graph-node:v0.19.2
         name: circles-graph-node
         ports:
         - containerPort: 8000
@@ -62,6 +79,5 @@ spec:
         - containerPort: 8040
         resources: {}
       restartPolicy: Always
-      serviceAccountName: ""
       volumes: null
 status: {}

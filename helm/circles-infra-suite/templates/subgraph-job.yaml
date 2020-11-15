@@ -7,7 +7,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: subgraph
-  name: subgraph
+  name: subgraph-init
 spec:
   template:
     metadata:
@@ -287,7 +287,7 @@ spec:
             configMapKeyRef:
               key: postgres_user
               name: env
-        image: registry.digitalocean.com/circles-registry/subgraph:v0.1.11
+        image: registry.digitalocean.com/circles-registry/subgraph:v0.1.15
         imagePullPolicy: ""
         name: subgraph-init
         resources: {}

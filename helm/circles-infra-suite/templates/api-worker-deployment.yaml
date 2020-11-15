@@ -156,6 +156,11 @@ spec:
             configMapKeyRef:
               key: IPFS_NODE_ENDPOINT
               name: env
+        - name: NODE_ENV
+          valueFrom:
+            configMapKeyRef:
+              key: NODE_ENV
+              name: env
         - name: POSTGRES_DATABASE_API
           valueFrom:
             configMapKeyRef:
@@ -190,6 +195,11 @@ spec:
           valueFrom:
             configMapKeyRef:
               key: POSTGRES_USER
+              name: env
+        - name: POSTGRES_USE_SSL
+          valueFrom:
+            configMapKeyRef:
+              key: POSTGRES_USE_SSL
               name: env
         - name: PROXY_FACTORY_ADDRESS
           valueFrom:
@@ -286,7 +296,7 @@ spec:
             configMapKeyRef:
               key: postgres_user
               name: env
-        image: registry.digitalocean.com/circles-registry/api:ssl1.1.13.6
+        image: registry.digitalocean.com/circles-registry/api:v1.2.5
         imagePullPolicy: ""
         name: circles-api-worker
         ports:

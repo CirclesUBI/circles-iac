@@ -45,7 +45,7 @@ resource "digitalocean_vpc" "primary" {
 resource "digitalocean_database_cluster" "postgres" {
   name       = "staging-primary-postgres-cluster"
   engine     = "pg"
-  version    = "11"
+  version    = "12"
   size       = "db-s-2vcpu-4gb"
   region     = "ams3"
   private_network_uuid = digitalocean_vpc.primary.id 
@@ -57,15 +57,16 @@ resource "digitalocean_database_db" "api" {
   name       = "api"
 }
 
+resource "digitalocean_database_db" "relayer" {
+  cluster_id = digitalocean_database_cluster.postgres.id
+  name       = "relayer"
+}
+
 resource "digitalocean_database_db" "graph" {
   cluster_id = digitalocean_database_cluster.postgres.id
   name       = "graph"
 }
 
-resource "digitalocean_database_db" "relayer" {
-  cluster_id = digitalocean_database_cluster.postgres.id
-  name       = "relayer"
-}
 
 resource "digitalocean_database_firewall" "db-fw" {
   cluster_id = digitalocean_database_cluster.postgres.id
@@ -88,6 +89,18 @@ resource "digitalocean_kubernetes_cluster" "primary" {
     name       = "worker-pool"
     size       = "c-4"
     node_count = 3
+  }
+}
+
+resource "digitalocean_kubernetes_node_pool" "b" {
+  cluster_id = digitalocean_kubernetes_cluster.primary.id
+
+  name       = "stg-pool-b"
+  size       = "m-2vcpu-16gb"
+  node_count = 3
+
+  labels = {
+    pool  = "b"
   }
 }
 
@@ -116,6 +129,7 @@ resource "helm_release" "ingress" {
   name = "nginx-ingress"
   repository = "https://kubernetes-charts.storage.googleapis.com"
   chart = "nginx-ingress"
+  version = "1.41.3"
   set {
     name = "controller.publishService.enabled"
     value = "true"
@@ -131,6 +145,16 @@ resource "helm_release" "cert_manager" {
     name = "installCRDs"
     value = "true"
   }
+}
+
+resource "helm_release" "db" {
+  name = "db"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "postgresql"
+  version = "9.8.7"
+  values = [
+	"${file("helm_vals/postgresql.yaml")}"
+  ]
 }
 
 /*

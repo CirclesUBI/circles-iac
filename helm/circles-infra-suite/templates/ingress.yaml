@@ -8,24 +8,24 @@ metadata:
 spec:
   tls:
   - hosts:
-    - api.stg.circles.garden
-    - graph.stg.circles.garden
-    - relay.stg.circles.garden
+    - api.circles.garden
+    - graph.circles.garden
+    - relay.circles.garden
     secretName: circles-tls
   rules:
-  - host: api.stg.circles.garden
+  - host: api.circles.garden
     http:
       paths:
       - backend:
           serviceName: api
           servicePort: 3000
-  - host: graph.stg.circles.garden
+  - host: graph.circles.garden
     http:
       paths:
       - backend:
           serviceName: graph
           servicePort: 8000
-  - host: relay.stg.circles.garden
+  - host: relay.circles.garden
     http:
       paths:
       - backend:

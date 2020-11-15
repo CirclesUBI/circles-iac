@@ -45,7 +45,7 @@ resource "digitalocean_vpc" "primary" {
 resource "digitalocean_database_cluster" "postgres" {
   name       = "prod-primary-postgres-cluster"
   engine     = "pg"
-  version    = "11"
+  version    = "12"
   size       = "db-s-2vcpu-4gb"
   region     = "ams3"
   private_network_uuid = digitalocean_vpc.primary.id 
@@ -55,11 +55,6 @@ resource "digitalocean_database_cluster" "postgres" {
 resource "digitalocean_database_db" "api" {
   cluster_id = digitalocean_database_cluster.postgres.id
   name       = "api"
-}
-
-resource "digitalocean_database_db" "graph" {
-  cluster_id = digitalocean_database_cluster.postgres.id
-  name       = "graph"
 }
 
 resource "digitalocean_database_db" "relayer" {
@@ -80,16 +75,29 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name   = "prod-primary-k8s-cluster"
   region = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version = "1.18.8-do.1"
+  version = "1.18.10-do.2"
   vpc_uuid = digitalocean_vpc.primary.id
   tags    = ["prod"]
 
   node_pool {
-    name       = "worker-pool"
+    name       = "prod-pool-a"
     size       = "c-4"
     node_count = 3
   }
 }
+
+resource "digitalocean_kubernetes_node_pool" "b" {
+  cluster_id = digitalocean_kubernetes_cluster.primary.id
+
+  name       = "prod-pool-b"
+  size       = "m-2vcpu-16gb"
+  node_count = 1
+
+  labels = {
+    pool  = "b"
+  }
+}
+
 
 data "digitalocean_container_registry" "common" {
   name = "circles-registry"
@@ -132,6 +140,17 @@ resource "helm_release" "cert_manager" {
     value = "true"
   }
 }
+
+resource "helm_release" "db" {
+  name = "db"
+  repository = "https://charts.bitnami.com/bitnami"
+  chart = "postgresql"
+  version = "9.8.7"
+  values = [
+	"${file("helm_vals/postgresql.yaml")}"
+  ]
+}
+
 
 /*
 resource "helm_release" "circles-infra" {
