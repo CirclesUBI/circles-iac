@@ -296,7 +296,7 @@ spec:
             configMapKeyRef:
               key: postgres_user
               name: env
-        image: registry.digitalocean.com/circles-registry/api:v1.2.6
+        image: registry.digitalocean.com/circles-registry/api:v1.2.7
         imagePullPolicy: ""
         name: circles-api-worker
         ports:
