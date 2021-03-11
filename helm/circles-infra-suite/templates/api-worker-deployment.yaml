@@ -206,6 +206,11 @@ spec:
                 configMapKeyRef:
                   key: PROXY_FACTORY_ADDRESS
                   name: env
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: RELAYER_REDIS_URL
+                  name: env
             - name: RELAYER_REDIS_URL
               valueFrom:
                 configMapKeyRef:
