@@ -126,15 +126,9 @@ spec:
               key: ETHEREUM_NODE_ARCHIVE_ENDPOINT
               name: env
         - name: ETHEREUM_NODE_ENDPOINT
-          valueFrom:
-            configMapKeyRef:
-              key: ETHEREUM_NODE_ENDPOINT
-              name: env
+          value: "https://dark-frosty-field.xdai.quiknode.pro"
         - name: ETHEREUM_NODE_WS
-          valueFrom:
-            configMapKeyRef:
-              key: ETHEREUM_NODE_WS
-              name: env
+          value: "wss://dark-frosty-field.xdai.quiknode.pro"
         - name: ETHEREUM_POLLING_INTERVAL
           valueFrom:
             configMapKeyRef:
