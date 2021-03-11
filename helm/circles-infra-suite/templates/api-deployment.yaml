@@ -304,6 +304,9 @@ spec:
                 configMapKeyRef:
                   key: postgres_user
                   name: env
+          volumeMounts:
+            - mountPath: /usr/src/app/edges-data
+              name: data
           image: registry.digitalocean.com/circles-registry/api:v1.3.0
           imagePullPolicy: ""
           name: circles-api
@@ -312,5 +315,8 @@ spec:
           resources: {}
       restartPolicy: Always
       serviceAccountName: ""
-      volumes: null
+      volumes:
+        - name: data
+          persistentVolumeClaim:
+            claimName: api-data
 status: {}
