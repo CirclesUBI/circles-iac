@@ -304,7 +304,7 @@ spec:
           volumeMounts:
             - mountPath: /usr/src/app/edges-data
               name: data
-          image: registry.digitalocean.com/circles-registry/api:v1.3.1
+          image: registry.digitalocean.com/circles-registry/circles-api:v1.3.2
           imagePullPolicy: ""
           name: circles-api-worker
           ports:
