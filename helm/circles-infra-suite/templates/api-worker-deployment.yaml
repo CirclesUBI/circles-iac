@@ -140,7 +140,10 @@ spec:
                   key: EXPLORER_URL
                   name: env
             - name: GRAPH_NODE_ENDPOINT
-              value: http://graph:8000
+              valueFrom:
+                configMapKeyRef:
+                  key: GRAPH_NODE_ENDPOINT
+                  name: env
             - name: GRAPH_NODE_EXTERNAL
               valueFrom:
                 configMapKeyRef:
