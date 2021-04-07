@@ -37,4 +37,4 @@
 
 <br/>
 
-Setup and deployment infrastructure using helm to manage volumes and deploy Circles services through kubernetes on DigitalOcean 
+Setup and deployment infrastructure using Terraform and Helm to manage volumes and deploy Circles services through Kubernetes on DigitalOcean. 
