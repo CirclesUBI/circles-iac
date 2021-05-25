@@ -289,7 +289,7 @@ spec:
             configMapKeyRef:
               key: postgres_user
               name: env
-        image: registry.digitalocean.com/circles-registry/safe-relay-service:v4.1.7
+        image: registry.digitalocean.com/circles-registry/safe-relay-service:v4.1.8
         imagePullPolicy: ""
         name: circles-relayer-scheduler
         ports:
