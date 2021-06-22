@@ -6,7 +6,7 @@
 
 <div align="center">
  <strong>
-    Infrastructure provisioning for Circles 
+    Infrastructure provisioning for Circles
  </strong>
 </div>
 
@@ -37,4 +37,26 @@
 
 <br/>
 
-Setup and deployment infrastructure using Terraform and Helm to manage volumes and deploy Circles services through Kubernetes on DigitalOcean. 
+Setup and deployment infrastructure using Terraform and Helm to manage volumes and [`Circles`] services with Kubernetes on DigitalOcean.
+
+[`Circles`]: https://joincircles.net
+
+## Overview
+
+* [`do-infra-setup`]: Terraform files to deploy Circles staging and production infrastructure on DigitalOcean
+* [`helm/circles-infra-suite`]: Helm chart and templates to deploy Circles services from Docker images
+
+[`do-infra-setup`]: do-infra-setup
+[`helm/circles-infra-suite`]: helm/circles-infra-suite
+
+## Images registry
+
+Circles repositories automatically build and upload Docker images of their latest versions. These images are available in our DigitalOcean registry and publicly on [`DockerHub`].
+
+[`DockerHub`]: https://hub.docker.com/u/joincircles
+
+## License
+
+GNU Affero General Public License v3.0 [`AGPL-3.0`]
+
+[`AGPL-3.0`]: LICENSE
