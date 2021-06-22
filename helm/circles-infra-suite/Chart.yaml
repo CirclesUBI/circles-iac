@@ -1,8 +1,9 @@
 name: circles-infra-suite
-description: A generated Helm Chart for circles-infra-suite from Skippbox Kompose
+description: Infrastructure Provisioning for Circles
 version: 0.0.1
 apiVersion: v1
 keywords:
-  - circles-infra-suite
+  - Circles
 sources:
-home:
+  - https://github.com/CirclesUBI/circles-iac
+home: https://github.com/CirclesUBI/
