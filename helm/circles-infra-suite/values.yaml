@@ -1,0 +1,16 @@
+imageRegistry: registry.digitalocean.com/circles-registry
+acmeEmail: circlesubi@gmail.com
+acmeServer: https://acme-v02.api.letsencrypt.org/directory
+api:
+  host: api.circles.garden
+  port: 3000
+  imageVersion: v1.3.12
+  volumeName: data
+  volumeClaimName: api-data
+  volumeMountPath: /usr/src/app/edges-data
+relayerService:
+  host: relay.circles.garden
+  port: 8888
+  imageVersion: v4.1.9
+redis:
+  port: 6379

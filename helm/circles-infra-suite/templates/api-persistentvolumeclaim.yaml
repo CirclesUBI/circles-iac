@@ -3,10 +3,10 @@ kind: PersistentVolumeClaim
 metadata:
   labels:
     io.kompose.service: api
-  name: api-data
+  name: {{.Values.api.volumeClaimName}}
 spec:
   accessModes:
-  - ReadWriteMany
+    - ReadWriteMany
   resources:
     requests:
       storage: 500Mi

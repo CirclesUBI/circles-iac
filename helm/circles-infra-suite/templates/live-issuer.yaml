@@ -4,14 +4,11 @@ metadata:
   name: letsencrypt-live
 spec:
   acme:
-    # Email address used for ACME registration
-    email: circlesubi@gmail.com
-    server: https://acme-v02.api.letsencrypt.org/directory
+    email: {{.Values.acmeEmail}}
+    server: {{.Values.acmeServer}}
     privateKeySecretRef:
-      # Name of a secret used to store the ACME account private key
       name: letsencrypt-live-private-key
-    # Add a single challenge solver, HTTP01 using nginx
     solvers:
-    - http01:
-        ingress:
-          class: nginx
+      - http01:
+          ingress:
+            class: nginx

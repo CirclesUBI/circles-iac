@@ -1,10 +1,6 @@
-apiVersion: apps/v1
+apiVersion: v1
 kind: Deployment
 metadata:
-  annotations:
-    kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
-    kompose.version: 1.21.0 (992df58d8)
-  creationTimestamp: null
   labels:
     io.kompose.service: api-worker
   name: api-worker
@@ -13,20 +9,22 @@ spec:
   selector:
     matchLabels:
       io.kompose.service: api-worker
-  strategy: {}
   template:
-    metadata:
-      annotations:
-        kompose.cmd: kompose convert -o circles-infra-suite --volumes hostPath -c
-        kompose.version: 1.21.0 (992df58d8)
-      creationTimestamp: null
-      labels:
-        io.kompose.service: api-worker
     spec:
       imagePullSecrets:
         - name: docker-cfg
+      restartPolicy: Always
+      volumes:
+        - name: {{.Values.api.volumeName}}
+          persistentVolumeClaim:
+            claimName: {{.Values.api.volumeClaimName}}
       containers:
-        - args:
+        - name: circles-api-worker
+          image: {{.Values.imageRegistry}}/circles-api:{{.Values.api.imageVersion}}
+          volumeMounts:
+            - mountPath: {{.Values.api.volumeMountPath}}
+              name: {{.Values.api.volumeName}}
+          args:
             - ./run-worker.sh
           env:
             - name: ACCESS_TOKEN
@@ -304,19 +302,3 @@ spec:
                 configMapKeyRef:
                   key: postgres_user
                   name: env
-          volumeMounts:
-            - mountPath: /usr/src/app/edges-data
-              name: data
-          image: registry.digitalocean.com/circles-registry/circles-api:v1.3.12
-          imagePullPolicy: ""
-          name: circles-api-worker
-          ports:
-            - containerPort: 3000
-          resources: {}
-      restartPolicy: Always
-      serviceAccountName: ""
-      volumes:
-        - name: data
-          persistentVolumeClaim:
-            claimName: api-data
-status: {}
