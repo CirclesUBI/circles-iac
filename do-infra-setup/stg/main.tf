@@ -78,9 +78,8 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   version   = "1.18.8-do.1"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
-
   node_pool {
-    name       = "worker-pool"
+    name       = "stg-pool-a"
     size       = "c-4"
     node_count = 3
   }
@@ -90,7 +89,7 @@ resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
   name       = "stg-pool-b"
   size       = "m-2vcpu-16gb"
-  node_count = 3
+  node_count = 1
   labels = {
     pool  = "b"
   }
