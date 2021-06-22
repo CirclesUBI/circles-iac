@@ -1,6 +1,6 @@
 name: circles-infra-suite
 description: Infrastructure Provisioning for Circles
-version: 0.0.1
+version: 0.2.0
 apiVersion: v1
 keywords:
   - Circles
