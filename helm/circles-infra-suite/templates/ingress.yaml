@@ -9,7 +9,6 @@ spec:
   tls:
   - hosts:
     - api.circles.garden
-    - graph.circles.garden
     - relay.circles.garden
     secretName: circles-tls
   rules:
@@ -19,12 +18,6 @@ spec:
       - backend:
           serviceName: api
           servicePort: 3000
-  - host: graph.circles.garden
-    http:
-      paths:
-      - backend:
-          serviceName: graph
-          servicePort: 8000
   - host: relay.circles.garden
     http:
       paths:
