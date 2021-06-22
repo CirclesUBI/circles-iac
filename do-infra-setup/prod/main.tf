@@ -31,7 +31,7 @@ provider "helm" {
     host = digitalocean_kubernetes_cluster.primary.endpoint
     token = digitalocean_kubernetes_cluster.primary.kube_config[0].token
     cluster_ca_certificate = base64decode(
-	digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
+      digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
     )
   }
 }
@@ -64,7 +64,6 @@ resource "digitalocean_database_db" "relayer" {
 
 resource "digitalocean_database_firewall" "db-fw" {
   cluster_id = digitalocean_database_cluster.postgres.id
-
   rule {
     type  = "k8s"
     value = digitalocean_kubernetes_cluster.primary.id
@@ -78,7 +77,6 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   version = "1.18.10-do.2"
   vpc_uuid = digitalocean_vpc.primary.id
   tags    = ["prod"]
-
   node_pool {
     name       = "prod-pool-a"
     size       = "c-4"
@@ -88,16 +86,13 @@ resource "digitalocean_kubernetes_cluster" "primary" {
 
 resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
-
   name       = "prod-pool-b"
   size       = "m-2vcpu-16gb"
   node_count = 1
-
   labels = {
     pool  = "b"
   }
 }
-
 
 data "digitalocean_container_registry" "common" {
   name = "circles-registry"
@@ -111,13 +106,10 @@ resource "kubernetes_secret" "image_pull" {
   metadata {
     name = "docker-cfg"
   }
-
   data = {
     ".dockerconfigjson" = digitalocean_container_registry_docker_credentials.common.docker_credentials
   }
-
   type = "kubernetes.io/dockerconfigjson"
-
 }
 
 resource "helm_release" "ingress" {
@@ -147,16 +139,6 @@ resource "helm_release" "db" {
   chart = "postgresql"
   version = "9.8.7"
   values = [
-	"${file("helm_vals/postgresql.yaml")}"
+    "${file("helm_vals/postgresql.yaml")}"
   ]
 }
-
-
-/*
-resource "helm_release" "circles-infra" {
-  depends_on = [kubernetes_secret.image_pull]
-  name = "circles-infra"
-  chart = "${path.module}/../../helm/circles-infra-suite"
-  namespace = "default"
-}
-*/

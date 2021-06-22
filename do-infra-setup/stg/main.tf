@@ -31,7 +31,7 @@ provider "helm" {
     host = digitalocean_kubernetes_cluster.primary.endpoint
     token = digitalocean_kubernetes_cluster.primary.kube_config[0].token
     cluster_ca_certificate = base64decode(
-	digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
+      digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
     )
   }
 }
@@ -48,7 +48,7 @@ resource "digitalocean_database_cluster" "postgres" {
   version    = "12"
   size       = "db-s-2vcpu-4gb"
   region     = "ams3"
-  private_network_uuid = digitalocean_vpc.primary.id 
+  private_network_uuid = digitalocean_vpc.primary.id
   node_count = 2
 }
 
@@ -62,12 +62,6 @@ resource "digitalocean_database_db" "relayer" {
   name       = "relayer"
 }
 
-resource "digitalocean_database_db" "graph" {
-  cluster_id = digitalocean_database_cluster.postgres.id
-  name       = "graph"
-}
-
-
 resource "digitalocean_database_firewall" "db-fw" {
   cluster_id = digitalocean_database_cluster.postgres.id
 
@@ -78,12 +72,12 @@ resource "digitalocean_database_firewall" "db-fw" {
 }
 
 resource "digitalocean_kubernetes_cluster" "primary" {
-  name   = "staging-primary-k8s-cluster"
-  region = "ams3"
+  name      = "staging-primary-k8s-cluster"
+  region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version = "1.18.8-do.1"
-  vpc_uuid = digitalocean_vpc.primary.id
-  tags    = ["staging"]
+  version   = "1.18.8-do.1"
+  vpc_uuid  = digitalocean_vpc.primary.id
+  tags      = ["staging"]
 
   node_pool {
     name       = "worker-pool"
@@ -94,11 +88,9 @@ resource "digitalocean_kubernetes_cluster" "primary" {
 
 resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
-
   name       = "stg-pool-b"
   size       = "m-2vcpu-16gb"
   node_count = 3
-
   labels = {
     pool  = "b"
   }
@@ -116,13 +108,10 @@ resource "kubernetes_secret" "image_pull" {
   metadata {
     name = "docker-cfg"
   }
-
   data = {
     ".dockerconfigjson" = digitalocean_container_registry_docker_credentials.common.docker_credentials
   }
-
   type = "kubernetes.io/dockerconfigjson"
-
 }
 
 resource "helm_release" "ingress" {
@@ -153,15 +142,6 @@ resource "helm_release" "db" {
   chart = "postgresql"
   version = "9.8.7"
   values = [
-	"${file("helm_vals/postgresql.yaml")}"
+    "${file("helm_vals/postgresql.yaml")}"
   ]
 }
-
-/*
-resource "helm_release" "circles-infra" {
-  depends_on = [kubernetes_secret.image_pull]
-  name = "circles-infra"
-  chart = "${path.module}/../../helm/circles-infra-suite"
-  namespace = "default"
-}
-*/
