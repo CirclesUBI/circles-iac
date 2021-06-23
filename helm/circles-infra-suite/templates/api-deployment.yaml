@@ -34,6 +34,11 @@ spec:
           args:
             - ./run.sh
           env:
+            # Node Environment
+            # ~~~~~~~~~~~~~~~~
+            - name: NODE_ENV
+              value: production
+
             # Service endpoints
             # ~~~~~~~~~~~~~~~~~
             - name: API_SERVICE_ENDPOINT

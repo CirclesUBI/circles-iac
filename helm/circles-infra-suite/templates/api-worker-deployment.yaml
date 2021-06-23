@@ -32,6 +32,11 @@ spec:
           args:
             - ./run-worker.sh
           env:
+            # Node Environment
+            # ~~~~~~~~~~~~~~~~
+            - name: NODE_ENV
+              value: production
+
             # Relayer Addresses
             # ~~~~~~~~~~~~~~~~~
             - name: SAFE_TX_ADDRESS
