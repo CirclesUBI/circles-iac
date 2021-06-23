@@ -41,6 +41,16 @@ Setup and deployment infrastructure using Terraform and Helm to manage volumes a
 
 [`Circles`]: https://joincircles.net
 
+## Requirements
+
+* [`terraform`] v0.12.x (higher not compatible)
+* [`helm`]
+* [`doctl`]
+
+[`doctl`]: https://docs.digitalocean.com/reference/doctl/how-to/install
+[`helm`]: https://helm.sh/docs/intro/install
+[`terraform`]: https://releases.hashicorp.com/terraform
+
 ## Overview
 
 * [`do-infra-setup`]: Terraform files to deploy Circles staging and production infrastructure on DigitalOcean
