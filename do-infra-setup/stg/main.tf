@@ -135,3 +135,10 @@ resource "helm_release" "cert_manager" {
     value = "true"
   }
 }
+
+resource "helm_release" "nfs_server_provisioner" {
+  name = "nfs-server-provisioner"
+  repository = "https://kvaps.github.io/charts"
+  chart = "nfs-server-provisioner"
+  version = "1.3.1"
+}
