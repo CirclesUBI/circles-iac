@@ -4,10 +4,14 @@ terraform {
     key                         = "terraform.tfstate"
     bucket                      = "circles-stg-tf-state"
     region                      = "us-west-1"
-    skip_requesting_account_id  = true
     skip_credentials_validation = true
-    skip_get_ec2_platforms      = true
     skip_metadata_api_check     = true
+  }
+
+  required_providers {
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+    }
   }
 }
 
@@ -16,7 +20,6 @@ provider "digitalocean" {
 }
 
 provider "kubernetes" {
-  load_config_file = false
   host             = digitalocean_kubernetes_cluster.primary.endpoint
   token            = digitalocean_kubernetes_cluster.primary.kube_config[0].token
   cluster_ca_certificate = base64decode(
@@ -25,9 +28,7 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  version = "~> 1.0.0"
   kubernetes {
-    load_config_file = false
     host = digitalocean_kubernetes_cluster.primary.endpoint
     token = digitalocean_kubernetes_cluster.primary.kube_config[0].token
     cluster_ca_certificate = base64decode(
@@ -75,7 +76,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "staging-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.18.8-do.1"
+  version   = "1.20.7-do.0"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
   node_pool {
@@ -114,10 +115,10 @@ resource "kubernetes_secret" "image_pull" {
 }
 
 resource "helm_release" "ingress" {
-  name = "nginx-ingress"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
-  chart = "nginx-ingress"
-  version = "1.41.3"
+  name = "ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart = "ingress-nginx"
+  version = "3.34.0"
   set {
     name = "controller.publishService.enabled"
     value = "true"
@@ -133,14 +134,4 @@ resource "helm_release" "cert_manager" {
     name = "installCRDs"
     value = "true"
   }
-}
-
-resource "helm_release" "db" {
-  name = "db"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart = "postgresql"
-  version = "9.8.7"
-  values = [
-    "${file("helm_vals/postgresql.yaml")}"
-  ]
 }
