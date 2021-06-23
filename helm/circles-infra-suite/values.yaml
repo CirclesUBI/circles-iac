@@ -1,9 +1,6 @@
-# ~~~~~~~~~~~~~~~~~~~~~~~~~
-# Circles Production Values
-# ~~~~~~~~~~~~~~~~~~~~~~~~~
-# Main host
-host: circles.garden
-
+# ~~~~~~~~~~~~~~~~~~~~~~
+# Circles Default Values
+# ~~~~~~~~~~~~~~~~~~~~~~
 # Docker registry
 imageRegistry: registry.digitalocean.com/circles-registry
 
@@ -17,12 +14,10 @@ apiService:
   # Service name
   name: api
 
-  # Docker image and tag
+  # Docker image
   image: circles-api
-  imageTag: v1.3.12
 
   # Ingress
-  host: api.circles.garden
   port: 3000
 
   # Shared nfs volume between api and api-worker to store edges-data
@@ -36,12 +31,10 @@ relayerService:
   # Service name
   name: relayer-service
 
-  # Docker image and tag
+  # Docker image
   image: safe-relay-service
-  imageTag: v4.1.9
 
   # Ingress
-  host: relay.circles.garden
   port: 8888
 
 # circles-redis Service
@@ -59,36 +52,8 @@ aws:
   # AWS region
   region: eu-central-1
 
-  # Bucket for user content storage (via api)
-  bucketUserContent: circles-ubi
-
-  # Bucket for trust edges file storage (via api-worker)
-  bucketTrustNetwork: circles-ubi-network
-
 # "The Graph" Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Graph node URL
   endpoint: https://api.thegraph.com
-
-  # Circles subgraph name
-  subgraph: circlesubi/circles
-
-# Ethereum Node Configuration
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ethereum:
-  http: https://dark-frosty-field.xdai.quiknode.pro
-  ws: wss://dark-frosty-field.xdai.quiknode.pro
-
-# Smart Contract Addresses
-# ~~~~~~~~~~~~~~~~~~~~~~~~
-contracts:
-  hubAddress: 0x29b9a7fBb8995b2423a71cC17cf9810798F6C543
-  safeAddress: 0x2CB0ebc503dE87CFD8f0eCEED8197bF7850184ae
-  proxyFactoryAddress: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
-
-# Relayer Addresses
-# ~~~~~~~~~~~~~~~~~
-relayer:
-  funderAddress: 0x0276d6d8fB555894f11d933994154D7C37574746
-  senderAddress: 0x0739a8D036c966aC9161Ea14855CE0f94C15B87b

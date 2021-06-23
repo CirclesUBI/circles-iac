@@ -34,9 +34,6 @@ aws:
 # "The Graph" Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
-  # Graph node URL
-  endpoint: https://api.thegraph.com
-
   # Circles subgraph name
   subgraph: circlesubi/circles-staging
 
