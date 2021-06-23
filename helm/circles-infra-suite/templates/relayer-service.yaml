@@ -2,14 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    io.kompose.service: {{.Values.relayerService.name}}
-  name: {{.Values.relayerService.name}}
+    io.kompose.service: {{.Values.relayerService.name}}-service
+  name: {{.Values.relayerService.name}}-service
 spec:
   ports:
     - name: http
       port: {{.Values.relayerService.port}}
       targetPort: {{.Values.relayerService.port}}
   selector:
-    io.kompose.service: {{.Values.relayerService.name}}
+    io.kompose.service: {{.Values.relayerService.name}}-service
 status:
   loadBalancer: {}

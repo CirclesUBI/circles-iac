@@ -1,10 +1,20 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-worker
+  labels:
+    io.kompose.service: {{.Values.apiService.name}}-worker
+  name: {{.Values.apiService.name}}-worker
 spec:
   replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: {{.Values.apiService.name}}-worker
   template:
+    metadata:
+      labels:
+        io.kompose.service: {{.Values.apiService.name}}-worker
     spec:
       imagePullSecrets:
         - name: docker-cfg
@@ -14,7 +24,7 @@ spec:
           persistentVolumeClaim:
             claimName: {{.Values.apiService.volumeClaimName}}
       containers:
-        - name: circles-api-worker
+        - name: circles-{{.Values.apiService.name}}-worker
           image: {{.Values.imageRegistry}}/{{.Values.apiService.image}}:{{.Values.apiService.imageTag}}
           volumeMounts:
             - mountPath: {{.Values.apiService.volumeMountPath}}

@@ -1,6 +1,8 @@
 # ~~~~~~~~~~~~~~~~~~~~~~
 # Circles Default Values
 # ~~~~~~~~~~~~~~~~~~~~~~
+host: circles.garden
+
 # Docker registry
 imageRegistry: registry.digitalocean.com/circles-registry
 
@@ -29,7 +31,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Service name
-  name: relayer-service
+  name: relayer
 
   # Docker image
   image: safe-relay-service

@@ -1,12 +1,20 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: relayer-worker
+  labels:
+    io.kompose.service: {{.Values.relayerService.name}}-worker
+  name: {{.Values.relayerService.name}}-worker
 spec:
   replicas: 1
   strategy:
     type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: {{.Values.relayerService.name}}-worker
   template:
+    metadata:
+      labels:
+        io.kompose.service: {{.Values.relayerService.name}}-worker
     spec:
       imagePullSecrets:
         - name: docker-cfg
@@ -19,7 +27,7 @@ spec:
             path: /data
           name: relayer-html
       containers:
-        - name: circles-relayer-worker
+        - name: circles-{{.Values.relayerService.name}}-worker
           image: {{.Values.imageRegistry}}/{{.Values.relayerService.image}}:{{.Values.relayerService.imageTag}}
           ports:
             - containerPort: {{.Values.relayerService.port}}
@@ -51,11 +59,11 @@ spec:
                   name: relayer
             # ~~~~~~~~~~~~~~~~~~~~~
             - name: C_FORCE_ROOT
-              value: true
+              value: "true"
             - name: DEPLOY_MASTER_COPY_ON_INIT
-              value: 0
+              value: "0"
             - name: DEPLOY_PROXY_FACTORY_ON_INIT
-              value: 0
+              value: "0"
             - name: CELERY_BROKER_URL
               valueFrom:
                 configMapKeyRef:

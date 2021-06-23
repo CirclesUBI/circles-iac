@@ -1,4 +1,4 @@
-apiVersion: v1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
@@ -12,6 +12,9 @@ spec:
     matchLabels:
       io.kompose.service: {{.Values.apiService.name}}
   template:
+    metadata:
+      labels:
+        io.kompose.service: {{.Values.apiService.name}}
     spec:
       imagePullSecrets:
         - name: docker-cfg
