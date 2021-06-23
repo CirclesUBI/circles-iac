@@ -57,9 +57,33 @@ Setup and deployment infrastructure using Terraform and Helm to manage volumes a
 
 * [`do-infra-setup`]: Terraform files to deploy Circles staging and production infrastructure on DigitalOcean
 * [`helm/circles-infra-suite`]: Helm chart and templates to deploy Circles services from Docker images
+* [`secrets`]: Helpers to create secrets on Kubernetes cluster
 
 [`do-infra-setup`]: do-infra-setup
 [`helm/circles-infra-suite`]: helm/circles-infra-suite
+[`secrets`]: secrets
+
+## Secrets
+
+This setup requires the following `Secret` objects to be created on the Kubernetes cluster. Check [`secrets`] for further helper tools to maintain secrets:
+
+**relayer:**
+
+* `SAFE_FUNDER_PRIVATE_KEY`: Wallet with funds to pay for Safe creation
+* `SAFE_TX_SENDER_PRIVATE_KEY`: Wallet with funds to pay for transactions
+* `DJANGO_SECRET_KEY`: Hashing salt for Relayer Django app
+
+**aws:**
+
+* `AWS_ACCESS_KEY_ID`
+* `AWS_SECRET_ACCESS_KEY`
+
+**db:**
+
+* `POSTGRES_HOST`
+* `POSTGRES_PASSWORD`
+* `POSTGRES_PORT`
+* `POSTGRES_USER`
 
 ## Images registry
 
