@@ -1,6 +1,8 @@
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 # Circles Production Values
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
+# Main host
+host: circles.garden
 
 # circles-api Service
 # ~~~~~~~~~~~~~~~~~~~
