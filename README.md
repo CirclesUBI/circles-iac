@@ -63,7 +63,15 @@ Setup and deployment infrastructure using Terraform and Helm to manage volumes a
 [`helm/circles-infra-suite`]: helm/circles-infra-suite
 [`secrets`]: secrets
 
-## Secrets
+## Usage
+
+### Deployment
+
+1. Use terraform [`do-infra-setup`] to provision a Kubernetes cluster, PostgreSQL database, NFS Provisioner, Ingress controller and LetsEncrypt issuer on DigitalOcean
+2. Create required secrets via [`secrets`] helper tools
+3. Use helm [`helm/circles-infra-suite`] to deploy Circles services on Kubernetes cluster
+
+### Secrets
 
 This setup requires the following `Secret` objects to be created on the Kubernetes cluster. Check [`secrets`] for further helper tools to maintain secrets:
 
@@ -85,13 +93,13 @@ This setup requires the following `Secret` objects to be created on the Kubernet
 * `POSTGRES_PORT`
 * `POSTGRES_USER`
 
-## Images registry
+### Images registry
 
 Circles repositories automatically build and upload Docker images of their latest versions. These images are available in our DigitalOcean registry and publicly on [`DockerHub`].
 
 [`DockerHub`]: https://hub.docker.com/u/joincircles
 
-## Provisioning via `docker-compose`
+### Provisioning via `docker-compose`
 
 In case you don't want to deploy Circles infrastructure with DigitalOcean and Kubernetes you can have a look at our [`circles-docker`] repository which allows a similar setup with `docker-compose` for local development and easier production server deployments.
 
