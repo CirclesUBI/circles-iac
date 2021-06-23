@@ -43,13 +43,15 @@ Setup and deployment infrastructure using Terraform and Helm to manage volumes a
 
 ## Requirements
 
-* [`terraform`] v0.12.x (higher not compatible)
+* [`terraform`]
 * [`helm`]
+* [`kubectl`]
 * [`doctl`]
 
 [`doctl`]: https://docs.digitalocean.com/reference/doctl/how-to/install
+[`kubectl`]: https://kubernetes.io/docs/tasks/tools
 [`helm`]: https://helm.sh/docs/intro/install
-[`terraform`]: https://releases.hashicorp.com/terraform
+[`terraform`]: https://www.terraform.io/downloads.html
 
 ## Overview
 
