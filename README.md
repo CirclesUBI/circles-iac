@@ -65,6 +65,12 @@ Circles repositories automatically build and upload Docker images of their lates
 
 [`DockerHub`]: https://hub.docker.com/u/joincircles
 
+## Provisioning via `docker-compose`
+
+In case you don't want to deploy Circles infrastructure with DigitalOcean and Kubernetes you can have a look at our [`circles-docker`] repository which allows a similar setup with `docker-compose` for local development and simpler server setups.
+
+[`circles-docker`]: https://github.com/CirclesUBI/circles-docker
+
 ## License
 
 GNU Affero General Public License v3.0 [`AGPL-3.0`]
