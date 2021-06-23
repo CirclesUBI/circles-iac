@@ -67,7 +67,7 @@ Circles repositories automatically build and upload Docker images of their lates
 
 ## Provisioning via `docker-compose`
 
-In case you don't want to deploy Circles infrastructure with DigitalOcean and Kubernetes you can have a look at our [`circles-docker`] repository which allows a similar setup with `docker-compose` for local development and simpler server setups.
+In case you don't want to deploy Circles infrastructure with DigitalOcean and Kubernetes you can have a look at our [`circles-docker`] repository which allows a similar setup with `docker-compose` for local development and easier production server deployments.
 
 [`circles-docker`]: https://github.com/CirclesUBI/circles-docker
 
