@@ -2,8 +2,8 @@ apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   labels:
-    io.kompose.service: api
-  name: {{.Values.api.volumeClaimName}}
+    io.kompose.service: {{.Values.apiService.name}}
+  name: {{.Values.apiService.volumeClaimName}}
 spec:
   accessModes:
     - ReadWriteMany

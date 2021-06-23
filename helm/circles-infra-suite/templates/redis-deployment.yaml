@@ -2,21 +2,21 @@ apiVersion: v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: redis
-  name: redis
+    io.kompose.service: {{.Values.redisService.name}}
+  name: {{.Values.redisService.name}}
 spec:
   replicas: 1
   selector:
     matchLabels:
-      io.kompose.service: redis
+      io.kompose.service: {{.Values.redisService.name}}
   template:
     metadata:
       labels:
-        io.kompose.service: redis
+        io.kompose.service: {{.Values.redisService.name}}
     spec:
       restartPolicy: Always
       containers:
-        - name: circles-redis
+        - name: circles-{{.Values.redisService.name}}
           image: redis:6.0.1-alpine
           ports:
-            - containerPort: {{.Values.redis.port}}
+            - containerPort: {{.Values.redisService.port}}

@@ -2,12 +2,14 @@ apiVersion: v1
 kind: Service
 metadata:
   labels:
-    io.kompose.service: redis
-  name: redis
+    io.kompose.service: {{.Values.redisService.name}}
+  name: {{.Values.redisService.name}}
 spec:
   ports:
-    - name: circles-redis
-      port: {{.Values.redis.port}}
-      targetPort: {{.Values.redis.port}}
+    - name: tcp
+      port: {{.Values.redisService.port}}
+      targetPort: {{.Values.redisService.port}}
   selector:
-    io.kompose.service: redis
+    io.kompose.service: {{.Values.redisService.name}}
+status:
+  loadBalancer: {}

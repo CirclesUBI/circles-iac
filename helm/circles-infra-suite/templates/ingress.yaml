@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: circles-ingress
@@ -8,16 +8,16 @@ metadata:
 spec:
   tls:
     - hosts:
-        - {{.Values.api.host}}
+        - {{.Values.apiService.host}}
         - {{.Values.relayerService.host}}
       secretName: circles-tls
   rules:
-    - host: {{.Values.api.host}}
+    - host: {{.Values.apiService.host}}
       http:
         paths:
           - backend:
               serviceName: api
-              servicePort: {{.Values.api.port}}
+              servicePort: {{.Values.apiService.port}}
     - host: {{.Values.relayerService.host}}
       http:
         paths:
