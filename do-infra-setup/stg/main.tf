@@ -82,7 +82,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   node_pool {
     name       = "stg-pool-a"
     size       = "c-4"
-    node_count = 3
+    node_count = 1
   }
 }
 
