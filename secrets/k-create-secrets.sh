@@ -7,6 +7,8 @@ fi
 
 ENV=$1
 
+echo "Your current kubectl context is: $(kubectl config current-context)"
+
 read -p "Are you sure you want to CREATE '$ENV' secrets in your current Kubernetes cluster? (Yy) " -n 1 -r
 if [[ ! $REPLY =~ ^[Yy]$ ]]
 then
