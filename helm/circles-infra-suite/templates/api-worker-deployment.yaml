@@ -97,10 +97,10 @@ spec:
                 configMapKeyRef:
                   key: AWS_REGION
                   name: env
-            - name: AWS_S3_BUCKET
+            - name: AWS_S3_BUCKET_TRUST_NETWORK
               valueFrom:
                 configMapKeyRef:
-                  key: AWS_S3_BUCKET
+                  key: AWS_S3_BUCKET_TRUST_NETWORK
                   name: env
 
             # Ethereum Node Configuration
