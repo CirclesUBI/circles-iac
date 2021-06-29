@@ -1,0 +1,61 @@
+# ~~~~~~~~~~~~~~~~~~~~~~
+# Circles Default Values
+# ~~~~~~~~~~~~~~~~~~~~~~
+host: circles.garden
+
+# Docker registry
+imageRegistry: registry.digitalocean.com/circles-registry
+
+# LetsEncrypt certificates
+acmeEmail: circlesubi@gmail.com
+acmeServer: https://acme-v02.api.letsencrypt.org/directory
+
+# circles-api Service
+# ~~~~~~~~~~~~~~~~~~~
+apiService:
+  # Service name
+  name: api
+
+  # Docker image
+  image: circles-api
+
+  # Ingress
+  port: 3000
+
+  # Shared nfs volume between api and api-worker to store edges-data
+  volumeName: data
+  volumeClaimName: api-data
+  volumeMountPath: /usr/src/app/edges-data
+
+# circles-relayer Service
+# ~~~~~~~~~~~~~~~~~~~~~~~
+relayerService:
+  # Service name
+  name: relayer
+
+  # Docker image
+  image: safe-relay-service
+
+  # Ingress
+  port: 8888
+
+# circles-redis Service
+# ~~~~~~~~~~~~~~~~~~~~~
+redisService:
+  # Service name
+  name: redis
+
+  # Internal port
+  port: 6379
+
+# AWS S3 Configuration
+# ~~~~~~~~~~~~~~~~~~~~
+aws:
+  # AWS region
+  region: eu-central-1
+
+# "The Graph" Configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~
+graph:
+  # Graph node URL
+  endpoint: https://api.thegraph.com

@@ -2,19 +2,19 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   labels:
-    io.kompose.service: {{.Values.relayerService.name}}-worker
-  name: {{.Values.relayerService.name}}-worker
+    io.kompose.service: {{.Values.relayerService.name}}-service
+  name: {{.Values.relayerService.name}}-service
 spec:
   replicas: 1
   strategy:
     type: Recreate
   selector:
     matchLabels:
-      io.kompose.service: {{.Values.relayerService.name}}-worker
+      io.kompose.service: {{.Values.relayerService.name}}-service
   template:
     metadata:
       labels:
-        io.kompose.service: {{.Values.relayerService.name}}-worker
+        io.kompose.service: {{.Values.relayerService.name}}-service
     spec:
       imagePullSecrets:
         - name: docker-cfg
@@ -27,7 +27,7 @@ spec:
             path: /data
           name: relayer-html
       containers:
-        - name: circles-{{.Values.relayerService.name}}-worker
+        - name: circles-{{.Values.relayerService.name}}-service
           image: {{.Values.imageRegistry}}/{{.Values.relayerService.image}}:{{.Values.relayerService.imageTag}}
           ports:
             - containerPort: {{.Values.relayerService.port}}
@@ -38,7 +38,7 @@ spec:
               name: relayer-html
           workingDir: /safe-relay-service
           args:
-            - ./run-worker.sh
+            - ./run.sh
           env:
             # Relayer Configuration
             # ~~~~~~~~~~~~~~~~~~~~~

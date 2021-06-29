@@ -7,27 +7,20 @@ metadata:
     cert-manager.io/cluster-issuer: letsencrypt-live
 spec:
   tls:
-  - hosts:
-    - api.circles.garden
-    - graph.circles.garden
-    - relay.circles.garden
-    secretName: circles-tls
+    - hosts:
+        - {{.Values.apiService.host}}
+        - {{.Values.relayerService.host}}
+      secretName: circles-tls
   rules:
-  - host: api.circles.garden
-    http:
-      paths:
-      - backend:
-          serviceName: api
-          servicePort: 3000
-  - host: graph.circles.garden
-    http:
-      paths:
-      - backend:
-          serviceName: graph
-          servicePort: 8000
-  - host: relay.circles.garden
-    http:
-      paths:
-      - backend:
-          serviceName: relayer-service
-          servicePort: 8888
+    - host: {{.Values.apiService.host}}
+      http:
+        paths:
+          - backend:
+              serviceName: {{.Values.apiService.name}}
+              servicePort: {{.Values.apiService.port}}
+    - host: {{.Values.relayerService.host}}
+      http:
+        paths:
+          - backend:
+              serviceName: {{.Values.relayerService.name}}-service
+              servicePort: {{.Values.relayerService.port}}

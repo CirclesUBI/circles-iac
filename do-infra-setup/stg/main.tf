@@ -4,10 +4,14 @@ terraform {
     key                         = "terraform.tfstate"
     bucket                      = "circles-stg-tf-state"
     region                      = "us-west-1"
-    skip_requesting_account_id  = true
     skip_credentials_validation = true
-    skip_get_ec2_platforms      = true
     skip_metadata_api_check     = true
+  }
+
+  required_providers {
+    digitalocean = {
+      source = "digitalocean/digitalocean"
+    }
   }
 }
 
@@ -16,7 +20,6 @@ provider "digitalocean" {
 }
 
 provider "kubernetes" {
-  load_config_file = false
   host             = digitalocean_kubernetes_cluster.primary.endpoint
   token            = digitalocean_kubernetes_cluster.primary.kube_config[0].token
   cluster_ca_certificate = base64decode(
@@ -25,13 +28,11 @@ provider "kubernetes" {
 }
 
 provider "helm" {
-  version = "~> 1.0.0"
   kubernetes {
-    load_config_file = false
     host = digitalocean_kubernetes_cluster.primary.endpoint
     token = digitalocean_kubernetes_cluster.primary.kube_config[0].token
     cluster_ca_certificate = base64decode(
-	digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
+      digitalocean_kubernetes_cluster.primary.kube_config[0].cluster_ca_certificate
     )
   }
 }
@@ -48,7 +49,7 @@ resource "digitalocean_database_cluster" "postgres" {
   version    = "12"
   size       = "db-s-2vcpu-4gb"
   region     = "ams3"
-  private_network_uuid = digitalocean_vpc.primary.id 
+  private_network_uuid = digitalocean_vpc.primary.id
   node_count = 2
 }
 
@@ -62,12 +63,6 @@ resource "digitalocean_database_db" "relayer" {
   name       = "relayer"
 }
 
-resource "digitalocean_database_db" "graph" {
-  cluster_id = digitalocean_database_cluster.postgres.id
-  name       = "graph"
-}
-
-
 resource "digitalocean_database_firewall" "db-fw" {
   cluster_id = digitalocean_database_cluster.postgres.id
 
@@ -78,27 +73,24 @@ resource "digitalocean_database_firewall" "db-fw" {
 }
 
 resource "digitalocean_kubernetes_cluster" "primary" {
-  name   = "staging-primary-k8s-cluster"
-  region = "ams3"
+  name      = "staging-primary-k8s-cluster"
+  region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version = "1.18.8-do.1"
-  vpc_uuid = digitalocean_vpc.primary.id
-  tags    = ["staging"]
-
+  version   = "1.20.7-do.0"
+  vpc_uuid  = digitalocean_vpc.primary.id
+  tags      = ["staging"]
   node_pool {
-    name       = "worker-pool"
+    name       = "stg-pool-a"
     size       = "c-4"
-    node_count = 3
+    node_count = 1
   }
 }
 
 resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
-
   name       = "stg-pool-b"
   size       = "m-2vcpu-16gb"
-  node_count = 3
-
+  node_count = 1
   labels = {
     pool  = "b"
   }
@@ -116,20 +108,17 @@ resource "kubernetes_secret" "image_pull" {
   metadata {
     name = "docker-cfg"
   }
-
   data = {
     ".dockerconfigjson" = digitalocean_container_registry_docker_credentials.common.docker_credentials
   }
-
   type = "kubernetes.io/dockerconfigjson"
-
 }
 
 resource "helm_release" "ingress" {
-  name = "nginx-ingress"
-  repository = "https://kubernetes-charts.storage.googleapis.com"
-  chart = "nginx-ingress"
-  version = "1.41.3"
+  name = "ingress-nginx"
+  repository = "https://kubernetes.github.io/ingress-nginx"
+  chart = "ingress-nginx"
+  version = "3.34.0"
   set {
     name = "controller.publishService.enabled"
     value = "true"
@@ -147,21 +136,9 @@ resource "helm_release" "cert_manager" {
   }
 }
 
-resource "helm_release" "db" {
-  name = "db"
-  repository = "https://charts.bitnami.com/bitnami"
-  chart = "postgresql"
-  version = "9.8.7"
-  values = [
-	"${file("helm_vals/postgresql.yaml")}"
-  ]
+resource "helm_release" "nfs_server_provisioner" {
+  name = "nfs-server-provisioner"
+  repository = "https://kvaps.github.io/charts"
+  chart = "nfs-server-provisioner"
+  version = "1.3.1"
 }
-
-/*
-resource "helm_release" "circles-infra" {
-  depends_on = [kubernetes_secret.image_pull]
-  name = "circles-infra"
-  chart = "${path.module}/../../helm/circles-infra-suite"
-  namespace = "default"
-}
-*/

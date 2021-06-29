@@ -1,0 +1,57 @@
+# ~~~~~~~~~~~~~~~~~~~~~~
+# Circles Staging Values
+# ~~~~~~~~~~~~~~~~~~~~~~
+# Main host
+host: staging.circles.garden
+
+# circles-api Service
+# ~~~~~~~~~~~~~~~~~~~
+apiService:
+  # Docker image tag
+  imageTag: v1.3.12
+
+  # Ingress
+  host: api.staging.circles.garden
+
+# circles-relayer Service
+# ~~~~~~~~~~~~~~~~~~~~~~~
+relayerService:
+  # Docker image tag
+  imageTag: v4.1.9
+
+  # Ingress
+  host: relay.staging.circles.garden
+
+# AWS S3 Configuration
+# ~~~~~~~~~~~~~~~~~~~~
+aws:
+  # Bucket for user content storage (via api)
+  bucketUserContent: circles-ubi-staging
+
+  # Bucket for trust edges file storage (via api-worker)
+  bucketTrustNetwork: circles-ubi-network-staging
+
+# "The Graph" Configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~
+graph:
+  # Circles subgraph name
+  subgraph: circlesubi/circles-staging
+
+# Ethereum Node Configuration
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ethereum:
+  http: https://sokol.poa.network
+  ws: wss://sokol.poa.network/wss
+
+# Smart Contract Addresses
+# ~~~~~~~~~~~~~~~~~~~~~~~~
+contracts:
+  hubAddress: 0x5D0dDd1d35D3FA9950Defd99F92053b3B9E236D0
+  proxyFactoryAddress: 0x0F9f9C38E53674EF7a29A1DE38EAbF34e1DCB81C
+  safeAddress: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
+
+# Relayer Addresses
+# ~~~~~~~~~~~~~~~~~
+relayer:
+  funderAddress: 0x691b74E59b7D65572DFF5543e5A0e23c2F32049a
+  senderAddress: 0x3454d8C54c94fAb51A3BedE50826F4C3d5445A79
