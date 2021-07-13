@@ -65,11 +65,19 @@ Setup and deployment infrastructure using Terraform and Helm to manage volumes a
 
 ## Usage
 
-### Deployment
+### Setup
 
 1. Use terraform [`do-infra-setup`] to provision a Kubernetes cluster, PostgreSQL database, NFS Provisioner, Ingress controller and LetsEncrypt issuer on DigitalOcean
 2. Create required secrets via [`secrets`] helper tools
 3. Use helm [`helm/circles-infra-suite`] to deploy Circles services on Kubernetes cluster
+
+### Deployment of new services
+
+1. Follow all steps to create new releases and docker images of [`circles-api`](https://github.com/CirclesUBI/circles-api/blob/main/RELEASE.md) and [`safe-relay-service`](https://github.com/CirclesUBI/safe-relay-service/blob/main/RELEASE.md).
+2. Make sure the docker images are uploaded and ready in the Digital Ocean registry, this might take a few minutes.
+3. Change the values in the regarding `imageTag` field for [`staging`](https://github.com/CirclesUBI/circles-iac/blob/main/helm/circles-infra-suite/values-staging.yaml) and [`production`](https://github.com/CirclesUBI/circles-iac/blob/main/helm/circles-infra-suite/values-production.yaml) to the versions you want to release.
+4. Make sure you're using the right Kubernetes context (staging / production cluster) via `kubectl config current-context`. You can switch the context via `kubectl config use-context <name>`.
+5. Run `./helm-upgrade.sh <production|staging>` to apply the changes on the Kubernetes cluster.
 
 ### Secrets
 
