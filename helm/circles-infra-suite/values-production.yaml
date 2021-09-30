@@ -53,5 +53,5 @@ contracts:
 # Relayer Addresses
 # ~~~~~~~~~~~~~~~~~
 relayer:
-  funderAddress: 0x0276d6d8fB555894f11d933994154D7C37574746
-  senderAddress: 0x0739a8D036c966aC9161Ea14855CE0f94C15B87b
+  funderAddress: 0x450Fc3eAc8b847a759Cb05790cE7A1f465ac0cE8
+  senderAddress: 0x9944Ce8e27CE1f16C4003f108b1C09e5Ae011bA0
