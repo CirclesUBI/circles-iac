@@ -1,8 +1,9 @@
 #!/bin/bash
 
+ENV=$1
 SCRIPT_DIR=$( cd -- "$( dirname -- "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )
 
-cd $SCRIPT_DIR/../do-infra-setup/stg
+cd $SCRIPT_DIR/../do-infra-setup/$ENV
 
 terraform init \
  -backend-config="access_key=$SPACES_ACCESS_TOKEN" \
