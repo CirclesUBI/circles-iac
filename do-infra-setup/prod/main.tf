@@ -80,7 +80,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   tags      = ["prod"]
   node_pool {
     name       = "prod-pool-a"
-    size       = "c-4"
+    size       = "g-4vcpu-16gb"
     node_count = 3
   }
 }
