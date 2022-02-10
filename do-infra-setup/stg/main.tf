@@ -118,7 +118,7 @@ resource "helm_release" "ingress" {
   name = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart = "ingress-nginx"
-  version = "3.34.0"
+  version = "4.0.13"
   set {
     name = "controller.publishService.enabled"
     value = "true"

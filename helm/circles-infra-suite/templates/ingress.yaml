@@ -1,4 +1,4 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: circles-ingress
@@ -15,12 +15,21 @@ spec:
     - host: {{.Values.apiService.host}}
       http:
         paths:
-          - backend:
-              serviceName: {{.Values.apiService.name}}
-              servicePort: {{.Values.apiService.port}}
+          - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{.Values.apiService.name}}
+                port:
+                  number: {{.Values.apiService.port}}
     - host: {{.Values.relayerService.host}}
       http:
         paths:
-          - backend:
-              serviceName: {{.Values.relayerService.name}}-service
-              servicePort: {{.Values.relayerService.port}}
+        - path: /
+            pathType: Prefix
+            backend:
+              service:
+                name: {{.Values.relayerService.name}}-service
+                port:
+                  number: {{.Values.relayerService.port}}
+  ingressClassName: nginx
