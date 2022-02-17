@@ -118,7 +118,8 @@ resource "helm_release" "ingress" {
   name = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart = "ingress-nginx"
-  version = "4.0.13"
+  timeout    = var.nginx_ingress_helm_timeout_seconds
+  version = "4.0.17"
   set {
     name = "controller.publishService.enabled"
     value = "true"
@@ -127,9 +128,9 @@ resource "helm_release" "ingress" {
 
 resource "helm_release" "cert_manager" {
   name = "cert-manager"
-  repository = "https://charts.jetstack.io"
+  repository = "https://charts.jetstack.io"  
   chart = "cert-manager"
-  version = "v1.0.3"
+  version = "v1.7.0"
   set {
     name = "installCRDs"
     value = "true"
