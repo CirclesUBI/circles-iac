@@ -11,16 +11,16 @@ spec:
         - {{.Values.apiService.host}}
       secretName: circles-tls
   rules:
-    - host: {{.Values.apiService.host}}
-      http:
-        paths:
-          path: /
-          pathType: Prefix
-          backend:        
-            service:
-              name: {{.Values.apiService.name}}
-              port:
-                number: {{.Values.apiService.port}}
+  - host: {{.Values.apiService.host}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:        
+          service:
+            name: {{.Values.apiService.name}}-service
+            port:
+              number: {{.Values.apiService.port}}
 ---    
 apiVersion: networking.k8s.io/v1
 kind: Ingress
@@ -35,13 +35,37 @@ spec:
         - {{.Values.relayerService.host}}
       secretName: circles-tls
   rules:
-    - host: {{.Values.relayerService.host}}
-      http:
-        paths:
-          path: /
-          pathType: Prefix
-          backend:
-            service:
-              name: {{.Values.relayerService.name}}-service
-              port:
-                number: {{.Values.relayerService.port}}
+  - host: {{.Values.relayerService.host}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.relayerService.name}}-service
+            port:
+              number: {{.Values.relayerService.port}}
+--- 
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: circles-ingress-graph
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-live
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{.Values.graph.host}}
+      secretName: circles-tls
+  rules:
+  - host: {{.Values.graph.host}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:        
+          service:
+            name: {{.Values.graph.name}}
+            port:
+              number: {{.Values.graph.port}}

@@ -22,6 +22,8 @@ data:
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
   GRAPH_NODE_ENDPOINT: {{.Values.graph.endpoint}}
   SUBGRAPH_NAME: {{.Values.graph.subgraph}}
+  IPFS: {{.Values.graph.ipfs.name}}:{{.Values.graph.ipfs.port}}
+  GRAPH_LOG: {{.Values.graph.logs}}
 
   # Ethereum Node Configuration       
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -38,7 +40,7 @@ data:
   # ~~~~~~~~~~~~~~~~~~~~
   POSTGRES_DATABASE_API: api
   POSTGRES_DATABASE_RELAYER: relayer
-
+  POSTGRES_DATABASE_GRAPH: graph
   # Relayer Addresses
   # ~~~~~~~~~~~~~~~~~
   SAFE_FUNDER_ADDRESS: {{.Values.relayer.funderAddress}}

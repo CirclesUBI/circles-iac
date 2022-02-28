@@ -63,6 +63,11 @@ resource "digitalocean_database_db" "relayer" {
   name       = "relayer"
 }
 
+resource "digitalocean_database_db" "graph" {
+  cluster_id = digitalocean_database_cluster.postgres.id
+  name       = "graph"
+}
+
 resource "digitalocean_database_firewall" "db-fw" {
   cluster_id = digitalocean_database_cluster.postgres.id
 
