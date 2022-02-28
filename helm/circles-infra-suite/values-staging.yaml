@@ -8,7 +8,7 @@ host: staging.circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.3.20
+  imageTag: v1.3.22
 
   # Ingress
   host: api.staging.circles.garden
@@ -35,8 +35,10 @@ aws:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Circles subgraph name
-  subgraph: circlesubi/circles-staging
-
+  subgraph: circlesubi/circlesubi-staging
+  # Ingress
+  host: graph.staging.circles.garden
+  port: 8000
 # Ethereum Node Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ethereum:
