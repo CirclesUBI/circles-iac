@@ -3,13 +3,13 @@ kind: Ingress
 metadata:
   name: circles-ingress-api
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-live
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - {{.Values.apiService.host}}
-      secretName: circles-tls
+      secretName: circles-tls-api
   rules:
   - host: {{.Values.apiService.host}}
     http:
@@ -27,13 +27,13 @@ kind: Ingress
 metadata:
   name: circles-ingress-relayer
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-live
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - {{.Values.relayerService.host}}
-      secretName: circles-tls
+      secretName: circles-tls-relayer
   rules:
   - host: {{.Values.relayerService.host}}
     http:
@@ -51,13 +51,13 @@ kind: Ingress
 metadata:
   name: circles-ingress-graph
   annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-live
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
   ingressClassName: nginx
   tls:
     - hosts:
         - {{.Values.graph.host}}
-      secretName: circles-tls
+      secretName: circles-tls-graph-node
   rules:
   - host: {{.Values.graph.host}}
     http:

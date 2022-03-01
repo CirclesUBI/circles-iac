@@ -86,7 +86,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   tags      = ["staging"]
   node_pool {
     name       = "stg-pool-a"
-    size       = "c-4"
+    size       = "m-2vcpu-8g"
     node_count = 1
   }
 }
@@ -94,7 +94,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
 resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
   name       = "stg-pool-b"
-  size       = "m-2vcpu-16gb"
+  size       = "m-2vcpu-8gb"
   node_count = 1
   labels = {
     pool  = "b"

@@ -1,13 +1,13 @@
 apiVersion: cert-manager.io/v1
 kind: ClusterIssuer
 metadata:
-  name: letsencrypt-live
+  name: letsencrypt-prod
 spec:
   acme:
     email: {{.Values.acmeEmail}}
     server: {{.Values.acmeServer}}
     privateKeySecretRef:
-      name: letsencrypt-live-private-key
+      name: letsencrypt-prod-private-key
     solvers:
       - http01:
           ingress:
