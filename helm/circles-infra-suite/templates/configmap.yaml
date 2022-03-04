@@ -22,8 +22,7 @@ data:
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
   GRAPH_NODE_ENDPOINT: {{.Values.graph.endpoint}}
   SUBGRAPH_NAME: {{.Values.graph.subgraph}}
-  IPFS: {{.Values.graph.ipfs.name}}:{{.Values.graph.ipfs.port}}
-  GRAPH_LOG: {{.Values.graph.logs}}
+ 
 
   # Ethereum Node Configuration       
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -40,7 +39,7 @@ data:
   # ~~~~~~~~~~~~~~~~~~~~
   POSTGRES_DATABASE_API: api
   POSTGRES_DATABASE_RELAYER: relayer
-  POSTGRES_DATABASE_GRAPH: graph
+  
   # Relayer Addresses
   # ~~~~~~~~~~~~~~~~~
   SAFE_FUNDER_ADDRESS: {{.Values.relayer.funderAddress}}
@@ -54,3 +53,4 @@ data:
   DJANGO_ALLOWED_HOSTS: .{{.Values.host}}
   DJANGO_SETTINGS_MODULE: config.settings.production
   RELAYER_REDIS_URL: redis://{{.Values.redisService.name}}:{{.Values.redisService.port}}/0
+  

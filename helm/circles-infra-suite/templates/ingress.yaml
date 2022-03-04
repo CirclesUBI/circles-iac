@@ -45,27 +45,3 @@ spec:
             name: {{.Values.relayerService.name}}-service
             port:
               number: {{.Values.relayerService.port}}
---- 
-apiVersion: networking.k8s.io/v1
-kind: Ingress
-metadata:
-  name: circles-ingress-graph
-  annotations:
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-spec:
-  ingressClassName: nginx
-  tls:
-    - hosts:
-        - {{.Values.graph.host}}
-      secretName: circles-tls-graph-node
-  rules:
-  - host: {{.Values.graph.host}}
-    http:
-      paths:
-      - path: /
-        pathType: Prefix
-        backend:        
-          service:
-            name: {{.Values.graph.name}}
-            port:
-              number: {{.Values.graph.port}}

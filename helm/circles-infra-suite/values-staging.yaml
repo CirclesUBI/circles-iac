@@ -36,13 +36,12 @@ aws:
 graph:
   # Circles subgraph name
   subgraph: circlesubi/circlesubi-staging
-  # Ingress
-  host: graph.staging.circles.garden
-  port: 8000
+
+  
 # Ethereum Node Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 ethereum:
-  http: https://sokol.poa.network
+  http: poa-sokol:https://sokol.poa.network
   ws: wss://sokol.poa.network/wss
 
 # Smart Contract Addresses

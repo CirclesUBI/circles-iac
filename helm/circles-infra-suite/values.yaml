@@ -54,18 +54,8 @@ aws:
   # AWS region
   region: eu-central-1
 
-
 # "The Graph" Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Graph node URL
-  # self-hosted config
-  name: graph-node
-  ipfs:
-    name: ipfs
-    port: 5001
-  logs: info
-
-  # hosted endpoint
   endpoint: https://api.thegraph.com
-  
