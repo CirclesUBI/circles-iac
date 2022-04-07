@@ -35,7 +35,7 @@ aws:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Circles subgraph name
-  subgraph: circlesubi/circles
+  subgraph: azf20/circles-ubi
 
 # Ethereum Node Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
