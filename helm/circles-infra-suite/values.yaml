@@ -59,3 +59,5 @@ aws:
 graph:
   # Graph node URL
   endpoint: https://api.thegraph.com
+
+circlesPinkHost: circles.pink
