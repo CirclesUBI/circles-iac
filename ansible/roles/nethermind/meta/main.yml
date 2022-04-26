@@ -1,0 +1,11 @@
+galaxy_info:
+  author: Bitspossessed
+  description: Custom installation of RPC node for xdai/gnosis  and sokol
+  company: Circles
+
+  license: license (GPL-2.0-or-later, MIT, etc)
+
+  min_ansible_version: 2.1
+
+
+

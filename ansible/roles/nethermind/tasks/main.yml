@@ -1,0 +1,27 @@
+---
+# task file
+- name: Add helm repository
+  kubernetes.core.helm_repository:
+    name: ethereum-helm-charts
+    repo_url:  "{{ ethereum_helm_chart_url }}"
+
+- name: Copy values file depending on the env
+  ansible.builtin.copy:
+    src: values-{{ env }}.yaml
+    dest: /etc/config-helm/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install chart for xdai or sokol depending on group_vars
+  kubernetes.core.helm:
+    name: "{{ ethereum_network }}-nethermind"
+    namespace: "{{ ethereum_network }}"
+    kubeconfig: "{{ k8s_kubeconfig }}"
+    chart_version: 0.2.0
+    chart_ref:  ethereum-helm-charts/nethermind
+    create_namespace: true
+    values_files: /etc/config-helm/values-{{ env }}.yaml
+    
+- name: Install add-hoc resources with k8s 
+  include_tasks: adhoc_resources.yml
