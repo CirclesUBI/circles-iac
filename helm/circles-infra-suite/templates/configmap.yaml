@@ -39,6 +39,10 @@ data:
   POSTGRES_DATABASE_API: api
   POSTGRES_DATABASE_RELAYER: relayer
 
+  # Indexed Data Configuration
+  # ~~~~~~~~~~~~~~~~~~~~
+  DATABASE_SOURCE: graph
+
   # Relayer Addresses
   # ~~~~~~~~~~~~~~~~~
   SAFE_FUNDER_ADDRESS: {{.Values.relayer.funderAddress}}
