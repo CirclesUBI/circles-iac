@@ -1,7 +1,7 @@
 galaxy_info:
-  author: Bitspossessed
-  description: Custom installation of RPC node for xdai/gnosis  and sokol
-  company: Circles
+  author: bitspossessed
+  description: Custom installation of RPC node for xdai/gnosis chain and sokol
+  company: Circles UBI
 
   license: license (GPL-2.0-or-later, MIT, etc)
 
