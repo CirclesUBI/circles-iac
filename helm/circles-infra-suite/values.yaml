@@ -60,4 +60,4 @@ graph:
   # Graph node URL
   endpoint: https://api.thegraph.com
 
-circlesPinkHost: circles.pink
+circlesPinkURLs: https://circles.pink,https://expedition-grundeinkommen.de,https://xbge.frac.tools
