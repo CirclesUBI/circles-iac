@@ -1,0 +1,24 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ .Values.graphProtocol.queryNode }}
+  namespace: graphtest
+spec:
+  selector:
+    app: {{ .Values.graphProtocol.queryNode }}
+  ports:
+  - name: http
+    port: {{ .Values.service.http }}
+    targetPort: {{ .Values.service.http }}
+  - name: ws
+    port: {{ .Values.service.ws }}
+    targetPort: {{ .Values.service.ws }}
+  - name: json-rpc
+    port: {{ .Values.service.jsonRpc }}
+    targetPort: {{ .Values.service.jsonRpc }}
+  - name: index-node
+    port: {{ .Values.service.indexNode }}
+    targetPort: {{ .Values.service.indexNode }}
+  - name: metrics
+    port: {{ .Values.service.metrics }}
+    targetPort: {{ .Values.service.metrics }}

@@ -1,0 +1,63 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o circles-infra-suite --volumes persistentVolumeClaim -c 
+    kompose.version: 1.21.0 (992df58d8)
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: hook-succeeded
+  creationTimestamp: null
+  labels:
+    io.kompose.service: subgraph
+  name: subgraph-init
+spec:
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -o circles-infra-suite --volumes persistentVolumeClaim -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: subgraph
+    spec:
+      imagePullSecrets:
+        - name: do-registry
+      containers:
+      - env:
+        - name: GRAPH_ADMIN_NODE_ENDPOINT
+          valueFrom:
+              configMapKeyRef:
+                key: GRAPH_ADMIN_NODE_ENDPOINT
+                name: env
+        - name: SUBGRAPH_NAME
+          value: {{ .Values.subgraph_name }}
+        - name: SUBGRAPH_NETWORK
+          value: {{ .Values.subgraph_network }}
+        - name: PROXY_FACTORY_ADDRESS
+          value: {{ .Values.proxy_factory_address }}
+        - name: START_BLOCK
+          value: {{ .Values.start_block }}
+        - name: HUB_ADDRESS
+          value: {{ .Values.hub_address }}
+        - name: IPFS_NODE_ENDPOINT
+          valueFrom:
+              configMapKeyRef:
+                key: IPFS_NODE_ENDPOINT
+                name: env
+        - name: postgres_host
+          value: postgres
+        - name: postgres_user
+          value: graph-node
+        - name: postgres_pass
+          value: let-me-in
+        - name: postgres_db
+          value: graph-node
+        image: registry.digitalocean.com/circles-registry/circles-subgraph:v1.2.2-0257fcf
+        name: subgraph-init
+        resources: {}
+      restartPolicy: OnFailure
+      serviceAccountName: ""
+      volumes: null
+status: {}

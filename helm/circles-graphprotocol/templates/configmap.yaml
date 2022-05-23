@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: env
+  namespace: graphtest
+data:
+  # GRAPH NODES  configuration
+  # ~~~~~~~~~~~~~~~~~~~~~~
+  GRAPH_ADMIN:  {{ .Values.graphProtocol.admin.name }}:{{ .Values.graphProtocol.admin.port }}
+  IPFS:  {{ .Values.graphProtocol.ipfs.name }}:{{ .Values.graphProtocol.ipfs.port }}
+  GRAPH_LOG: {{ .Values.graphProtocol.logs }}
+  # SUBGRAPH configuration
+  # ~~~~~~~~~~~~~~~~~~~~~~
+  GRAPH_ADMIN_NODE_ENDPOINT:  http://{{ .Values.graphProtocol.admin.name }}:{{ .Values.graphProtocol.admin.port }}
+  IPFS_NODE_ENDPOINT:  http://{{ .Values.graphProtocol.ipfs.name }}:{{ .Values.graphProtocol.ipfs.port }}
