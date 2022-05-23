@@ -59,3 +59,5 @@ aws:
 graph:
   # Graph node URL
   endpoint: https://api.thegraph.com
+
+circlesPinkURLs: https://circles.pink,https://expedition-grundeinkommen.de,https://xbge.frac.tools
