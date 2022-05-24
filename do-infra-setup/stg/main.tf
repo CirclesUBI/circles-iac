@@ -81,12 +81,12 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "staging-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.21.9-do.0"
+  version   = "1.22.8-do.1"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
   node_pool {
     name       = "stg-pool-a"
-    size       = "m-2vcpu-8g"
+    size       = "g-2vcpu-8gb"
     node_count = 1
   }
 }
@@ -94,7 +94,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
 resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
   name       = "stg-pool-b"
-  size       = "m-2vcpu-8gb"
+  size       = "g-2vcpu-8gb"
   node_count = 1
   labels = {
     pool  = "b"
