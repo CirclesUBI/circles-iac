@@ -5,7 +5,7 @@ metadata:
 data:
   # AWS S3 Configuration
   # ~~~~~~~~~~~~~~~~~~~~
-  AWS_REGION: {{ .Values.aws.region }}
+  AWS_REGION: {{.Values.aws.region}}
   AWS_S3_BUCKET: {{.Values.aws.bucketUserContent}}
   AWS_S3_BUCKET_TRUST_NETWORK: {{.Values.aws.bucketTrustNetwork}}
 
@@ -24,7 +24,7 @@ data:
   SUBGRAPH_NAME: {{.Values.graph.subgraph}}
  
 
-  # Ethereum Node Configuration       
+  # Ethereum Node Configuration      
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ETHEREUM_NODE_ENDPOINT: {{.Values.ethereum.http}}
   ETHEREUM_NODE_WS: {{.Values.ethereum.ws}}
