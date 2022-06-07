@@ -23,7 +23,7 @@ data:
   GRAPH_NODE_ENDPOINT: {{.Values.graph.endpoint}}
   SUBGRAPH_NAME: {{.Values.graph.subgraph}}
 
-  # Ethereum Node Configuration      
+  # Ethereum Node Configuration
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
   ETHEREUM_NODE_ENDPOINT: {{.Values.ethereum.http}}
   ETHEREUM_NODE_WS: {{.Values.ethereum.ws}}
@@ -52,4 +52,3 @@ data:
   DJANGO_ALLOWED_HOSTS: .{{.Values.host}}
   DJANGO_SETTINGS_MODULE: config.settings.production
   RELAYER_REDIS_URL: redis://{{.Values.redisService.name}}:{{.Values.redisService.port}}/0
-  
