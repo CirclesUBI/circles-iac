@@ -128,7 +128,7 @@ resource "helm_release" "ingress" {
 
 resource "helm_release" "cert_manager" {
   name = "cert-manager"
-  repository = "https://charts.jetstack.io"  
+  repository = "https://charts.jetstack.io"
   chart = "cert-manager"
   version = "v1.7.0"
   set {
