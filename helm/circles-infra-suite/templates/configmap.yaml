@@ -22,7 +22,6 @@ data:
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
   GRAPH_NODE_ENDPOINT: {{.Values.graph.endpoint}}
   SUBGRAPH_NAME: {{.Values.graph.subgraph}}
- 
 
   # Ethereum Node Configuration      
   # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
