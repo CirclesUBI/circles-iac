@@ -159,3 +159,10 @@ spec:
                 configMapKeyRef:
                   key: POSTGRES_DATABASE_API
                   name: env
+            # Indexed Data Configuration
+            # ~~~~~~~~~~~~~~~~~~~~
+            - name: DATABASE_SOURCE
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_SOURCE
+                  name: env
