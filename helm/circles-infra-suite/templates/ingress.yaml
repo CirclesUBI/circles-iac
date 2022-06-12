@@ -1,26 +1,47 @@
-apiVersion: networking.k8s.io/v1beta1
+apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: circles-ingress
+  name: circles-ingress-api
   annotations:
-    kubernetes.io/ingress.class: nginx
-    cert-manager.io/cluster-issuer: letsencrypt-live
+    cert-manager.io/cluster-issuer: letsencrypt-prod
 spec:
+  ingressClassName: nginx
   tls:
     - hosts:
         - {{.Values.apiService.host}}
-        - {{.Values.relayerService.host}}
-      secretName: circles-tls
+      secretName: circles-tls-api
   rules:
-    - host: {{.Values.apiService.host}}
-      http:
-        paths:
-          - backend:
-              serviceName: {{.Values.apiService.name}}
-              servicePort: {{.Values.apiService.port}}
-    - host: {{.Values.relayerService.host}}
-      http:
-        paths:
-          - backend:
-              serviceName: {{.Values.relayerService.name}}-service
-              servicePort: {{.Values.relayerService.port}}
+  - host: {{.Values.apiService.host}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:        
+          service:
+            name: {{.Values.apiService.name}}
+            port:
+              number: {{.Values.apiService.port}}
+---    
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: circles-ingress-relayer
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{.Values.relayerService.host}}
+      secretName: circles-tls-relayer
+  rules:
+  - host: {{.Values.relayerService.host}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.relayerService.name}}-service
+            port:
+              number: {{.Values.relayerService.port}}
