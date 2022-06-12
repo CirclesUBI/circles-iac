@@ -75,7 +75,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "prod-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.18.10-do.2"
+  version   = "1.21.11-do.1"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["prod"]
   node_pool {
@@ -117,7 +117,8 @@ resource "helm_release" "ingress" {
   name        = "ingress-nginx"
   repository  = "https://kubernetes.github.io/ingress-nginx"
   chart       = "ingress-nginx"
-  version     = "3.34.0"
+  timeout     = var.nginx_ingress_helm_timeout_seconds
+  version     = "4.0.17"
   set {
     name      = "controller.publishService.enabled"
     value     = "true"
@@ -128,7 +129,7 @@ resource "helm_release" "cert_manager" {
   name        = "cert-manager"
   repository  = "https://charts.jetstack.io"
   chart       = "cert-manager"
-  version     = "v1.0.3"
+  version     = "v1.7.0"
   set {
     name      = "installCRDs"
     value     = "true"
