@@ -114,7 +114,7 @@ resource "kubernetes_secret" "image_pull" {
 }
 
 resource "helm_release" "ingress" {
-  name        = "ingress-nginx"
+  name        = "nginx-ingress"
   repository  = "https://kubernetes.github.io/ingress-nginx"
   chart       = "ingress-nginx"
   timeout     = var.nginx_ingress_helm_timeout_seconds
@@ -136,9 +136,3 @@ resource "helm_release" "cert_manager" {
   }
 }
 
-resource "helm_release" "nfs_server_provisioner" {
-  name = "nfs-server-provisioner"
-  repository = "https://kvaps.github.io/charts"
-  chart = "nfs-server-provisioner"
-  version = "1.3.1"
-}
