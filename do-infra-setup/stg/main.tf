@@ -65,7 +65,6 @@ resource "digitalocean_database_db" "relayer" {
 
 resource "digitalocean_database_firewall" "db-fw" {
   cluster_id = digitalocean_database_cluster.postgres.id
-
   rule {
     type  = "k8s"
     value = digitalocean_kubernetes_cluster.primary.id
@@ -84,6 +83,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
     size       = "g-2vcpu-8gb"
     node_count = 1
   }
+  
 }
 
 resource "digitalocean_kubernetes_node_pool" "b" {
@@ -142,4 +142,16 @@ resource "helm_release" "nfs_server_provisioner" {
   repository = "https://kvaps.github.io/charts"
   chart = "nfs-server-provisioner"
   version = "1.3.1"
+  set {
+    name  = "persistence.enabled"
+    value = "true"
+  }
+  set {
+    name  = "persistence.storageClass"
+    value = "do-block-storage"
+  }
+  set {
+    name  = "persistence.size"
+    value = "50Gi"
+  }
 }

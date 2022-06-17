@@ -136,3 +136,8 @@ resource "helm_release" "cert_manager" {
   }
 }
 
+resource "helm_release" "nfs_server_provisioner" {
+  name = "nfs-server"
+  chart = "nfs-server-provisioner"
+  version = "1.1.3"
+}
