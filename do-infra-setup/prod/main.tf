@@ -75,12 +75,12 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "prod-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.18.10-do.2"
+  version   = "1.22.8-do.1"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["prod"]
   node_pool {
     name       = "prod-pool-a"
-    size       = "g-4vcpu-16gb"
+    size       = "c-4"
     node_count = 3
   }
 }
@@ -114,10 +114,11 @@ resource "kubernetes_secret" "image_pull" {
 }
 
 resource "helm_release" "ingress" {
-  name        = "ingress-nginx"
+  name        = "nginx-ingress"
   repository  = "https://kubernetes.github.io/ingress-nginx"
   chart       = "ingress-nginx"
-  version     = "3.34.0"
+  timeout     = var.nginx_ingress_helm_timeout_seconds
+  version     = "4.0.17"
   set {
     name      = "controller.publishService.enabled"
     value     = "true"
@@ -128,7 +129,7 @@ resource "helm_release" "cert_manager" {
   name        = "cert-manager"
   repository  = "https://charts.jetstack.io"
   chart       = "cert-manager"
-  version     = "v1.0.3"
+  version     = "v1.7.0"
   set {
     name      = "installCRDs"
     value     = "true"
@@ -136,8 +137,7 @@ resource "helm_release" "cert_manager" {
 }
 
 resource "helm_release" "nfs_server_provisioner" {
-  name = "nfs-server-provisioner"
-  repository = "https://kvaps.github.io/charts"
+  name = "nfs-server"
   chart = "nfs-server-provisioner"
-  version = "1.3.1"
+  version = "1.1.3"
 }
