@@ -65,7 +65,6 @@ resource "digitalocean_database_db" "relayer" {
 
 resource "digitalocean_database_firewall" "db-fw" {
   cluster_id = digitalocean_database_cluster.postgres.id
-
   rule {
     type  = "k8s"
     value = digitalocean_kubernetes_cluster.primary.id
@@ -76,20 +75,21 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "staging-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.20.7-do.0"
+  version   = "1.22.8-do.1"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
   node_pool {
     name       = "stg-pool-a"
-    size       = "c-4"
+    size       = "g-2vcpu-8gb"
     node_count = 1
   }
+  
 }
 
 resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
   name       = "stg-pool-b"
-  size       = "m-2vcpu-16gb"
+  size       = "g-2vcpu-8gb"
   node_count = 1
   labels = {
     pool  = "b"
@@ -118,7 +118,8 @@ resource "helm_release" "ingress" {
   name = "ingress-nginx"
   repository = "https://kubernetes.github.io/ingress-nginx"
   chart = "ingress-nginx"
-  version = "3.34.0"
+  timeout    = var.nginx_ingress_helm_timeout_seconds
+  version = "4.0.17"
   set {
     name = "controller.publishService.enabled"
     value = "true"
@@ -129,7 +130,7 @@ resource "helm_release" "cert_manager" {
   name = "cert-manager"
   repository = "https://charts.jetstack.io"
   chart = "cert-manager"
-  version = "v1.0.3"
+  version = "v1.7.0"
   set {
     name = "installCRDs"
     value = "true"
@@ -141,4 +142,16 @@ resource "helm_release" "nfs_server_provisioner" {
   repository = "https://kvaps.github.io/charts"
   chart = "nfs-server-provisioner"
   version = "1.3.1"
+  set {
+    name  = "persistence.enabled"
+    value = "true"
+  }
+  set {
+    name  = "persistence.storageClass"
+    value = "do-block-storage"
+  }
+  set {
+    name  = "persistence.size"
+    value = "50Gi"
+  }
 }
