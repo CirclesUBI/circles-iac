@@ -15,6 +15,7 @@ spec:
     accessControlAllowOriginList:
       - "https://relayr.circles.garden"
       - "https://preview2.circles.garden"
+      - "https://preview.circles.garden"
       - "https://circles.garden"
       - "https://api.circles.garden"
     accessControlMaxAge: 100
