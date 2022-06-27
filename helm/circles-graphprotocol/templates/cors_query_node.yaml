@@ -18,5 +18,6 @@ spec:
       - "https://preview.circles.garden"
       - "https://circles.garden"
       - "https://api.circles.garden"
+      - "https://dashboard.circles.garden"
     accessControlMaxAge: 100
     addVaryHeader: true
