@@ -1,0 +1,21 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: corsheaders
+  namespace: graphtest
+spec:
+  headers:
+    accessControlAllowMethods:
+      - "GET"
+      - "OPTIONS"
+      - "PUT"
+      - "POST"
+    accessControlAllowHeaders:
+      - "*"
+    accessControlAllowOriginList:
+      - "https://relayr.circles.garden"
+      - "https://preview2.circles.garden"
+      - "https://circles.garden"
+      - "https://api.circles.garden"
+    accessControlMaxAge: 100
+    addVaryHeader: true

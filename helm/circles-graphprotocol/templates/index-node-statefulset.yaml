@@ -28,13 +28,13 @@ spec:
             - name: http
               containerPort: {{ .Values.container.ports.http }}
             - name: json-rpc
-              containerPort: {{ .Values.container.ports.ws }}
+              containerPort: {{ .Values.container.ports.jsonRpc }}
             - name: metrics
-              containerPort: {{ .Values.container.ports.indexNode }}
+              containerPort: {{ .Values.container.ports.metrics }}
             - name: ws
               containerPort: {{ .Values.container.ports.ws }}
             - name: index-node
-              containerPort: {{ .Values.container.ports.metrics }}
+              containerPort: {{ .Values.container.ports.indexNode }}
           env:
             # The name of the pod that will do block ingestion
             - name: GRAPH_LOG
