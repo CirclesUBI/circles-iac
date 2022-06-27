@@ -54,10 +54,7 @@ aws:
   # AWS region
   region: eu-central-1
 
-# "The Graph" Configuration
-# ~~~~~~~~~~~~~~~~~~~~~~~~~
-graph:
-  # Graph node URL
-  endpoint: https://api.thegraph.com
 
+# CORS 
+# ~~~~~~~~~~~~~~~~~~~~
 circlesPinkURLs: https://circles.pink,https://expedition-grundeinkommen.de,https://next.expedition-grundeinkommen.de
