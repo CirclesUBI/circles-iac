@@ -34,8 +34,10 @@ aws:
 # "The Graph" Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
+  # Graph node URL
+  endpoint: https://graph.provisioning.circles.garden
   # Circles subgraph name
-  subgraph: azf20/circles-ubi
+  subgraph: circlesubi/circles-ubi
 
 # Ethereum Node Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
