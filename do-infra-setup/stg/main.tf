@@ -1,3 +1,4 @@
+
 terraform {
   backend "s3" {
     endpoint                    = "ams3.digitaloceanspaces.com"
@@ -75,7 +76,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "staging-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.22.8-do.1"
+  version   = "1.22.11-do.0"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
   node_pool {
@@ -83,9 +84,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
     size       = "g-2vcpu-8gb"
     node_count = 1
   }
-  
 }
-
 resource "digitalocean_kubernetes_node_pool" "b" {
   cluster_id = digitalocean_kubernetes_cluster.primary.id
   name       = "stg-pool-b"
@@ -155,3 +154,4 @@ resource "helm_release" "nfs_server_provisioner" {
     value = "50Gi"
   }
 }
+
