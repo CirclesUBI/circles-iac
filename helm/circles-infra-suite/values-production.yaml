@@ -8,7 +8,7 @@ host: circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker tag
-  imageTag: v1.6.0
+  imageTag: 1.7.0-pre-04d6475
 
   # Ingress
   host: api.circles.garden
