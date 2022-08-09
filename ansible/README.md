@@ -12,14 +12,15 @@ Ansible manages the installation of any software component using different [role
 ### group_vars
 It contains all the variables used in every role. Please change accordingly to install a sokol or a xdai node. 
 It also allows to add users for the rpc nethermind node under `allowed_users`.
-:warning: 
+
+
 
 ### roles
 - **basic-setup**: installs required packages and enable unattended security updates. 
 - **nethermind**: installs a customised helm chart for nethermind node using the xdai network and adc hoc k8s resources required to secure the node. 
     - Version  [v1.12.7](https://github.com/NethermindEth/nethermind/releases/tag/1.12.7)
     - This node has security enabled and not everyone can connect to it. To be added please write to circlesubi@
-- **graph-protocol**: installs a customised helm chart for graph-protocol.
+- **graph-protocol**: installs a customised helm chart for graph-protocol. 
 ### host.yaml
 Target machine where `prd` provisioning will take place. 
 
@@ -39,6 +40,8 @@ Use the `Vagrantfile` provided. The basics commands are:
 `vagrant destroy`: destroys virtual
 
 To know more please refer to [Vagrant CLI](https://www.vagrantup.com/docs/cli)
+
+⚠️ Prior to run agains the development machine check that the envinroment variables in `group_vars/all.yml` are set. 
 
 ### Against a server 
 Update in `hosts.yaml` the target box where the software will be installed. 
