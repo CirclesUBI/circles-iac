@@ -8,7 +8,7 @@ host: circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker tag
-  imageTag: v1.3.22
+  imageTag: v1.6.0
 
   # Ingress
   host: api.circles.garden
@@ -34,8 +34,10 @@ aws:
 # "The Graph" Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
+  # Graph node URL
+  endpoint: https://graph.provisioning.circles.garden
   # Circles subgraph name
-  subgraph: azf20/circles-ubi
+  subgraph: circlesubi/circles-ubi
 
 # Ethereum Node Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~~~

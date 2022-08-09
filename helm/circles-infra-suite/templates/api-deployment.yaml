@@ -52,6 +52,14 @@ spec:
                   key: RELAY_SERVICE_ENDPOINT
                   name: env
 
+            # Redis service
+            # ~~~~~~~~~~~~~
+            - name: REDIS_URL
+              valueFrom:
+                configMapKeyRef:
+                  key: REDIS_URL
+                  name: env
+
             # "The Graph" Configuration
             # ~~~~~~~~~~~~~~~~~~~~~~~~~
             - name: GRAPH_NODE_ENDPOINT
@@ -144,4 +152,11 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: POSTGRES_DATABASE_API
+                  name: env
+            # Indexed Data Configuration
+            # ~~~~~~~~~~~~~~~~~~~~
+            - name: DATABASE_SOURCE
+              valueFrom:
+                configMapKeyRef:
+                  key: DATABASE_SOURCE
                   name: env
