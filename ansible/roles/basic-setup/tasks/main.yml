@@ -1,0 +1,35 @@
+---
+# task file main
+# - name: Update and upgrade apt packages
+#   become: true
+#   apt:
+#     upgrade: yes
+#     update_cache: yes
+#     cache_valid_time: 86400 #One day
+- name: Install utility packages
+  apt:
+    update_cache: yes
+    pkg:
+    - unattended-upgrades
+    - python3-yaml
+    - apt-transport-https
+    - gnupg
+    - python3-pip
+    - curl
+
+- name: Configure unattended-upgrades
+  ansible.builtin.copy:
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    content: |
+      APT::Periodic::Update-Package-Lists "1";
+      APT::Periodic::Unattended-Upgrade "1";
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install k3s
+  shell : curl -sfL https://get.k3s.io  | sh -
+
+
+- name: Install helm
+  include_tasks: helm.yaml

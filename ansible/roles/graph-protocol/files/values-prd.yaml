@@ -1,0 +1,9 @@
+# ethereum network
+ethereumNetwork: {{ ethereum_network  }}
+rpcNode: {{ ethereum_network  }}-nethermind.{{ ethereum_network  }}
+# subgraph values
+subgraph_name: circlesubi/circles-ubi
+subgraph_network: {{ ethereum_network  }}
+proxy_factory_address: "0x8b4404DE0CaECE4b966a9959f134f0eFDa636156"
+start_block: "12529458"
+hub_address: "0x29b9a7fBb8995b2423a71cC17cf9810798F6C543"

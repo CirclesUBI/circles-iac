@@ -24,3 +24,4 @@ graph_protocol_chart_version: 0.0.1
 graph_protocol_chart_path: "{{ lookup('env', 'GRAPH_CHART_PATH') }}"
 
 
+host_server: "{{ lookup('env', 'HOST_SERVER') }}"

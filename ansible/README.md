@@ -12,6 +12,7 @@ Ansible manages the installation of any software component using different [role
 ### group_vars
 It contains all the variables used in every role. Please change accordingly to install a sokol or a xdai node. 
 It also allows to add users for the rpc nethermind node under `allowed_users`.
+:warning: 
 
 ### roles
 - **basic-setup**: installs required packages and enable unattended security updates. 

@@ -1,0 +1,21 @@
+---
+# task file
+
+- name: Copy file with owner and permissions
+  ansible.builtin.copy:
+    src: values-{{ env }}.yaml
+    dest: /etc/config-helm/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install chart for xdai or sokol depending on group_vars
+  kubernetes.core.helm:
+    name: "graph-protocol"
+    namespace: "graph"
+    kubeconfig: "{{ k8s_kubeconfig }}"
+    chart_version: "{{ graph_protocol_chart_version }}"
+    chart_ref:  "{{ graph_protocol_chart_path }}"
+    create_namespace: true
+    values_files: /etc/config-helm/values-{{ env }}.yaml
+    

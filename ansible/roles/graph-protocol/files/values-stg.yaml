@@ -1,0 +1,8 @@
+# ethereum network
+ethereumNetwork: {{ ethereum_network  }}
+rpcNode: {{ ethereum_network  }}-nethermind.{{ ethereum_network  }}
+subgraph_name: circlesubi/circlesubi-staging
+subgraph_network: poa-sokol
+proxy_factory_address: "0x0F9f9C38E53674EF7a29A1DE38EAbF34e1DCB81C"
+start_block: "0"
+hub_address: "0x5D0dDd1d35D3FA9950Defd99F92053b3B9E236D0"
