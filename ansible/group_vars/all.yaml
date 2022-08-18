@@ -17,7 +17,16 @@ allowed_users:
   - amFjcXVlOnRyYWVmaWs6NmVmNmZiZGMyZWIwOTc2MGIzMDIwNGFiNjIxNjFlMGEK
   - ZG91c2VyOnRyYWVmaWs6MTcxMjhhZDk1NTZjMmVlZTBhOTk0NmRlNTk4NDNkNDgK
 
-
+# CORS graph-node
+allowed_urls:
+  - "https://relayr.circles.garden"
+  - "https://preview2.circles.garden"
+  - "https://preview.circles.garden"
+  - "https://circles.garden"
+  - "https://api.circles.garden"
+  - "https://dashboard.circles.garden"
+  - "https://*.circles.garden"
+  
 # graph protocol chart
 graph_protocol_chart_version: 0.0.1
 # graph protocol chart locally stored
