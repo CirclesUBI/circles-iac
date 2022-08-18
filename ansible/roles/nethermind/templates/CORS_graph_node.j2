@@ -10,8 +10,8 @@ spec:
       - "PUT"
       - "POST"
     accessControlAllowOriginList:
-      {% for allowedURL in allowed_urls %}
-      - "{{ allowedURL }}"
-      {% endfor %}
+    {% for allowedURL in allowed_urls -%}
+     - "{{ allowedURL }}"
+    {% endfor -%}
     accessControlMaxAge: 100
     addVaryHeader: true

@@ -25,7 +25,8 @@ allowed_urls:
   - "https://circles.garden"
   - "https://api.circles.garden"
   - "https://dashboard.circles.garden"
-  - "https://*.circles.garden"
+  - "https://devpreview.circles.garden"
+  - "https://old.circles.garden"
   
 # graph protocol chart
 graph_protocol_chart_version: 0.0.1
@@ -34,3 +35,7 @@ graph_protocol_chart_path: "{{ lookup('env', 'GRAPH_CHART_PATH') }}"
 
 
 host_server: "{{ lookup('env', 'HOST_SERVER') }}"
+
+#k3s version 
+
+k3_version: v0.21.5-k3s2r1
