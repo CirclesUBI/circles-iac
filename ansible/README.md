@@ -46,7 +46,7 @@ To know more please refer to [Vagrant CLI](https://www.vagrantup.com/docs/cli)
 ### Against a server 
 Update in `hosts.yaml` the target box where the software will be installed. 
 
-```ansible-playbook  playbook.yaml -i hosts.yaml -vvv```
+```ansible-playbook  playbook.yaml -i hosts.yaml ```
 
 ## Adding new user to the RPC node 
 

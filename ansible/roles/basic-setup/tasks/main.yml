@@ -16,6 +16,8 @@
     - gnupg
     - python3-pip
     - curl
+    - apparmor 
+    - apparmor-utils
 
 - name: Configure unattended-upgrades
   ansible.builtin.copy:
@@ -27,9 +29,11 @@
     group: root
     mode: '0644'
 
+# - name: k3s version
+#   shell : export  INSTALL_K3S_VERSION={{ k3s_version }}   
+
 - name: Install k3s
   shell : curl -sfL https://get.k3s.io  | sh -
-
 
 - name: Install helm
   include_tasks: helm.yaml
