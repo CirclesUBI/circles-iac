@@ -8,7 +8,7 @@ host: staging.circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.6.0
+  imageTag: v1.7.0
 
   # Ingress
   host: api.staging.circles.garden
@@ -17,7 +17,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker image tag
-  imageTag: v4.1.13
+  imageTag: v4.1.15-pre-ca2abd4
 
   # Ingress
   host: relay.staging.circles.garden
