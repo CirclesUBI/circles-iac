@@ -4,6 +4,8 @@ metadata:
   name: circles-ingress-api
   annotations:
     cert-manager.io/cluster-issuer: letsencrypt-prod
+    nginx.ingress.kubernetes.io/proxy-read-timeout: "150"
+    nginx.ingress.kubernetes.io/proxy-send-timeout: "150"
 spec:
   ingressClassName: nginx
   tls:
