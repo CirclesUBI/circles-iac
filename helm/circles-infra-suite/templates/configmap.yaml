@@ -23,11 +23,6 @@ data:
   GRAPH_NODE_ENDPOINT: {{.Values.graph.endpoint}}
   SUBGRAPH_NAME: {{.Values.graph.subgraph}}
 
-  # Ethereum Node Configuration
-  # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-  ETHEREUM_NODE_ENDPOINT: {{.Values.ethereum.http}}
-  ETHEREUM_NODE_WS: {{.Values.ethereum.ws}}
-
   # Smart Contract Addresses
   # ~~~~~~~~~~~~~~~~~~~~~~~~
   HUB_ADDRESS: {{.Values.contracts.hubAddress}}

@@ -38,12 +38,6 @@ graph:
   # Circles subgraph name
   subgraph: circlesubi/circles-ubi
 
-# Ethereum Node Configuration
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ethereum:
-  http: https://dark-frosty-field.xdai.quiknode.pro
-  ws: wss://dark-frosty-field.xdai.quiknode.pro
-
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 contracts:

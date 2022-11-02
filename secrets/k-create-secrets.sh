@@ -30,3 +30,7 @@ kubectl create secret generic db \
   --from-file=$ENV/db/POSTGRES_PASSWORD \
   --from-file=$ENV/db/POSTGRES_PORT \
   --from-file=$ENV/db/POSTGRES_USER
+
+kubectl create secret generic ethereumnode \
+  --from-file=$ENV/ethereumnode/ETHEREUM_NODE_ENDPOINT \
+  --from-file=$ENV/ethereumnode/ETHEREUM_NODE_WS \

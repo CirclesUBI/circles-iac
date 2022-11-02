@@ -40,12 +40,6 @@ graph:
   # Circles subgraph name
   subgraph: circlesubi/circlesubi-staging
 
-# Ethereum Node Configuration
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ethereum:
-  http: https://sokol.poa.network
-  ws: wss://sokol.poa.network
-
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 contracts:
