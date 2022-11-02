@@ -1,5 +1,5 @@
-ethereum_helm_chart_url: https://skylenet.github.io/ethereum-helm-charts
-
+ethereum_helm_chart_url: https://artifacthub.io/packages/helm/ethereum-helm-charts/nethermind
+ethereum_helm_chart_version: 0.3.4
 # for k3s traefik is installed by default
 ingress_controller: traefik
 

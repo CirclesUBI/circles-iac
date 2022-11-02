@@ -33,7 +33,7 @@
 #   shell : export  INSTALL_K3S_VERSION={{ k3s_version }}   
 
 - name: Install k3s
-  shell : curl -sfL https://get.k3s.io  | sh -
+  shell : curl -sfL https://get.k3s.io  | INSTALL_K3S_VERSION={{ k3s_version }} sh -
 
 - name: Install helm
   include_tasks: helm.yaml
