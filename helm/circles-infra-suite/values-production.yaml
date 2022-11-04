@@ -17,7 +17,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker tag
-  imageTag: v4.1.15-pre-cbb8308
+  imageTag: v4.1.15-pre-cd8d524
   # Ingress
   host: relay.circles.garden
 
@@ -37,12 +37,6 @@ graph:
   endpoint: https://graph.provisioning.circles.garden
   # Circles subgraph name
   subgraph: circlesubi/circles-ubi
-
-# Ethereum Node Configuration
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ethereum:
-  http: https://dark-frosty-field.xdai.quiknode.pro
-  ws: wss://dark-frosty-field.xdai.quiknode.pro
 
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~

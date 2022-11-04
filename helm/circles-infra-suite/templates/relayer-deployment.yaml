@@ -107,9 +107,9 @@ spec:
             # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
             - name: ETHEREUM_NODE_ENDPOINT
               valueFrom:
-                configMapKeyRef:
+                secretKeyRef:
                   key: ETHEREUM_NODE_ENDPOINT
-                  name: env
+                  name: ethereumnode
 
             # Smart Contract Addresses
             # ~~~~~~~~~~~~~~~~~~~~~~~~

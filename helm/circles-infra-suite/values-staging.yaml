@@ -17,7 +17,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker image tag
-  imageTag: v4.1.15-pre-cbb8308
+  imageTag: v4.1.15-pre-cd8d524
 
   # Ingress
   host: relay.staging.circles.garden
@@ -39,12 +39,6 @@ graph:
 
   # Circles subgraph name
   subgraph: circlesubi/circlesubi-staging
-
-# Ethereum Node Configuration
-# ~~~~~~~~~~~~~~~~~~~~~~~~~~~
-ethereum:
-  http: https://sokol.poa.network
-  ws: wss://sokol.poa.network
 
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~
