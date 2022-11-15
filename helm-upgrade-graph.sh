@@ -1,12 +1,5 @@
 #!/bin/bash
 
-if [ "$#" -ne 1 ]; then
-  echo "Usage ./helm-upgrade.sh"
-  exit 0
-fi
-
-ENV=$1
-
 echo "Your current kubectl context is: $(kubectl config current-context)"
 
 read -p "Are you sure you want to upgrade? (Yy) " -n 1 -r
@@ -16,4 +9,4 @@ then
 fi
 echo
 
-helm upgrade -f ./helm/circles-graphprotocol/values.yaml graph-protocol  ./helm/circles-graphprotocol
+helm upgrade --install -f ./helm/circles-graphprotocol/values.yaml graph-protocol  ./helm/circles-graphprotocol
