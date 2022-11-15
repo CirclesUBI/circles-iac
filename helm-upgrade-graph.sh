@@ -1,7 +1,7 @@
 #!/bin/bash
 
 if [ "$#" -ne 1 ]; then
-  echo "Usage ./helm-upgrade.sh <production|staging>"
+  echo "Usage ./helm-upgrade.sh"
   exit 0
 fi
 
@@ -17,4 +17,3 @@ fi
 echo
 
 helm upgrade -f ./helm/circles-graphprotocol/values.yaml graph-protocol  ./helm/circles-graphprotocol
-  
