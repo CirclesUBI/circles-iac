@@ -1,6 +1,6 @@
 name: circles-graph-node
 description: Helm chart to install graph protocol for circles 
-version: 0.0.1
+version: 0.0.2
 apiVersion: v1
 keywords:
   - circles-graph-node

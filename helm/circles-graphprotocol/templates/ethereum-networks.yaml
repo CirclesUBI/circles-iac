@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: ethereum-networks
-  namespace: graphtest
+  namespace: graph
 
 data:
   networks: >-

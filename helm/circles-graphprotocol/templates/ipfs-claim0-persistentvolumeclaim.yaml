@@ -4,9 +4,9 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: ipfs-claim0
-    namespace: graphtest
+    namespace: graph
   name: ipfs-claim0
-  namespace: graphtest
+  namespace: graph
 spec:
   accessModes:
     - ReadWriteOnce
