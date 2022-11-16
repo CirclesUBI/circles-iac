@@ -88,7 +88,6 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   }
 }
 
-
 data "digitalocean_container_registry" "common" {
   name = "circles-registry"
 }
