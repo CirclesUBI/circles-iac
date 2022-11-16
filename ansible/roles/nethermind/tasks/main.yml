@@ -5,6 +5,14 @@
     name: ethereum-helm-charts
     repo_url:  "{{ ethereum_helm_chart_url }}"
 
+- name: Separately update the repository cache
+  kubernetes.core.helm:
+    name: ethereum-helm-charts
+    kubeconfig: "{{ k8s_kubeconfig }}"
+    namespace: "{{ ethereum_network }}"
+    state: absent
+    update_repo_cache: true
+
 - name: Copy values file depending on the env
   ansible.builtin.copy:
     src: values-{{ env }}.yaml
@@ -19,7 +27,7 @@
     namespace: "{{ ethereum_network }}"
     kubeconfig: "{{ k8s_kubeconfig }}"
     chart_version: "{{ ethereum_helm_chart_version }}"
-    chart_ref:  ethereum-helm-charts/nethermind
+    chart_ref: ethereum-helm-charts/nethermind
     create_namespace: true
     values_files: /etc/config-helm/values-{{ env }}.yaml
     

@@ -1,13 +1,27 @@
 ---
 # task file
 
+# - name: Install cert-manager
+#   include_tasks: cert_manager.yml
+
 - name: Copy file with owner and permissions
   ansible.builtin.copy:
     src: values-{{ env }}.yaml
-    dest: /etc/config-helm/
+    dest: /etc/config-helm/graph-protocol
     owner: root
     group: root
     mode: '0644'
+
+
+# workaround to install chart locally. Ideally we would have a repo in github with our charts
+- name: Copy chart to remote to install
+  ansible.builtin.copy:
+    src: "{{ graph_protocol_chart_path }}"
+    dest: /etc/config-helm/charts/
+    owner: root
+    group: root
+    mode: '0644'
+    
 
 - name: Install chart for xdai or sokol depending on group_vars
   kubernetes.core.helm:
@@ -15,7 +29,7 @@
     namespace: "graph"
     kubeconfig: "{{ k8s_kubeconfig }}"
     chart_version: "{{ graph_protocol_chart_version }}"
-    chart_ref:  "{{ graph_protocol_chart_path }}"
+    chart_ref: /etc/config-helm/charts/circles-graphprotocol/
     create_namespace: true
-    values_files: /etc/config-helm/values-{{ env }}.yaml
+    values_files: /etc/config-helm/graph-protocol/values-{{ env }}.yaml
     

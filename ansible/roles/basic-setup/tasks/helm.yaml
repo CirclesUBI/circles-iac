@@ -6,11 +6,11 @@
     state: present
 
 - name: Add helm repository into sources list
-  ansible.builtin.apt_repository:
+  apt_repository:
     repo: deb https://baltocdn.com/helm/stable/debian/ all main
     state: present 
 
 - name: Install helm
-  apt:
-    name: helm
-    update_cache: yes
+  apt: 
+   name: helm
+

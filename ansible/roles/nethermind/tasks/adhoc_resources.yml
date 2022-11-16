@@ -7,16 +7,6 @@
       - pyyaml
       - kubernetes 
 
-- name: Network policy to restrict outbound traffic to private networks
-  kubernetes.core.k8s:
-    state: present
-    apply: true
-    kubeconfig: "{{ k8s_kubeconfig }}"
-    namespace: "{{ ethereum_network }}"
-    template:
-      - path: 'templates/private_networks_networkpolicy.j2'
-
-
 - name: Set secret digest authentication 
   kubernetes.core.k8s:
     state: present
@@ -34,12 +24,3 @@
     namespace: "{{ ethereum_network }}"
     template:
       - path: 'templates/digest_authentication_middleware.j2'
-
-- name: Middleware to manage graph-node CORS
-  kubernetes.core.k8s:
-    state: present
-    apply: true
-    kubeconfig: "{{ k8s_kubeconfig }}"
-    namespace: "{{ ethereum_network }}"
-    template:
-      - path: 'templates/CORS_graph_node.j2'
