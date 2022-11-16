@@ -11,7 +11,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: subgraph
-  name: subgraph-111
+  name: subgraph-130
 spec:
   template:
     metadata:
@@ -32,10 +32,12 @@ spec:
                 key: GRAPH_ADMIN_NODE_ENDPOINT
                 name: env
         - name: SUBGRAPH_NAME
-          value: circlesubi/circles-ubi
+          value: circlesubi/circles-ubi-130
         - name: SUBGRAPH_NETWORK
           value: xdai
         - name: PROXY_FACTORY_ADDRESS
+          value: 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2
+        - name: PROXY_FACTORY_ADDRESS_CRC
           value: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
         - name: START_BLOCK
           value: "12529458"
@@ -54,7 +56,7 @@ spec:
           value: let-me-in
         - name: postgres_db
           value: graph-node
-        image: registry.digitalocean.com/circles-registry/circles-subgraph:v1.3.2
+        image: registry.digitalocean.com/circles-registry/circles-subgraph:v1.3.3-3
         name: subgraph-init
         resources: {}
       restartPolicy: OnFailure
