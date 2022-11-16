@@ -79,11 +79,15 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["prod"]
   node_pool {
-    name       = "prod-pool-c"
-    size       = "g-4vcpu-16gb"
+    name       = "prod-pool-a"
+    size       = "s-8vcpu-16gb-amd"
     node_count = 3
+    labels = {
+     pool  = "a"
+    }
   }
 }
+
 
 data "digitalocean_container_registry" "common" {
   name = "circles-registry"
