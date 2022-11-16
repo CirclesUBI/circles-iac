@@ -26,8 +26,6 @@ spec:
         - name: do-registry
       containers:
       - env:
-        - name: EXPERIMENTAL_SUBGRAPH_VERSION_SWITCHING_MODE
-          value: synced
         - name: GRAPH_ADMIN_NODE_ENDPOINT
           valueFrom:
               configMapKeyRef:
