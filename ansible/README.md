@@ -53,3 +53,11 @@ Update in `hosts.yaml` the target box where the software will be installed.
 - Locally create a new user  with htdigest: `htdigest -c httpd-pwd-file traefik NEW_USER`. It will prompt to add a password. Please make sure this is a strong password. 
 - Encode the result in base64: `cat httpd-pwd-file |  base6` 
 - The result add in `group_vars/all` under `allowed_users`
+
+### Kwnown problems
+
+- In order to have running this setup in vagrant you would need a powerful PC, as required to run Graph Node and an Ethereum Full Node. Otherwise the setup will be slow and eventually it can run out of memory. The recommendation is to carry on the installation in a different server than your own PC. 
+- when url from chart changes then it throws error chart has been added already
+
+### Pending 
+- For now, although the role is created for graphprotocol, this is for new installation from scratch. For our current deployment, we mantain our helm chart through helm only. There is a README under `helm/graphprotocol` with instructions. 

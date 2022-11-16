@@ -8,3 +8,4 @@
   roles:
   - basic-setup
   - nethermind
+  # - graph-protocol
