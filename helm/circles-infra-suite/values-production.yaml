@@ -36,7 +36,7 @@ graph:
   # Graph node URL
   endpoint: https://graph.provisioning.circles.garden
   # Circles subgraph name
-  subgraph: circlesubi/circles-ubi
+  subgraph: circlesubi/circles-ubi-130
 
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~
