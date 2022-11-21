@@ -28,6 +28,9 @@ data:
   HUB_ADDRESS: {{.Values.contracts.hubAddress}}
   PROXY_FACTORY_ADDRESS: {{.Values.contracts.proxyFactoryAddress}}
   SAFE_ADDRESS: {{.Values.contracts.safeAddress}}
+  PROXY_FACTORY_ADDRESS_CRC: {{.Values.contracts.proxyFactoryAddressCRC}}
+  SAFE_CONTRACT_ADDRESS_CRC: {{.Values.contracts.safeAddressCRC}}
+  SAFE_DEFAULT_CALLBACK_HANDLER: {{.Values.contracts.fallBackAddress}}
 
   # PostgreSQL Databases
   # ~~~~~~~~~~~~~~~~~~~~
