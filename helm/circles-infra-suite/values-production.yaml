@@ -17,7 +17,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker tag
-  imageTag: v4.1.15-pre-cd8d524
+  imageTag: v4.1.15-pre-17848a3
   # Ingress
   host: relay.circles.garden
 
