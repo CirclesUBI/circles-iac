@@ -122,7 +122,11 @@ spec:
                 configMapKeyRef:
                   key: SAFE_ADDRESS
                   name: env
-
+            - name: SAFE_DEFAULT_CALLBACK_HANDLER
+              valueFrom:
+                configMapKeyRef:
+                  key: SAFE_DEFAULT_CALLBACK_HANDLER
+                  name: env 
             # PostgreSQL Databases
             # ~~~~~~~~~~~~~~~~~~~~
             - name: POSTGRES_HOST

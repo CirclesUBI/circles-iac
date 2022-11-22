@@ -17,7 +17,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker image tag
-  imageTag: v4.1.15-pre-cd8d524
+  imageTag: v4.1.15-pre-17848a3
 
   # Ingress
   host: relay.staging.circles.garden
@@ -44,8 +44,11 @@ graph:
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 contracts:
   hubAddress: 0x5D0dDd1d35D3FA9950Defd99F92053b3B9E236D0
+  proxyFactoryAddressCRC: 0x0F9f9C38E53674EF7a29A1DE38EAbF34e1DCB81C
+  safeAddressCRC: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
   proxyFactoryAddress: 0x0F9f9C38E53674EF7a29A1DE38EAbF34e1DCB81C
-  safeAddress: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
+  safeAddress: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156 
+  fallBackAddress: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
 
 # Relayer Addresses
 # ~~~~~~~~~~~~~~~~~
