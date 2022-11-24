@@ -3,17 +3,15 @@
 ## Requirements
 - [Ansible](https://www.ansible.com/)
 - [Vagrant](https://www.vagrantup.com/downloads)
-- A  virtualization env such as:  VirtualBox, VMware Fusion, or Hyper-V.
+- A virtualization env such as: VirtualBox, VMware Fusion, or Hyper-V
 - Server with Debian 11
 
 ## Description
 Ansible manages the installation of any software component using different [roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#roles).
 
 ### group_vars
-It contains all the variables used in every role. Please change accordingly to install a sokol or a xdai node. 
+It contains all the variables used in every role. Please change accordingly to install a sokol or xdai node. 
 It also allows to add users for the rpc nethermind node under `allowed_users`.
-
-
 
 ### roles
 - **basic-setup**: installs required packages and enable unattended security updates. 
@@ -21,6 +19,7 @@ It also allows to add users for the rpc nethermind node under `allowed_users`.
     - Version  [v1.12.7](https://github.com/NethermindEth/nethermind/releases/tag/1.12.7)
     - This node has security enabled and not everyone can connect to it. To be added please write to circlesubi@
 - **graph-protocol**: installs a customised helm chart for graph-protocol. 
+
 ### host.yaml
 Target machine where `prd` provisioning will take place. 
 
@@ -49,13 +48,11 @@ Update in `hosts.yaml` the target box where the software will be installed.
 ```ansible-playbook  playbook.yaml -i hosts.yaml ```
 
 ## Adding new user to the RPC node 
-
 - Locally create a new user  with htdigest: `htdigest -c httpd-pwd-file traefik NEW_USER`. It will prompt to add a password. Please make sure this is a strong password. 
 - Encode the result in base64: `cat httpd-pwd-file |  base6` 
 - The result add in `group_vars/all` under `allowed_users`
 
 ### Kwnown problems
-
 - In order to have running this setup in vagrant you would need a powerful PC, as required to run Graph Node and an Ethereum Full Node. Otherwise the setup will be slow and eventually it can run out of memory. The recommendation is to carry on the installation in a different server than your own PC. 
 - when url from chart changes then it throws error chart has been added already
 
