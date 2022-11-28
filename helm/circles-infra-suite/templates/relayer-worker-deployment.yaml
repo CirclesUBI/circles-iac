@@ -138,6 +138,11 @@ spec:
                 configMapKeyRef:
                   key: PROXY_FACTORY_ADDRESS_CRC
                   name: env
+            - name: SAFE_CONTRACT_ADDRESS_130
+              valueFrom:
+                configMapKeyRef:
+                  key: SAFE_CONTRACT_ADDRESS_130
+                  name: env
             - name: SAFE_DEFAULT_CALLBACK_HANDLER
               valueFrom:
                 configMapKeyRef:
