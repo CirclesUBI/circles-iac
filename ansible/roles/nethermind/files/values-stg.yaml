@@ -6,14 +6,11 @@ extraArgs:
   - --Network.MaxActivePeers=25
   - --Init.DiscoveryEnabled=false
 
-
 image:
   # -- nethermind container image repository
   repository: nethermind/nethermind
   # -- nethermind container image tag
   tag: 1.14.15
-
-
 
 ingress:
   # -- Ingress resource for the HTTP API
@@ -36,7 +33,6 @@ ingress:
       hosts:
         - sokolnode.{{ host_server }}
 
-
 persistence:
   # -- Uses an EmptyDir when not enabled
   enabled: true
@@ -51,5 +47,3 @@ persistence:
   annotations: {}
   # -- Selector for volume claim template
   selector: {}
-
-
