@@ -13,10 +13,16 @@
     state: absent
     update_repo_cache: true
 
+- name: Ensures nethermind  dir exists
+  file: 
+    path: /etc/config-helm/nethermind/ 
+    state: directory
+    mode: '0644'
+
 - name: Copy values file depending on the env
   ansible.builtin.copy:
     src: values-{{ env }}.yaml
-    dest: /etc/config-helm/
+    dest: /etc/config-helm/nethermind
     owner: root
     group: root
     mode: '0644'
@@ -29,7 +35,7 @@
     chart_version: "{{ ethereum_helm_chart_version }}"
     chart_ref: ethereum-helm-charts/nethermind
     create_namespace: true
-    values_files: /etc/config-helm/values-{{ env }}.yaml
+    values_files: /etc/config-helm/nethermind/values-{{ env }}.yaml
     
 - name: Install add-hoc resources with k8s 
   include_tasks: adhoc_resources.yml
