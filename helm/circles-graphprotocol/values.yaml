@@ -29,6 +29,7 @@ container:
     jsonRpc: 8020
     indexNode: 8030
     metrics: 8040
+
 # services
 service:
   http: 8000 # GraphQL RPC
@@ -36,7 +37,6 @@ service:
   jsonRpc: 8020 # JSON RPC
   indexNode: 8030 # Subgraph indexing status
   metrics: 8040 # Prometheus metrics
-
 
 # LetsEncrypt certificates
 acmeEmail: circlesubi@gmail.com
