@@ -6,14 +6,11 @@ extraArgs:
   - --Network.MaxActivePeers=25
   - --Init.DiscoveryEnabled=false
 
-
 image:
   # -- nethermind container image repository
   repository: nethermind/nethermind
   # -- nethermind container image tag
-  tag: 1.12.7
-
-
+  tag: 1.14.5
 
 ingress:
   # -- Ingress resource for the HTTP API
@@ -22,10 +19,11 @@ ingress:
   annotations: 
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: sokol-controlledaccess@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: sokol-redirecthttps@kubernetescrd
+    traefik.ingress.kubernetes.io/router.middlewares: sokol-authentication@kubernetescrd 
   # -- Ingress host
   hosts:
-    - host: sokolnode.provisioning.circles.garden
+    - host: sokolnode.{{ host_server }}
       paths:
       - path: /
         pathType: Prefix
@@ -33,8 +31,7 @@ ingress:
   tls: 
     - secretName: tls-sokolnode
       hosts:
-        - sokolnode.provisioning.circles.garden
-
+        - sokolnode.{{ host_server }}
 
 persistence:
   # -- Uses an EmptyDir when not enabled
@@ -50,5 +47,3 @@ persistence:
   annotations: {}
   # -- Selector for volume claim template
   selector: {}
-
-

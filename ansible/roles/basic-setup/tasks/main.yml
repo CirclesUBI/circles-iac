@@ -1,19 +1,18 @@
 ---
 # task file main
-# - name: Update and upgrade apt packages
-#   become: true
-#   apt:
-#     upgrade: yes
-#     update_cache: yes
-#     cache_valid_time: 86400 #One day
-- name: Install utility packages
+- name: Maintain packages
+  become: true
   apt:
     update_cache: yes
+
+- name: Install utility packages
+  ansible.builtin.apt:
     pkg:
     - unattended-upgrades
     - python3-yaml
     - apt-transport-https
     - gnupg
+    - gnupg2
     - python3-pip
     - curl
     - apparmor 
@@ -28,9 +27,6 @@
     owner: root
     group: root
     mode: '0644'
-
-# - name: k3s version
-#   shell : export  INSTALL_K3S_VERSION={{ k3s_version }}   
 
 - name: Install k3s
   shell : curl -sfL https://get.k3s.io  | INSTALL_K3S_VERSION={{ k3s_version }} sh -

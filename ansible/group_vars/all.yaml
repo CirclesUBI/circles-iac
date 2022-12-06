@@ -1,5 +1,5 @@
-ethereum_helm_chart_url: https://artifacthub.io/packages/helm/ethereum-helm-charts/nethermind
-ethereum_helm_chart_version: 0.3.4
+ethereum_helm_chart_url: https://ethpandaops.github.io/ethereum-helm-charts
+ethereum_helm_chart_version: 0.2.0
 # for k3s traefik is installed by default
 ingress_controller: traefik
 
@@ -17,19 +17,8 @@ allowed_users:
   - amFjcXVlOnRyYWVmaWs6NmVmNmZiZGMyZWIwOTc2MGIzMDIwNGFiNjIxNjFlMGEK
   - ZG91c2VyOnRyYWVmaWs6MTcxMjhhZDk1NTZjMmVlZTBhOTk0NmRlNTk4NDNkNDgK
 
-# CORS graph-node
-allowed_urls:
-  - "https://relayr.circles.garden"
-  - "https://preview2.circles.garden"
-  - "https://preview.circles.garden"
-  - "https://circles.garden"
-  - "https://api.circles.garden"
-  - "https://dashboard.circles.garden"
-  - "https://devpreview.circles.garden"
-  - "https://old.circles.garden"
-  
 # graph protocol chart
-graph_protocol_chart_version: 0.0.1
+graph_protocol_chart_version: 0.0.2
 # graph protocol chart locally stored
 graph_protocol_chart_path: "{{ lookup('env', 'GRAPH_CHART_PATH') }}"
 
@@ -37,5 +26,4 @@ graph_protocol_chart_path: "{{ lookup('env', 'GRAPH_CHART_PATH') }}"
 host_server: "{{ lookup('env', 'HOST_SERVER') }}"
 
 #k3s version 
-
-k3_version: v0.21.5-k3s2r1
+k3s_version: v1.25.3+k3s1
