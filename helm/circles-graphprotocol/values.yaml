@@ -51,7 +51,6 @@ rpcPort: 8545
 CORS_allowed:
   - "https://relay.circles.garden"
   - "https://devpreview.circles.garden"
-  - "https://preview2.circles.garden"
   - "https://preview.circles.garden"
   - "https://circles.garden"
   - "https://api.circles.garden"
