@@ -18,8 +18,8 @@ It also allows to add users for the rpc nethermind node under `allowed_users`.
 ### roles
 - **basic-setup**: installs required packages and enable unattended security updates. 
 - **nethermind**: installs a customised helm chart for nethermind node using the xdai network and adc hoc k8s resources required to secure the node. 
-    - Version  [v1.12.7](https://github.com/NethermindEth/nethermind/releases/tag/1.12.7)
-    - This node has security enabled and not everyone can connect to it. To be added please write to circlesubi@
+    - Version  [v1.14.7](https://github.com/NethermindEth/nethermind/releases/tag/1.14.7)
+    - This node has security enabled and not everyone can connect to it. To be added please write to circlesubi@bitspossessed.org
 - **graph-protocol**: installs a customised helm chart for graph-protocol. 
 ### host.yaml
 Target machine where `prd` provisioning will take place. 
@@ -56,8 +56,14 @@ Update in `hosts.yaml` the target box where the software will be installed.
 
 ### Kwnown problems
 
-- In order to have running this setup in vagrant you would need a powerful PC, as required to run Graph Node and an Ethereum Full Node. Otherwise the setup will be slow and eventually it can run out of memory. The recommendation is to carry on the installation in a different server than your own PC. 
+- In order to have running this setup in vagrant you would need a powerful PC (specs below) , as required to run Graph Node and an Ethereum Full Node. Otherwise the setup will be slow and eventually it can run out of memory. The recommendation is to carry on the installation in a different server than your own PC. 
 - when url from chart changes then it throws error chart has been added already
 
 ### Pending 
 - For now, although the role is created for graphprotocol, this is for new installation from scratch. For our current deployment, we mantain our helm chart through helm only. There is a README under `helm/graphprotocol` with instructions. 
+
+#### PC specs
+
+CPU : 8 cores
+Memory (Postgres): 30GB
+RAM: minimum 16GB (depending on the blockchain used)
