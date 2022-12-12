@@ -22,7 +22,7 @@
 - name: Copy values file depending on the env
   ansible.builtin.copy:
     src: values-{{ env }}.yaml
-    dest: /etc/config-helm/nethermind
+    dest: /etc/config-helm/nethermind/
     owner: root
     group: root
     mode: '0644'
