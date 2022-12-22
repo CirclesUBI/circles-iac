@@ -19,23 +19,29 @@
     state: directory
     mode: '0644'
 
+
 - name: Copy values file depending on the env
   ansible.builtin.copy:
-    src: values-{{ env }}.yaml
+    src: nethermind-{{ env }}.yaml
     dest: /etc/config-helm/nethermind/
     owner: root
     group: root
     mode: '0644'
+
 
 - name: Install chart for xdai or sokol depending on group_vars
   kubernetes.core.helm:
     name: "{{ ethereum_network }}-nethermind"
     namespace: "{{ ethereum_network }}"
     kubeconfig: "{{ k8s_kubeconfig }}"
-    chart_version: "{{ ethereum_helm_chart_version }}"
+    chart_version: "{{ nethermind_chart_version }}"
     chart_ref: ethereum-helm-charts/nethermind
     create_namespace: true
-    values_files: /etc/config-helm/nethermind/values-{{ env }}.yaml
-    
+    values_files: /etc/config-helm/nethermind/nethermind-{{ env }}.yaml
+
+
+- name: Install Consensus Layer - Lighthouse
+  include_tasks: lighthouse.yml
+
 - name: Install add-hoc resources with k8s 
   include_tasks: adhoc_resources.yml

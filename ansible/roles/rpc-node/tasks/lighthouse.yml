@@ -1,0 +1,23 @@
+- name: Ensures lighthouse  dir exists
+  file: 
+    path: /etc/config-helm/lighthouse/ 
+    state: directory
+    mode: '0644'
+
+- name: Copy values file depending on the env
+  ansible.builtin.copy:
+    src: lighthouse-{{ env }}.yaml
+    dest: /etc/config-helm/lighthouse/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install lighthouse chart depending on group_vars
+  kubernetes.core.helm:
+    name: "{{ ethereum_network }}-lighthouse"
+    namespace: "{{ ethereum_network }}"
+    kubeconfig: "{{ k8s_kubeconfig }}"
+    chart_version: "{{ lighthouse_chart_version }}"
+    chart_ref: ethereum-helm-charts/lighthouse 
+    create_namespace: true
+    values_files: /etc/config-helm/lighthouse/lighthouse-{{ env }}.yaml

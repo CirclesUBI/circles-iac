@@ -1,5 +1,13 @@
 ethereum_helm_chart_url: https://ethpandaops.github.io/ethereum-helm-charts
-ethereum_helm_chart_version: 0.2.0
+
+# Execution Layer: nethermind
+nethermind_chart_version: 0.3.6
+
+# Consesus Layer: lighthouse
+lighthouse_chart_version: 0.2.5 
+
+# JWT secret for secure communication between EL and CL. Set up a different for a new node installation
+JWT_Secret:  "{{ lookup('env', 'JWT_SECRET') }}"
 # for k3s traefik is installed by default
 ingress_controller: traefik
 
@@ -27,3 +35,5 @@ host_server: "{{ lookup('env', 'HOST_SERVER') }}"
 
 #k3s version 
 k3s_version: v1.25.3+k3s1
+
+

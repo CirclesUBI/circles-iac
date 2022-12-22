@@ -7,5 +7,5 @@
 
   roles:
   - basic-setup
-  - nethermind
+  - rpc-node
   # - graph-protocol
