@@ -1,0 +1,57 @@
+
+# graph-protocol configuration
+graphProtocol:
+  logs: debug
+  admin:
+    name: index-node 
+    port: 8020
+  ipfs:
+    name: ipfs
+    port: 5001
+  queryNode: query-node
+  indexNode: index-node
+
+# querynode
+queryNodeHost: graph.provisioning.circles.garden
+queryNodeReplicas: 1
+
+# image details
+image:
+  repository: graphprotocol/graph-node
+  pullPolicy: IfNotPresent
+  tag: v0.29.0
+# container
+container:
+  ports:
+    http: 8000
+    ws: 8001
+    jsonRpc: 8020
+    indexNode: 8030
+    metrics: 8040
+
+# services
+service:
+  http: 8000 # GraphQL RPC
+  ws: 8001 # GraphQL WebSockets
+  jsonRpc: 8020 # JSON RPC
+  indexNode: 8030 # Subgraph indexing status
+  metrics: 8040 # Prometheus metrics
+
+# LetsEncrypt certificates
+acmeEmail: circlesubi@gmail.com
+acmeServer: https://acme-v02.api.letsencrypt.org/directory
+
+# ethereum networks:
+network: xdai
+rpcNode: xdai-nethermind.xdai
+rpcPort: 8545
+
+# CORS entried allowed: 
+CORS_allowed:
+  - "https://relay.circles.garden"
+  - "https://devpreview.circles.garden"
+  - "https://preview.circles.garden"
+  - "https://circles.garden"
+  - "https://api.circles.garden"
+  - "https://dashboard.circles.garden"
+  - "https://old.circles.garden"

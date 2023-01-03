@@ -1,0 +1,17 @@
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
+metadata:
+  name: corsheaders
+  namespace: graph
+spec:
+  headers:
+    accessControlAllowMethods:
+      - "GET"
+      - "OPTIONS"
+      - "PUT"
+      - "POST"
+    accessControlAllowHeaders:
+      - "*"
+    accessControlAllowOriginList: {{ toYaml .Values.CORS_allowed | nindent 6 }}
+    accessControlMaxAge: 100
+    addVaryHeader: true

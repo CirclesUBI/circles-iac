@@ -1,0 +1,11 @@
+---
+- name: Install and Configure Circles Provisioning Server
+  hosts: all
+  become: true
+  become_method: sudo
+  vars:
+
+  roles:
+  - basic-setup
+  - rpc-node
+  # - graph-protocol

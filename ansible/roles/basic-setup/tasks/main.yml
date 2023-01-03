@@ -1,0 +1,35 @@
+---
+# task file main
+- name: Maintain packages
+  become: true
+  apt:
+    update_cache: yes
+
+- name: Install utility packages
+  ansible.builtin.apt:
+    pkg:
+    - unattended-upgrades
+    - python3-yaml
+    - apt-transport-https
+    - gnupg
+    - gnupg2
+    - python3-pip
+    - curl
+    - apparmor 
+    - apparmor-utils
+
+- name: Configure unattended-upgrades
+  ansible.builtin.copy:
+    dest: /etc/apt/apt.conf.d/20auto-upgrades
+    content: |
+      APT::Periodic::Update-Package-Lists "1";
+      APT::Periodic::Unattended-Upgrade "1";
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Install k3s
+  shell : curl -sfL https://get.k3s.io  | INSTALL_K3S_VERSION={{ k3s_version }} sh -
+
+- name: Install helm
+  include_tasks: helm.yaml

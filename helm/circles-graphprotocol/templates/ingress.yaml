@@ -1,0 +1,41 @@
+---    
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: circles-query-node
+  namespace: graph
+
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+    kubernetes.io/ingress.class: traefik
+    traefik.ingress.kubernetes.io/router.middlewares: graph-corsheaders@kubernetescrd, graph-stripprefix@kubernetescrd 
+spec:
+  tls:
+    - hosts:
+        - {{ .Values.queryNodeHost }}
+      secretName: tls-query-node
+  rules:
+  - host: {{ .Values.queryNodeHost }}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.graphProtocol.queryNode }}
+            port:
+              number: {{ .Values.service.http }}
+      - path: /ws
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.graphProtocol.queryNode }}
+            port:
+              number: {{ .Values.service.ws }}
+      - path: /index-node
+        pathType: Prefix
+        backend:
+          service:
+            name: {{ .Values.graphProtocol.queryNode }}
+            port:
+              number: {{ .Values.service.indexNode }}

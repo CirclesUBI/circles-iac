@@ -1,0 +1,1 @@
+"{{ host_server }}" ansible_connection=ssh ansible_user=root

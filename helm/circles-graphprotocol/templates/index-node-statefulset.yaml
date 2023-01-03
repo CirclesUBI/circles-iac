@@ -1,0 +1,72 @@
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: {{ .Values.graphProtocol.indexNode }}
+  namespace: graph
+spec:
+  selector:
+    matchLabels:
+      app: {{ .Values.graphProtocol.indexNode }}
+  serviceName: {{ .Values.graphProtocol.indexNode }}
+  replicas: 1
+  podManagementPolicy: Parallel
+  updateStrategy:
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.graphProtocol.indexNode }}
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: "/metrics"
+        prometheus.io/port: "8040"
+    spec:
+      containers:
+        - name: graph-node
+          image: graphprotocol/graph-node
+          ports:
+            - name: http
+              containerPort: {{ .Values.container.ports.http }}
+            - name: json-rpc
+              containerPort: {{ .Values.container.ports.jsonRpc }}
+            - name: metrics
+              containerPort: {{ .Values.container.ports.metrics }}
+            - name: ws
+              containerPort: {{ .Values.container.ports.ws }}
+            - name: index-node
+              containerPort: {{ .Values.container.ports.indexNode }}
+          env:
+            # The name of the pod that will do block ingestion
+            - name: GRAPH_LOG
+              valueFrom:
+                configMapKeyRef:
+                  name: env
+                  key: GRAPH_LOG
+            - name: BLOCK_INGESTOR
+              value: "{{ .Values.graphProtocol.indexNode }}-0"
+            - name: GRAPH_KILL_IF_UNRESPONSIVE
+              value: "true"
+            - name: postgres_host
+              value: postgres
+            - name: postgres_user
+              value: graph-node
+            - name: postgres_pass
+              value: let-me-in
+            - name: postgres_db
+              value: graph-node
+            - name: node_role
+              value: {{ .Values.graphProtocol.indexNode }}
+            - name: node_id
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name
+            - name: ethereum
+              valueFrom:
+                configMapKeyRef:
+                  name: ethereum-networks
+                  key: networks
+            - name: ipfs
+              valueFrom:
+                configMapKeyRef:
+                  key: IPFS
+                  name: env
