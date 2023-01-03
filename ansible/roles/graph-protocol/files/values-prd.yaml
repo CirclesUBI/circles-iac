@@ -3,5 +3,5 @@ ethereumNetwork: xdai
 rpcNode: xdai-nethermind.xdai
 queryNodeHost: graph.provisioning.circles.garden
 image:
-  tag: v0.28.2
+  tag: v0.29.0
 
