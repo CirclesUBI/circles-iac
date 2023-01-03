@@ -19,8 +19,7 @@ queryNodeReplicas: 1
 image:
   repository: graphprotocol/graph-node
   pullPolicy: IfNotPresent
-  tag: v0.28.2
-
+  tag: v0.29.0
 # container
 container:
   ports:
