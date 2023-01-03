@@ -17,7 +17,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker tag
-  imageTag: v5.0.2
+  imageTag: v5.0.2-1-g0ec746a
   # Ingress
   host: relay.circles.garden
 
@@ -36,7 +36,7 @@ graph:
   # Graph node URL
   endpoint: https://graph.provisioning.circles.garden
   # Circles subgraph name
-  subgraph: circlesubi/circles-ubi-130
+  subgraph: circlesubi/circles-ubi
 
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~
