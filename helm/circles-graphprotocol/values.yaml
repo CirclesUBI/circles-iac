@@ -19,8 +19,7 @@ queryNodeReplicas: 1
 image:
   repository: graphprotocol/graph-node
   pullPolicy: IfNotPresent
-  tag: "v0.26.0"
-
+  tag: v0.29.0
 # container
 container:
   ports:
@@ -46,3 +45,13 @@ acmeServer: https://acme-v02.api.letsencrypt.org/directory
 network: xdai
 rpcNode: xdai-nethermind.xdai
 rpcPort: 8545
+
+# CORS entried allowed: 
+CORS_allowed:
+  - "https://relay.circles.garden"
+  - "https://devpreview.circles.garden"
+  - "https://preview.circles.garden"
+  - "https://circles.garden"
+  - "https://api.circles.garden"
+  - "https://dashboard.circles.garden"
+  - "https://old.circles.garden"

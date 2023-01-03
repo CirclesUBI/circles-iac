@@ -2,7 +2,7 @@ apiVersion: v1
 kind: ConfigMap
 metadata:
   name: env
-  namespace: graphtest
+  namespace: graph
 data:
   # GRAPH NODES  configuration
   # ~~~~~~~~~~~~~~~~~~~~~~

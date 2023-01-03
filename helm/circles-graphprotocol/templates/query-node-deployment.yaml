@@ -2,7 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ .Values.graphProtocol.queryNode }}
-  namespace: graphtest
+  namespace: graph
 spec:
   selector:
     matchLabels:

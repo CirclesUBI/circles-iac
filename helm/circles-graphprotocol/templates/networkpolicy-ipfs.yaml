@@ -2,7 +2,7 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   name: deny-private-networks-ipfs
-  namespace: graphtest
+  namespace: graph
 spec:
   egress:
   - to:

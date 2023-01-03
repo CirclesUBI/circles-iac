@@ -5,7 +5,7 @@ metadata:
   labels:
     io.kompose.service: postgres-claim0
   name: postgres-claim0
-  namespace: graphtest
+  namespace: graph
 spec:
   accessModes:
     - ReadWriteOnce

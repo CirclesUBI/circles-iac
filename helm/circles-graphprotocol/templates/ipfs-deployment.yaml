@@ -8,7 +8,7 @@ metadata:
   labels:
     io.kompose.service: ipfs
   name: ipfs
-  namespace: graphtest
+  namespace: graph
 spec:
   replicas: 1
   selector:

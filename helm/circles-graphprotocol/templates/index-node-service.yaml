@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: {{ .Values.graphProtocol.indexNode }}
-  namespace: graphtest
+  namespace: graph
 spec:
   selector:
     app: {{ .Values.graphProtocol.indexNode }}

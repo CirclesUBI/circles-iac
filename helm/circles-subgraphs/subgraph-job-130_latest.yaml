@@ -1,0 +1,65 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  annotations:
+    kompose.cmd: kompose convert -o circles-infra-suite --volumes persistentVolumeClaim -c 
+    kompose.version: 1.21.0 (992df58d8)
+    # This is what defines this resource as a hook. Without this line, the
+    # job is considered part of the release.
+    helm.sh/hook: post-install
+    helm.sh/hook-delete-policy: hook-succeeded
+  creationTimestamp: null
+  labels:
+    io.kompose.service: subgraph
+  name: subgraph-130-v140
+spec:
+  template:
+    metadata:
+      annotations:
+        kompose.cmd: kompose convert -o circles-infra-suite --volumes persistentVolumeClaim -c
+        kompose.version: 1.21.0 (992df58d8)
+      creationTimestamp: null
+      labels:
+        io.kompose.service: subgraph
+    spec:
+      imagePullSecrets:
+        - name: do-registry
+      containers:
+      - env:
+        - name: GRAPH_ADMIN_NODE_ENDPOINT
+          valueFrom:
+              configMapKeyRef:
+                key: GRAPH_ADMIN_NODE_ENDPOINT
+                name: env
+        - name: SUBGRAPH_NAME
+          value: circlesubi/circles-ubi
+        - name: SUBGRAPH_NETWORK
+          value: xdai
+        - name: PROXY_FACTORY_ADDRESS
+          value: 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2
+        - name: PROXY_FACTORY_ADDRESS_CRC
+          value: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
+        - name: START_BLOCK
+          value: "12529458"
+        - name: HUB_ADDRESS
+          value: 0x29b9a7fBb8995b2423a71cC17cf9810798F6C543
+        - name: IPFS_NODE_ENDPOINT
+          valueFrom:
+              configMapKeyRef:
+                key: IPFS_NODE_ENDPOINT
+                name: env
+        - name: postgres_host
+          value: postgres
+        - name: postgres_user
+          value: graph-node
+        - name: postgres_pass
+          value: let-me-in
+        - name: postgres_db
+          value: graph-node
+        image: registry.digitalocean.com/circles-registry/circles-subgraph:v1.4.0
+        name: subgraph-init
+        resources: {}
+      restartPolicy: OnFailure
+      serviceAccountName: ""
+      volumes: null
+status: {}
