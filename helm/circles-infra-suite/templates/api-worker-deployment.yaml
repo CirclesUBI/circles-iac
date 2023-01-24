@@ -171,3 +171,10 @@ spec:
                 configMapKeyRef:
                   key: DATABASE_SOURCE
                   name: env
+            # Api timeout Configuration
+            # ~~~~~~~~~~~~~~~~~~~~
+            - name: TRANSFER_STEPS_TIMEOUT
+              valueFrom:
+                configMapKeyRef:
+                  key: TRANSFER_STEPS_TIMEOUT
+                  name: env

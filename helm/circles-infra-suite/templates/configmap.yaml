@@ -42,6 +42,10 @@ data:
   # ~~~~~~~~~~~~~~~~~~~~
   DATABASE_SOURCE: graph
 
+  # Api timeout Configuration (in ms)
+  # ~~~~~~~~~~~~~~~~~~~~
+  TRANSFER_STEPS_TIMEOUT: 150000
+
   # Relayer Addresses
   # ~~~~~~~~~~~~~~~~~
   SAFE_FUNDER_ADDRESS: {{.Values.relayer.funderAddress}}
