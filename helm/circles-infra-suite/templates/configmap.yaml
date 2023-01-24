@@ -44,7 +44,7 @@ data:
 
   # Api timeout Configuration (in ms)
   # ~~~~~~~~~~~~~~~~~~~~
-  TRANSFER_STEPS_TIMEOUT: 150000
+  TRANSFER_STEPS_TIMEOUT: {{.Values.apiService.transferStepsTimeout}}
 
   # Relayer Addresses
   # ~~~~~~~~~~~~~~~~~
