@@ -27,6 +27,9 @@ apiService:
   volumeClaimName: api-data
   volumeMountPath: /usr/src/app/edges-data
 
+  # Timeout in ms
+  transferStepsTimeout: 150000
+
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
