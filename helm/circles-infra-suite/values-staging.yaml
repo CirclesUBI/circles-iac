@@ -13,11 +13,14 @@ apiService:
   # Ingress
   host: api.staging.circles.garden
 
+  # Timeout in ms
+  transferStepsTimeout: 150000
+
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker image tag
-  imageTag: v5.0.2-1-g03d86df
+  imageTag: v5.0.2-1-g9f06047
 
   # Ingress
   host: relay.staging.circles.garden
