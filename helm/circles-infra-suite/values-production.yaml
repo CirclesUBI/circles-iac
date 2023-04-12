@@ -34,7 +34,7 @@ aws:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Graph node URL
-  endpoint: https://graph.provisioning.circles.garden
+  endpoint: https://api.thegraph.com
   # Circles subgraph name
   subgraph: circlesubi/circles-ubi
 
