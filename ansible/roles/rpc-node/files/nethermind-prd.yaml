@@ -20,8 +20,8 @@ extraArgs:
 # -- JWT secret used by client as a configMap. Change this value.
 jwt: 
 
+# -- Ingress resource for the HTTP API
 ingress:
-  # -- Ingress resource for the HTTP API
   enabled: true
   # -- Annotations for Ingress
   annotations: 
