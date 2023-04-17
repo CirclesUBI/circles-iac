@@ -58,4 +58,6 @@ CORS_allowed:
   - "https://preview-dev.circles.garden"
   - "https://preview-product.circles.garden"
   - "https://preview-review.circles.garden"
-  - "http(s)?:\/\/(.*\.)?(circles\.garden)"
+
+CORS_allowed_regex:
+  - http[s]?:\/\/.*\.circles\.garden.*
