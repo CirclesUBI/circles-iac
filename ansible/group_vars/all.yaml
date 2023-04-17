@@ -6,8 +6,6 @@ nethermind_chart_version: 0.3.6
 # Consesus Layer: lighthouse
 lighthouse_chart_version: 0.2.5 
 
-# JWT secret for secure communication between EL and CL. Set up a different for a new node installation
-JWT_Secret:  "{{ lookup('env', 'JWT_SECRET') }}"
 # for k3s traefik is installed by default
 ingress_controller: traefik
 
