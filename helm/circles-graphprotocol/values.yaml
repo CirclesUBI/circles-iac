@@ -49,15 +49,7 @@ rpcPort: 8545
 # CORS entried allowed: 
 CORS_allowed:
   - "https://relay.circles.garden"
-  - "https://devpreview.circles.garden"
-  - "https://preview.circles.garden"
   - "https://circles.garden"
-  - "https://api.circles.garden"
-  - "https://dashboard.circles.garden"
-  - "https://old.circles.garden"
-  - "https://preview-dev.circles.garden"
-  - "https://preview-product.circles.garden"
-  - "https://preview-review.circles.garden"
 
 CORS_allowed_regex:
-  - http[s]?:\/\/.*\.circles\.garden.*
+  - http[s]?:\/\/.*\.circles\.garden$
