@@ -13,5 +13,6 @@ spec:
     accessControlAllowHeaders:
       - "*"
     accessControlAllowOriginList: {{ toYaml .Values.CORS_allowed | nindent 6 }}
+    accessControlAllowOriginListRegex: {{ toYaml .Values.CORS_allowed_regex | nindent 6 }} 
     accessControlMaxAge: 100
     addVaryHeader: true
