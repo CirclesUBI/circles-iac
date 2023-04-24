@@ -11,14 +11,14 @@ JWT_Secret:  "{{ lookup('env', 'JWT_SECRET') }}"
 # for k3s traefik is installed by default
 ingress_controller: traefik
 
-# Change accordingly -> xdai or sokol
-ethereum_network: xdai
+# Change accordingly -> xdai or chiado
+ethereum_network: chiado
 
 # k8s configuration
 k8s_kubeconfig: /etc/rancher/k3s/k3s.yaml
 
-# envinroment deployment prd (xdai) or stg (sokol)
-env: prd
+# envinroment deployment prd (xdai) or stg (chiado)
+env: stg
 
 # allowed users to connect to the xdainode base64 encoded
 allowed_users:
