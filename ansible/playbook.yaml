@@ -6,6 +6,6 @@
   vars:
 
   roles:
-  - basic-setup
+  # - basic-setup
   - rpc-node
   # - graph-protocol

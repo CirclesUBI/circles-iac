@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: init-container
+spec:
+  containers:
+  - name: config-download
+    image: busybox:1.28
+    command: 
+      - wget
+      - "-O"
+      - "/tmp/genesis.ssz"
+      - "https://github.com/gnosischain/configs/raw/main/chiado/genesis.ssz"
+    volumeMounts:
+      - name: config
+        mountPath: /tmp/networkconfig
+  volumes:
+    - name: config 
+      persistentVolumeClaim:
+        claimName: storage-chiado-lighthouse-0

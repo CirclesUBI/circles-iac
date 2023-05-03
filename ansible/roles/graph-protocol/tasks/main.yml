@@ -1,8 +1,14 @@
 ---
 # task file
 
-# - name: Install cert-manager
-#   include_tasks: cert_manager.yml
+- name: Install cert-manager
+  include_tasks: cert_manager.yml
+
+- name: Ensures graph-protocol dir exists
+  file: 
+    path: /etc/config-helm/graph-protocol/ 
+    state: directory
+    mode: '0644'
 
 - name: Copy file with owner and permissions
   ansible.builtin.copy:
@@ -23,7 +29,7 @@
     mode: '0644'
     
 
-- name: Install chart for xdai or sokol depending on group_vars
+- name: Install chart for xdai or chiado depending on group_vars
   kubernetes.core.helm:
     name: "graph-protocol"
     namespace: "graph"
@@ -31,5 +37,7 @@
     chart_version: "{{ graph_protocol_chart_version }}"
     chart_ref: /etc/config-helm/charts/circles-graphprotocol/
     create_namespace: true
-    values_files: /etc/config-helm/graph-protocol/values-{{ env }}.yaml
+    values_files:
+      - /etc/config-helm/charts/circles-graphprotocol/values.yaml
+      - /etc/config-helm/charts/circles-graphprotocol/values-{{ env }}.yaml
     

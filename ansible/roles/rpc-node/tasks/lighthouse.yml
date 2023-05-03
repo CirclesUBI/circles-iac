@@ -4,6 +4,12 @@
     state: directory
     mode: '0644'
 
+# - name: Ensures network_config dir exists
+#   file: 
+#     path: /etc/config-helm/lighthouse/network_config/
+#     state: directory
+#     mode: '0644'
+
 - name: Copy values file depending on the env
   ansible.builtin.copy:
     src: lighthouse-{{ env }}.yaml
@@ -12,12 +18,55 @@
     group: root
     mode: '0644'
 
-- name: Install lighthouse chart depending on group_vars
+- name: Copy values file depending on the env
+  ansible.builtin.copy:
+    src: init-config.yaml
+    dest: /etc/config-helm/lighthouse/
+    owner: root
+    group: root
+    mode: '0644' 
+# - name: Download Chart using chart_name and repo_url #TODO only executes this task once, at the beginning
+#   kubernetes.core.helm_pull:
+#     chart_ref: lighthouse
+#     repo_url:  "{{ ethereum_helm_chart_url }}"
+#     untar_chart: yes
+#     destination: /etc/config-helm/charts
+
+
+- name: Init container to download configuration files required for the CL 
+  kubernetes.core.k8s:
+    state: present
+    apply: true
+    kubeconfig: "{{ k8s_kubeconfig }}"
+    namespace: "{{ ethereum_network }}"
+    src: /etc/config-helm/lighthouse/init-config.yaml
+
+- name: Copy configmap into the Chart directory
+  ansible.builtin.copy:
+    src: lighthouse_stg_configmap.yaml
+    dest: /etc/config-helm/charts/lighthouse/templates
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: Add a line to a file if the file does not exist, without passing regexp
+  ansible.builtin.lineinfile:
+    path: /etc/config-helm/charts/lighthouse/.helmignore
+    line: .ssz
+
+- name: Copy network_config the Chart directory
+  ansible.builtin.copy:
+    src: network_config/
+    dest: /etc/config-helm/charts/lighthouse
+    owner: root
+    group: root
+    mode: '0644' 
+
+- name: Install lighthouse chart depending on group_vars # TODO change the installation depending if it's stg or prd
   kubernetes.core.helm:
     name: "{{ ethereum_network }}-lighthouse"
     namespace: "{{ ethereum_network }}"
     kubeconfig: "{{ k8s_kubeconfig }}"
-    chart_version: "{{ lighthouse_chart_version }}"
-    chart_ref: ethereum-helm-charts/lighthouse 
+    chart_ref:  /etc/config-helm/charts/lighthouse
     create_namespace: true
     values_files: /etc/config-helm/lighthouse/lighthouse-{{ env }}.yaml

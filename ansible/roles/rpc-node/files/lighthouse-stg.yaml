@@ -1,0 +1,74 @@
+
+# -- Number of replicas
+replicas: 1
+
+image:
+  # -- Lighthouse container image repository
+  repository: sigp/lighthouse
+  # -- Lighthouse container image tag
+  tag: v4.0.1
+  # -- Lighthouse container pull policy
+  pullPolicy: IfNotPresent
+
+# -- Mode can be 'beacon','validator' or 'bootnode'
+mode: "beacon"
+
+extraVolumeMounts: 
+  - name:  config
+    mountPath:  /tmp/networkconfig
+
+extraVolumes:
+  - name: config 
+    persistentVolumeClaim:
+      claimName: storage-chiado-lighthouse-0
+    - name: networkconfig 
+    configMap:
+      name: config
+
+persistence:
+  # -- Uses an EmptyDir when not enabled
+  enabled: true
+  # -- Use an existing PVC when persistence.enabled
+  existingClaim: null
+  # -- Access mode for the volume claim template
+  accessModes:
+  - ReadWriteOnce
+  # -- Requested size for volume claim template
+  size: 5Gi
+  # -- Use a specific storage class
+  # E.g 'local-path' for local storage to achieve best performance
+  # Read more (https://github.com/rancher/local-path-provisioner)
+  storageClassName: local-path
+  # -- Annotations for volume claim template
+  annotations: {}
+  # -- Selector for volume claim template
+  selector: {}
+  #   matchLabels:
+  #     app.kubernetes.io/name: something
+
+# -- Extra args for the lighthouse container
+extraArgs:
+  # - --execution-endpoint=http://chiado-nethermind.chiado:8545
+  # - --boot-nodes=enr:-L64QOijsdi9aVIawMb5h5PWueaPM9Ai6P17GNPFlHzz7MGJQ8tFMdYrEx8WQitNKLG924g2Q9cCdzg54M0UtKa3QIKCMxaHYXR0bmV0c4j__________4RldGgykDE2cEMCAABv__________-CaWSCdjSCaXCEi5AaWYlzZWNwMjU2azGhA8CjTkD4m1s8FbKCN18LgqlYcE65jrT148vFtwd9U62SiHN5bmNuZXRzD4N0Y3CCIyiDdWRwgiMo 
+  # - --checkpoint-sync-url=https://checkpoint.chiadochain.net
+  # # - --testnet-dir=/data/networkconfig
+defaultBeaconCommandTemplate: |
+  - sh 
+  - -ac 
+  - >
+    exec lighthouse
+    beacon_node 
+    --datadir=data
+    --disable-upnp 
+    --port=9000 
+    --http 
+    --http-address=0.0.0.0 
+    --http-port=4000 
+    --target-peers=50 
+    --debug-level=info
+    --testnet-dir=/data/networkconfig 
+    --execution-endpoint=http://chiado-nethermind.chiado:8545
+    --boot-nodes=enr:-L64QOijsdi9aVIawMb5h5PWueaPM9Ai6P17GNPFlHzz7MGJQ8tFMdYrEx8WQitNKLG924g2Q9cCdzg54M0UtKa3QIKCMxaHYXR0bmV0c4j__________4RldGgykDE2cEMCAABv__________-CaWSCdjSCaXCEi5AaWYlzZWNwMjU2azGhA8CjTkD4m1s8FbKCN18LgqlYcE65jrT148vFtwd9U62SiHN5bmNuZXRzD4N0Y3CCIyiDdWRwgiMo
+    --checkpoint-sync-url=https://checkpoint.chiadochain.net 
+   
+jwt: 9df81acf471e8dd5512153e82c499d70486bdcebedf3a4ba5233bb7da978f658

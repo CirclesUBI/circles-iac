@@ -10,7 +10,7 @@
 Ansible manages the installation of any software component using different [roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#roles).
 
 ### `group_vars`
-It contains all the variables used in every role. Please change accordingly to install a sokol or xdai node.
+It contains all the variables used in every role. Please change accordingly to install a chiado or xdai node.
 It also allows to add users for the Nethermind rpc node under `allowed_users`.
 
 ### roles

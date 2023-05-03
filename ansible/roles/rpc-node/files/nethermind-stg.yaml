@@ -1,16 +1,20 @@
-extraArgs: 
-  - --config=sokol
-  - --Init.MemoryHint 1500000000
-  - --HealthChecks.Enabled=true
-  - --Network.DiagTracerEnabled=true
-  - --Network.MaxActivePeers=25
-  - --Init.DiscoveryEnabled=false
-
 image:
   # -- nethermind container image repository
   repository: nethermind/nethermind
   # -- nethermind container image tag
-  tag: 1.14.5
+  tag: 1.17.3
+  # -- nethermind container pull policy
+  pullPolicy: IfNotPresent
+
+# -- Extra args for the nethermind container
+extraArgs:
+  - --config=chiado
+  # - --JsonRpc.Enabled true
+  # - --HealthChecks.Enabled true
+  # - --JsonRpc.EnginePort 8551
+ 
+# -- JWT secret used by client as a configMap. Change this value.
+jwt: 9df81acf471e8dd5512153e82c499d70486bdcebedf3a4ba5233bb7da978f658
 
 ingress:
   # -- Ingress resource for the HTTP API
@@ -18,32 +22,17 @@ ingress:
   # -- Annotations for Ingress
   annotations: 
     kubernetes.io/ingress.class: traefik
-    cert-manager.io/cluster-issuer: letsencrypt-prod
-    traefik.ingress.kubernetes.io/router.middlewares: sokol-redirecthttps@kubernetescrd
-    traefik.ingress.kubernetes.io/router.middlewares: sokol-authentication@kubernetescrd 
+    cert-manager.io/cluster-issuer: letsencrypt-stg
+    traefik.ingress.kubernetes.io/router.middlewares: chiado-authentication@kubernetescrd
   # -- Ingress host
   hosts:
-    - host: sokolnode.{{ host_server }}
+    - host: chiadonode.testing.circles.garden
       paths:
       - path: /
         pathType: Prefix
+      pathType: Prefix
   # -- Ingress TLS
   tls: 
-    - secretName: tls-sokolnode
-      hosts:
-        - sokolnode.{{ host_server }}
-
-persistence:
-  # -- Uses an EmptyDir when not enabled
-  enabled: true
-  # -- Use an existing PVC when persistence.enabled
-  existingClaim: null
-  # -- Access mode for the volume claim template
-  accessModes:
-  - ReadWriteOnce
-  # -- Requested size for volume claim template
-  size: 250Gi
-  # -- Annotations for volume claim template
-  annotations: {}
-  # -- Selector for volume claim template
-  selector: {}
+   - secretName: tls-chiadonode
+     hosts:
+       - chiadonode.provisioning.circles.garden

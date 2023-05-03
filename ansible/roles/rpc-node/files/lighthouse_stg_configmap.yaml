@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: config
+data:
+  genesis.ssz: "{{ ( .Files.Get "config/genesis.ssz") }} "
+  config.yaml: | 
+    "{{  ( .Files.Get "config/config.yaml") | toYaml | indent 4}}"
+  deploy_block.txt: "{{ ( .Files.Get "config/deploy_block.txt") }}"
