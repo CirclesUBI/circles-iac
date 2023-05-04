@@ -1,7 +1,9 @@
+# envinronment
+env: stg
+
 # querynode
 queryNodeHost: graph.testing.circles.garden
 queryNodeReplicas: 1
-
 
 # ethereum networks:
 network: chiado
@@ -15,5 +17,3 @@ CORS_allowed:
 
 CORS_allowed_regex:
   - http[s]?:\/\/.*\.staging\.circles\.garden$
-
-env: stg
