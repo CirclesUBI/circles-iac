@@ -23,7 +23,7 @@ spec:
         io.kompose.service: subgraph
     spec:
       imagePullSecrets:
-        - name: do-registry
+        - name: circles-registry
       containers:
       - env:
         - name: GRAPH_ADMIN_NODE_ENDPOINT
