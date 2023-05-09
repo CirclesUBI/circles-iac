@@ -1,3 +1,6 @@
+# envinroment 
+env: prd
+
 # querynode
 queryNodeHost: graph.provisioning.circles.garden
 queryNodeReplicas: 1
@@ -15,4 +18,3 @@ CORS_allowed:
 CORS_allowed_regex:
   - http[s]?:\/\/.*\.circles\.garden$
 
-env: prd
