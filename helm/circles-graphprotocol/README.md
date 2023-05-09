@@ -7,3 +7,5 @@ This chart installs graph protocol for circles with the following configuration:
 It also add an extra middlewares to avoid spamming to the range of private IPs from IPFS
 
 To upgrade any of the components please use `helm-upgrade-graph.sh` but beforehand you need to get hold of the k8s configuration to connect to the cluster and make sure you are in the right context.
+
+This configuration allows to syncronise the testnet Chiado with the configuration value: values-stg.yaml and Gnosis chain with the values-prd.yaml. Each are deployed in different machines for now.
