@@ -30,15 +30,12 @@ spec:
             - postgres
             - -cshared_preload_libraries=pg_stat_statements
           env:
-            - name: POSTGRES_INITDB_ARGS
-              value: -E UTF8 --locale=C
             - name: POSTGRES_DB
               value: graph-node
             - name: POSTGRES_PASSWORD
               value: let-me-in
             - name: POSTGRES_USER
               value: graph-node
-            
           image: postgres:14
           name: postgres
           ports:
