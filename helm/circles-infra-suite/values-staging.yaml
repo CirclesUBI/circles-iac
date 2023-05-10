@@ -43,6 +43,7 @@ graph:
   # Circles subgraph name
   subgraph: circlesubi/circles-ubi-stg
 
+# Smart Contract Addresses taken from https://github.com/safe-global/safe-deployments/issues/157
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 contracts:
