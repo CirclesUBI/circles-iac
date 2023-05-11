@@ -6,4 +6,8 @@ metadata:
 
 data:
   networks: >-
-    {{ .Values.network }}:http://{{ .Values.rpcNode }}:{{ .Values.rpcPort}}
+   {{ if eq .Values.env "stg" }}
+      {{ .Values.network }}:https://{{ .Values.rpcNode }}
+   {{ else }}
+      {{ .Values.network }}:http://{{ .Values.rpcNode }}:{{ .Values.rpcPort }}
+   {{ end }}

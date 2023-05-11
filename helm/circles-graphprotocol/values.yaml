@@ -11,10 +11,6 @@ graphProtocol:
   queryNode: query-node
   indexNode: index-node
 
-# querynode
-queryNodeHost: graph.provisioning.circles.garden
-queryNodeReplicas: 1
-
 # image details
 image:
   repository: graphprotocol/graph-node
@@ -41,15 +37,3 @@ service:
 acmeEmail: circlesubi@gmail.com
 acmeServer: https://acme-v02.api.letsencrypt.org/directory
 
-# ethereum networks:
-network: xdai
-rpcNode: xdai-nethermind.xdai
-rpcPort: 8545
-
-# CORS entried allowed: 
-CORS_allowed:
-  - "https://relay.circles.garden"
-  - "https://circles.garden"
-
-CORS_allowed_regex:
-  - http[s]?:\/\/.*\.circles\.garden$
