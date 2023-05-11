@@ -17,7 +17,7 @@ spec:
         io.kompose.service: {{.Values.relayerService.name}}-scheduler
     spec:
       imagePullSecrets:
-        - name: docker-cfg
+        - name: circles-registry 
       restartPolicy: Always
       volumes:
         - hostPath:

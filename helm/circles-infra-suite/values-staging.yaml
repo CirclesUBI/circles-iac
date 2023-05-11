@@ -20,7 +20,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker image tag
-  imageTag: v5.0.2-1-g9f06047
+  imageTag: v5.0.3-2-g910a7f1
 
   # Ingress
   host: relay.staging.circles.garden
@@ -38,24 +38,25 @@ aws:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Graph node URL
-  endpoint: https://api.thegraph.com
+  endpoint: https://graph.testing.circles.garden
 
   # Circles subgraph name
-  subgraph: circlesubi/circlesubi-staging
+  subgraph: circlesubi/circles-ubi-stg
 
+# Smart Contract Addresses taken from https://github.com/safe-global/safe-deployments/issues/157
 # Smart Contract Addresses
 # ~~~~~~~~~~~~~~~~~~~~~~~~
 contracts:
-  hubAddress: 0x5D0dDd1d35D3FA9950Defd99F92053b3B9E236D0
-  proxyFactoryAddressCRC: 0x0F9f9C38E53674EF7a29A1DE38EAbF34e1DCB81C
-  safeAddressCRC: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
-  proxyFactoryAddress: 0x0F9f9C38E53674EF7a29A1DE38EAbF34e1DCB81C
-  safeAddress130: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156 
-  safeAddress: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
-  fallBackAddress: 0x8b4404DE0CaECE4b966a9959f134f0eFDa636156
+  hubAddress: 0xdbF22D4e8962Db3b2F1d9Ff55be728A887e47710
+  proxyFactoryAddressCRC: 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2
+  safeAddressCRC: 0x3E5c63644E683549055b9Be8653de26E0B4CD36E
+  proxyFactoryAddress: 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2
+  safeAddress130: 0x3E5c63644E683549055b9Be8653de26E0B4CD36E 
+  safeAddress: 0x3E5c63644E683549055b9Be8653de26E0B4CD36E
+  fallBackAddress: 0x1AC114C2099aFAf5261731655Dc6c306bFcd4Dbd
 
 # Relayer Addresses
 # ~~~~~~~~~~~~~~~~~
 relayer:
-  funderAddress: 0x691b74E59b7D65572DFF5543e5A0e23c2F32049a
-  senderAddress: 0x3454d8C54c94fAb51A3BedE50826F4C3d5445A79
+  funderAddress: 0x66c0FE88C2Aef9DE75CB725E8bCCE61891DF4393
+  senderAddress: 0xB573eBb6A0b10A951a2a7305F4746cc9D7EBb785
