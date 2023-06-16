@@ -65,6 +65,11 @@ spec:
                 configMapKeyRef:
                   key: RELAY_SERVICE_ENDPOINT
                   name: env
+            - name: PATHFINDER_SERVICE_ENDPOINT
+              valueFrom:
+                configMapKeyRef:
+                  key: PATHFINDER_SERVICE_ENDPOINT
+                  name: env
 
             # "The Graph" Configuration
             # ~~~~~~~~~~~~~~~~~~~~~~~~~

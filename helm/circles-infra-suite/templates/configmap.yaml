@@ -17,6 +17,7 @@ data:
   # ~~~~~~~~~~~~~~~~~
   API_SERVICE_ENDPOINT: http://{{.Values.apiService.name}}:{{.Values.apiService.port}}
   RELAY_SERVICE_ENDPOINT: http://{{.Values.relayerService.name}}-service:{{.Values.relayerService.port}}
+  PATHFINDER_SERVICE_ENDPOINT: {{.Values.pathfinder.endpoint}}
 
   # "The Graph" Configuration
   # ~~~~~~~~~~~~~~~~~~~~~~~~~
