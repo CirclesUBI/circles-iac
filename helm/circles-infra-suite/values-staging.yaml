@@ -8,7 +8,7 @@ host: staging.circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.8.1
+  imageTag: v1.9.0
 
   # Ingress
   host: api.staging.circles.garden
@@ -60,3 +60,8 @@ contracts:
 relayer:
   funderAddress: 0x66c0FE88C2Aef9DE75CB725E8bCCE61891DF4393
   senderAddress: 0xB573eBb6A0b10A951a2a7305F4746cc9D7EBb785
+
+# Pathfinder config
+# ~~~~~~~~~~~~~~~~~
+pathfinder:
+  endpoint: https://pathfinder.testing.circles.garden

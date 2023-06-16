@@ -8,7 +8,7 @@ host: circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker tag
-  imageTag: v1.8.1
+  imageTag: v1.9.0
 
   # Ingress
   host: api.circles.garden
@@ -54,3 +54,8 @@ contracts:
 relayer:
   funderAddress: 0x450Fc3eAc8b847a759Cb05790cE7A1f465ac0cE8
   senderAddress: 0x9944Ce8e27CE1f16C4003f108b1C09e5Ae011bA0
+
+# Pathfinder config
+# ~~~~~~~~~~~~~~~~~
+pathfinder:
+  endpoint: https://rpc.circlesubi.id/pathfinder
