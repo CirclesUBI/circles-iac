@@ -15,7 +15,10 @@ apiService:
 
   # Timeout in ms
   transferStepsTimeout: 150000
-
+  
+  # worker 
+  worker:
+    enabled: true 
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
