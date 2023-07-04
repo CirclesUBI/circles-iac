@@ -61,4 +61,4 @@ relayer:
 # Pathfinder config
 # ~~~~~~~~~~~~~~~~~
 pathfinder:
-  endpoint: https://rpc.circlesubi.id/pathfinder
+  endpoint: https://pathfinder.circlesubi.id
