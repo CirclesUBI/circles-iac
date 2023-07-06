@@ -109,6 +109,11 @@ spec:
                 secretKeyRef:
                   key: ETHEREUM_NODE_WS
                   name: ethereumnode
+            - name: ETHEREUM_NODE_ENDPOINT
+              valueFrom:
+                secretKeyRef:
+                  key: ETHEREUM_NODE_ENDPOINT
+                  name: ethereumnode
 
             # Smart Contract Addresses
             # ~~~~~~~~~~~~~~~~~~~~~~~~
