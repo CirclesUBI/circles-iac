@@ -1,22 +1,22 @@
 ethereum_helm_chart_url: https://ethpandaops.github.io/ethereum-helm-charts
 
 # Execution Layer: nethermind
-nethermind_chart_version: 0.3.6
+nethermind_chart_version: 1.0.6
 
 # Consesus Layer: lighthouse
-lighthouse_chart_version: 0.2.5 
+lighthouse_chart_version: 1.0.4
 
 # for k3s traefik is installed by default
 ingress_controller: traefik
 
 # Change accordingly -> xdai or chiado
-ethereum_network: chiado
+ethereum_network: xdai
 
 # k8s configuration
 k8s_kubeconfig: /etc/rancher/k3s/k3s.yaml
 
 # envinroment deployment prd (xdai) or stg (chiado)
-env: stg
+env: prd
 
 # allowed users to connect to the xdainode base64 encoded
 allowed_users:
@@ -31,7 +31,7 @@ graph_protocol_chart_path: "{{ lookup('env', 'GRAPH_CHART_PATH') }}"
 
 host_server: "{{ lookup('env', 'HOST_SERVER') }}"
 
-#k3s version 
+#k3s version
 k3s_version: v1.25.3+k3s1
 
 
