@@ -11,7 +11,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: subgraph
-  name: subgraph-130-v140
+  name: subgraph-prod
 spec:
   template:
     metadata:
@@ -23,7 +23,7 @@ spec:
         io.kompose.service: subgraph
     spec:
       imagePullSecrets:
-        - name: do-registry
+        - name: circles-registry
       containers:
       - env:
         - name: GRAPH_ADMIN_NODE_ENDPOINT
@@ -56,7 +56,7 @@ spec:
           value: let-me-in
         - name: postgres_db
           value: graph-node
-        image: registry.digitalocean.com/circles-registry/circles-subgraph:v1.4.0
+        image: registry.digitalocean.com/circles-registry/circles-subgraph:v2.1.1
         name: subgraph-init
         resources: {}
       restartPolicy: OnFailure
