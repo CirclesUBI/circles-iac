@@ -16,7 +16,6 @@ extraArgs:
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
 
-
 # -- JWT secret used by client as a configMap. Change this value.
 jwt:
 
