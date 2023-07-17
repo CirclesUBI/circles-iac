@@ -2,7 +2,7 @@ image:
   # -- nethermind container image repository
   repository: nethermind/nethermind
   # -- nethermind container image tag
-  tag: 1.19.3
+  tag: 1.20.0
   # -- nethermind container pull policy
   pullPolicy: IfNotPresent
 
@@ -15,6 +15,7 @@ extraArgs:
   - --Network.MaxActivePeers 50
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
+
 
 # -- JWT secret used by client as a configMap. Change this value.
 jwt:
