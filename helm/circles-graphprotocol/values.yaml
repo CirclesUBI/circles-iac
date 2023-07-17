@@ -3,7 +3,7 @@
 graphProtocol:
   logs: debug
   admin:
-    name: index-node 
+    name: index-node
     port: 8020
   ipfs:
     name: ipfs
@@ -15,7 +15,7 @@ graphProtocol:
 image:
   repository: graphprotocol/graph-node
   pullPolicy: IfNotPresent
-  tag: v0.29.0
+  tag: v0.31.0
 # container
 container:
   ports:

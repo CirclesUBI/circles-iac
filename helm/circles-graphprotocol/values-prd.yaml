@@ -1,4 +1,4 @@
-# envinroment 
+# envinroment
 env: prd
 
 # querynode
@@ -10,7 +10,7 @@ network: xdai
 rpcNode: xdai-nethermind.xdai
 rpcPort: 8545
 
-# CORS entries allowed: 
+# CORS entries allowed:
 CORS_allowed:
   - "https://relay.circles.garden"
   - "https://circles.garden"
