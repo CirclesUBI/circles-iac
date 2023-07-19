@@ -1,0 +1,56 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    io.kompose.service: {{.Values.apiPaymentService.name}}
+  name: {{.Values.apiPaymentService.name}}
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  selector:
+    matchLabels:
+      io.kompose.service: {{.Values.apiPaymentService.name}}
+  template:
+    metadata:
+      labels:
+        io.kompose.service: {{.Values.apiPaymentService.name}}
+    spec:
+      imagePullSecrets:
+        - name: circles-registry
+      restartPolicy: Always
+      containers:
+        - name: circles-{{.Values.apiPaymentService.name}}
+          image: {{.Values.imageRegistry}}/{{.Values.apiPaymentService.image}}:{{.Values.apiPaymentService.imageTag}}
+          ports:
+            - containerPort: {{.Values.apiPaymentService.port}}
+          env:
+            # Node Environment
+            # ~~~~~~~~~~~~~~~~
+            - name: NODE_ENV
+              value: production
+            # Service Configuration
+            - name: FUNDER_ACCOUNT_PRIVATE_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: FUNDER_ACCOUNT_PRIVATE_KEY
+                  name: gelato
+            - name: GELATO_RELAY_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  key: GELATO_RELAY_API_KEY
+                  name: gelato
+
+            # Ethereum Node Configuration
+            # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+            - name: RPC_URL
+              valueFrom:
+                secretKeyRef:
+                  key: ETHEREUM_NODE_ENDPOINT
+                  name: ethereumnode
+
+            - name: CHAIN_ID
+              valueFrom:
+                configMapKeyRef:
+                  key: CHAIN_ID
+                  name: env

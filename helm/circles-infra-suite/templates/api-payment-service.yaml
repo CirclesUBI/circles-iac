@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    io.kompose.service: {{.Values.apiPaymentService.name}}
+  name: {{.Values.apiPaymentService.name}}
+spec:
+  ports:
+    - name: http
+      port: {{.Values.apiPaymentService.port}}
+      targetPort: {{.Values.apiPaymentService.port}}
+  selector:
+    io.kompose.service: {{.Values.apiPaymentService.name}}
+status:
+  loadBalancer: {}

@@ -18,12 +18,12 @@ spec:
       paths:
       - path: /
         pathType: Prefix
-        backend:        
+        backend:
           service:
             name: {{.Values.apiService.name}}
             port:
               number: {{.Values.apiService.port}}
----    
+---
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
@@ -47,3 +47,28 @@ spec:
             name: {{.Values.relayerService.name}}-service
             port:
               number: {{.Values.relayerService.port}}
+
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: circles-ingress-payment-api
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-prod
+spec:
+  ingressClassName: nginx
+  tls:
+    - hosts:
+        - {{.Values.apiPaymentService.host}}
+      secretName: circles-tls-payment-api
+  rules:
+  - host: {{.Values.apiPaymentService.host}}
+    http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: {{.Values.apiPaymentService.name}}-service
+            port:
+              number: {{.Values.apiPaymentService.port}}
