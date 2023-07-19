@@ -1,22 +1,36 @@
-
-# -- Number of replicas
-replicas: 1
-
 image:
-  # -- Lighthouse container image repository
   repository: sigp/lighthouse
-  # -- Lighthouse container image tag
-  tag: v4.2.0
-  # -- Lighthouse container pull policy
+  tag: v4.3.0
   pullPolicy: IfNotPresent
 
-# -- Mode can be 'beacon','validator' or 'bootnode'
 mode: "beacon"
 
-# -- Extra args for the lighthouse container
-extraArgs:
-  - --network=gnosis
-  - --execution-endpoint=http://xdai-nethermind.xdai:8551
-  - --checkpoint-sync-url=https://checkpoint.gnosischain.com/
+checkpointSync:
+  enabled: true
+  url: "https://checkpoint.gnosischain.com/"
 
 jwt:
+
+defaultBeaconCommandTemplate: |
+  - sh
+  - -ac
+  - >
+    exec lighthouse
+    beacon_node
+    --network=gnosis
+    --execution-endpoint=http://xdai-nethermind.xdai:8551
+    --datadir=/data
+    --disable-upnp
+    --listen-address=0.0.0.0
+    --port={{ include "lighthouse.p2pPort" . }}
+    --discovery-port={{ include "lighthouse.p2pPort" . }}
+    --http
+    --http-address=0.0.0.0
+    --http-port={{ .Values.httpPort }}
+    --execution-jwt=/data/jwt.hex
+    --metrics
+    --metrics-address=0.0.0.0
+    --metrics-port={{ .Values.metricsPort }}
+  {{- if .Values.checkpointSync.enabled }}
+    --checkpoint-sync-url={{ tpl .Values.checkpointSync.url $ }}
+  {{- end }}

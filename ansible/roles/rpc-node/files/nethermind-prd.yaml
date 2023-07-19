@@ -1,12 +1,8 @@
 image:
-  # -- nethermind container image repository
   repository: nethermind/nethermind
-  # -- nethermind container image tag
-  tag: 1.20.0
-  # -- nethermind container pull policy
+  tag: 1.20.1
   pullPolicy: IfNotPresent
 
-# -- Extra args for the nethermind container
 extraArgs:
   - --config gnosis
   - --Init.MemoryHint 1500000000
@@ -16,25 +12,20 @@ extraArgs:
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
 
-# -- JWT secret used by client as a configMap. Change this value.
 jwt:
 
-# -- Ingress resource for the HTTP API
 ingress:
   enabled: true
-  # -- Annotations for Ingress
   annotations:
     kubernetes.io/ingress.class: traefik
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: xdai-authentication@kubernetescrd
-  # -- Ingress host
   hosts:
     - host: xdainode.provisioning.circles.garden
       paths:
       - path: /
         pathType: Prefix
       pathType: Prefix
-  # -- Ingress TLS
   tls:
    - secretName: tls-xdainode
      hosts:
