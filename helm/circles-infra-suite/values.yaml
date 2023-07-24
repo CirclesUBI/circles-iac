@@ -30,6 +30,18 @@ apiService:
   # Timeout in ms
   transferStepsTimeout: 150000
 
+# circles-payment-api Service
+# ~~~~~~~~~~~~~~~~~~~
+apiPaymentService:
+  # Service name
+  name: payment-api
+
+  # Docker image
+  image: circles-payment-api
+
+  # Ingress
+  port: 3002
+
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
@@ -57,7 +69,6 @@ aws:
   # AWS region
   region: eu-central-1
 
-
-# CORS 
+# CORS
 # ~~~~~~~~~~~~~~~~~~~~
 circlesPinkURLs: https://circles.pink,https://expedition-grundeinkommen.de,https://next.expedition-grundeinkommen.de,https://www.volksentscheid-grundeinkommen.de

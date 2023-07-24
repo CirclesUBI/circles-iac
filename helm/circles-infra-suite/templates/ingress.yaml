@@ -69,6 +69,6 @@ spec:
         pathType: Prefix
         backend:
           service:
-            name: {{.Values.apiPaymentService.name}}-service
+            name: {{.Values.apiPaymentService.name}}
             port:
               number: {{.Values.apiPaymentService.port}}
