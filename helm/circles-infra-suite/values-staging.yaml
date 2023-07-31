@@ -28,10 +28,10 @@ apiPaymentService:
   imageTag: v0.1.0-4-g3df0140
 
   # Ingress
-  host: api.payment.staging.circles.garden
+  host: payment.staging.circles.garden
 
   # chain id
-  chaindID:  10200
+  chaindID: 10200
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:

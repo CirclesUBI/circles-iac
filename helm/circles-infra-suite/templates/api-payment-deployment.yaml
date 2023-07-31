@@ -40,7 +40,11 @@ spec:
                 secretKeyRef:
                   key: GELATO_RELAY_API_KEY
                   name: gelato
-
+            - name: CORS_REGEX
+              valueFrom:
+                configMapKeyRef:
+                  key: CORS_REGEX
+                  name: env
             # Ethereum Node Configuration
             # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
             - name: RPC_URL
