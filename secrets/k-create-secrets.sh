@@ -34,3 +34,7 @@ kubectl create secret generic db \
 kubectl create secret generic ethereumnode \
   --from-file=$ENV/ethereumnode/ETHEREUM_NODE_ENDPOINT \
   --from-file=$ENV/ethereumnode/ETHEREUM_NODE_WS \
+
+kubectl create secret generic gelato \
+  --from-file=$ENV/payment-api/FUNDER_ACCOUNT_PRIVATE_KEY \
+  --from-file=$ENV/payment-api/GELATO_RELAY_API_KEY \

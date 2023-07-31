@@ -15,10 +15,24 @@ apiService:
 
   # Timeout in ms
   transferStepsTimeout: 150000
-  
-  # worker 
+
+  # worker
   worker:
-    enabled: true 
+    enabled: true
+
+# circles-payment-api Service
+# ~~~~~~~~~~~~~~~~~~~
+
+apiPaymentService:
+  # Docker image tag
+  imageTag: v0.1.0-4-g3df0140
+
+  # Ingress
+  host: payment.staging.circles.garden
+
+  # chain id
+  chaindID: 10200
+  corsRegex: http[s]?:\/\/.*\.staging.circles\.garden.*
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
@@ -54,7 +68,7 @@ contracts:
   proxyFactoryAddressCRC: 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2
   safeAddressCRC: 0x3E5c63644E683549055b9Be8653de26E0B4CD36E
   proxyFactoryAddress: 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2
-  safeAddress130: 0x3E5c63644E683549055b9Be8653de26E0B4CD36E 
+  safeAddress130: 0x3E5c63644E683549055b9Be8653de26E0B4CD36E
   safeAddress: 0x3E5c63644E683549055b9Be8653de26E0B4CD36E
   fallBackAddress: 0x1AC114C2099aFAf5261731655Dc6c306bFcd4Dbd
 
