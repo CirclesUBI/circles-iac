@@ -62,4 +62,5 @@ data:
   RELAYER_REDIS_URL: redis://{{.Values.redisService.name}}:{{.Values.redisService.port}}/0
 
   # Payment API Configuration
-  CHAIN_ID: '{{.Values.apiPaymentService.chainID}}'
+  CHAIN_ID: '{{.Values.apiPaymentService.chaindID}}'
+  CORS_REGEX: {{.Values.apiPaymentService.corsRegex}}
