@@ -10,7 +10,7 @@ network: chiado
 rpcNode: rpc.chiadochain.net
 rpcPort: 8545
 
-# CORS entries allowed: 
+# CORS entries allowed:
 CORS_allowed:
   - "https://relay.staging.circles.garden"
   - "https://staging.circles.garden"
