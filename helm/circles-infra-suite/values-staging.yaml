@@ -32,7 +32,7 @@ apiPaymentService:
 
   # chain id
   chaindID: '10200'
-  corsRegex: http[s]?:\/\/.*\.circles\.garden.*
+  corsRegex: http[s]?:\/\/.*\.staging.circles\.garden.*
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
