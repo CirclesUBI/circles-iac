@@ -31,7 +31,8 @@ apiPaymentService:
   host: payment.staging.circles.garden
 
   # chain id
-  chaindID: 10200
+  chaindID: '10200'
+  corsRegex: http[s]?:\/\/.*\.circles\.garden.*
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
