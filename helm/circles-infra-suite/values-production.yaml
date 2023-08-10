@@ -8,14 +8,14 @@ host: circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.9.1
+  imageTag: v1.9.3
 
   # Ingress
   host: api.circles.garden
 
-  # Worker 
+  # Worker
   worker:
-    enabled: false  
+    enabled: false
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
