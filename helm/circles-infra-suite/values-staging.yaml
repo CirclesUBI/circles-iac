@@ -24,6 +24,7 @@ apiService:
 # ~~~~~~~~~~~~~~~~~~~
 
 apiPaymentService:
+  enabled: true
   # Docker image tag
   imageTag: v0.1.0-4-g3df0140
 

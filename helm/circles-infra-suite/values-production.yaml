@@ -24,6 +24,12 @@ relayerService:
   # Ingress
   host: relay.circles.garden
 
+# circles-payment-api Service
+# ~~~~~~~~~~~~~~~~~~~
+
+apiPaymentService:
+  enabled: false
+
 # AWS S3 Configuration
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
