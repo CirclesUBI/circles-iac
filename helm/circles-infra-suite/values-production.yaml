@@ -29,7 +29,13 @@ relayerService:
 
 apiPaymentService:
   enabled: false
+ # Ingress
+  host: payment.circles.garden
 
+  # chain id
+  chaindID: 100
+
+  corsRegex: http[s]?:\/\/.*\.circles\.garden.*
 # AWS S3 Configuration
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
