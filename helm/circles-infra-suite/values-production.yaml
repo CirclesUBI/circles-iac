@@ -8,14 +8,14 @@ host: circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.9.1
+  imageTag: v1.9.3
 
   # Ingress
   host: api.circles.garden
 
-  # Worker 
+  # Worker
   worker:
-    enabled: false  
+    enabled: false
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
@@ -24,6 +24,18 @@ relayerService:
   # Ingress
   host: relay.circles.garden
 
+# circles-payment-api Service
+# ~~~~~~~~~~~~~~~~~~~
+
+apiPaymentService:
+  enabled: false
+ # Ingress
+  host: payment.circles.garden
+
+  # chain id
+  chaindID: 100
+
+  corsRegex: http[s]?:\/\/.*\.circles\.garden.*
 # AWS S3 Configuration
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
