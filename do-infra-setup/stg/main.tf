@@ -75,7 +75,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "staging-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.24.8-do.0"
+  version   = "1.25.12-do.0"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
   node_pool {
