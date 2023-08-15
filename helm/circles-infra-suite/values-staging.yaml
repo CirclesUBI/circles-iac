@@ -26,7 +26,7 @@ apiService:
 apiPaymentService:
   enabled: true
   # Docker image tag
-  imageTag: v0.1.0-4-g3df0140
+  imageTag: v1.0.0
 
   # Ingress
   host: payment.staging.circles.garden
