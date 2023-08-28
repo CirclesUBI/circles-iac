@@ -36,6 +36,8 @@ spec:
               value: let-me-in
             - name: POSTGRES_USER
               value: graph-node
+            - name: POSTGRES_INITDB_ARGS
+              value: -E UTF8 --locale=C
           image: postgres:14
           name: postgres
           ports:
