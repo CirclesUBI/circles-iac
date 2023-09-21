@@ -11,6 +11,7 @@ terraform {
   required_providers {
     digitalocean = {
       source = "digitalocean/digitalocean"
+      version = "2.30.0"
     }
   }
 }
@@ -49,7 +50,7 @@ resource "digitalocean_database_cluster" "postgres" {
   version    = "12"
   size       = "db-s-2vcpu-4gb"
   region     = "ams3"
-  private_network_uuid = digitalocean_vpc.primary.id 
+  private_network_uuid = digitalocean_vpc.primary.id
   node_count = 2
 }
 
@@ -79,11 +80,11 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["prod"]
   node_pool {
-    name       = "prod-pool-a"
-    size       = "s-8vcpu-16gb-amd"
+    name       = "prod-pool-b"
+    size       = "s-4vcpu-8gb"
     node_count = 3
     labels = {
-     pool  = "a"
+     pool  = "b"
     }
   }
 }
