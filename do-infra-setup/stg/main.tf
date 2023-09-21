@@ -11,6 +11,7 @@ terraform {
   required_providers {
     digitalocean = {
       source = "digitalocean/digitalocean"
+      version = "2.30.0"
     }
   }
 }
@@ -79,14 +80,15 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
   node_pool {
-    name       = "stg-pool-c"
-    size       = "g-2vcpu-8gb"
+    name       = "stg-pool-a"
+    size       = "s-1vcpu-2gb"
     node_count = 3
     labels = {
-      pool = "c"
+      pool = "a"
     }
   }
 }
+
 
 data "digitalocean_container_registry" "common" {
   name = "circles-registry"
