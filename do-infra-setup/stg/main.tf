@@ -80,11 +80,11 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["staging"]
   node_pool {
-    name       = "stg-pool-a"
-    size       = "s-1vcpu-2gb"
+    name       = "stg-pool-b"
+    size       = "s-2vcpu-2gb"
     node_count = 3
     labels = {
-      pool = "a"
+      pool = "b"
     }
   }
 }
