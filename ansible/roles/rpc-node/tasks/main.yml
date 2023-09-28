@@ -14,8 +14,8 @@
     update_repo_cache: true
 
 - name: Ensures nethermind  dir exists
-  file: 
-    path: /etc/config-helm/nethermind/ 
+  file:
+    path: /etc/config-helm/nethermind/
     state: directory
     mode: '0644'
 
@@ -29,7 +29,7 @@
     mode: '0644'
 
 
-- name: Install chart for xdai or sokol depending on group_vars
+- name: Install chart for xdai or chiado depending on group_vars
   kubernetes.core.helm:
     name: "{{ ethereum_network }}-nethermind"
     namespace: "{{ ethereum_network }}"
@@ -43,5 +43,5 @@
 - name: Install Consensus Layer - Lighthouse
   include_tasks: lighthouse.yml
 
-- name: Install add-hoc resources with k8s 
+- name: Install add-hoc resources with k8s
   include_tasks: adhoc_resources.yml

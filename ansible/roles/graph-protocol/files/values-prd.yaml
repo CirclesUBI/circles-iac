@@ -1,7 +1,26 @@
-# ethereum network
-ethereumNetwork: xdai
-rpcNode: xdai-nethermind.xdai
-queryNodeHost: graph.provisioning.circles.garden
+# image details
 image:
-  tag: v0.29.0
+  repository: graphprotocol/graph-node
+  pullPolicy: IfNotPresent
+  tag: v0.32.0
+
+# envinroment
+env: prd
+
+# querynode
+queryNodeHost: graph.infra.circles.garden
+queryNodeReplicas: 1
+#
+# ethereum networks:
+network: xdai
+rpcNode: xdai-nethermind.xdai
+rpcPort: 8545
+
+# CORS entries allowed:
+CORS_allowed:
+  - "https://relay.circles.garden"
+  - "https://circles.garden"
+
+CORS_allowed_regex:
+  - http[s]?:\/\/.*\.circles\.garden$
 

@@ -12,7 +12,7 @@
     name: cert-manager
     namespace: cert-manager
     kubeconfig: "{{ k8s_kubeconfig }}"
-    chart_version: v1.7.2
+    chart_version: v1.13.0
     chart_ref:  cert-manager/cert-manager
     create_namespace: true
     values:

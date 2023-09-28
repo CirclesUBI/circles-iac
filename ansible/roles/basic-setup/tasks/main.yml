@@ -15,7 +15,7 @@
     - gnupg2
     - python3-pip
     - curl
-    - apparmor 
+    - apparmor
     - apparmor-utils
 
 - name: Configure unattended-upgrades

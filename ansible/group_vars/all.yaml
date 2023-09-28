@@ -9,13 +9,13 @@ lighthouse_chart_version: 1.1.1
 # for k3s traefik is installed by default
 ingress_controller: traefik
 
-# Change accordingly -> xdai or chiado
+# Change accordingly ->  gnosis(xdai) or chiado
 ethereum_network: xdai
 
 # k8s configuration
 k8s_kubeconfig: /etc/rancher/k3s/k3s.yaml
 
-# envinroment deployment prd (xdai) or stg (chiado)
+# envinroment deployment prd (gnosis - xdai) or stg (chiado)
 env: prd
 
 # allowed users to connect to the xdainode base64 encoded
@@ -24,14 +24,12 @@ allowed_users:
   - ZG91c2VyOnRyYWVmaWs6MTcxMjhhZDk1NTZjMmVlZTBhOTk0NmRlNTk4NDNkNDgK
 
 # graph protocol chart
-graph_protocol_chart_version: 0.0.2
-# graph protocol chart locally stored
-graph_protocol_chart_path: "{{ lookup('env', 'GRAPH_CHART_PATH') }}"
+graph_protocol_chart_version: 0.1.1
 
 
 host_server: "{{ lookup('env', 'HOST_SERVER') }}"
 
 #k3s version
-k3s_version: v1.25.3+k3s1
+k3s_version: v1.28.2+k3s1
 
 

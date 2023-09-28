@@ -1,6 +1,0 @@
-# ethereum network
-network: sokol
-rpcNode: sokol-nethermind.sokol
-queryNodeHost: graph.testing.circles.garden
-image:
-  tag: v0.28.2

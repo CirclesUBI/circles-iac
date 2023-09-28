@@ -1,6 +1,6 @@
 - name: Ensures lighthouse  dir exists
-  file: 
-    path: /etc/config-helm/lighthouse/ 
+  file:
+    path: /etc/config-helm/lighthouse/
     state: directory
     mode: '0644'
 
@@ -18,6 +18,6 @@
     namespace: "{{ ethereum_network }}"
     kubeconfig: "{{ k8s_kubeconfig }}"
     chart_version: "{{ lighthouse_chart_version }}"
-    chart_ref: ethereum-helm-charts/lighthouse 
+    chart_ref: ethereum-helm-charts/lighthouse
     create_namespace: true
     values_files: /etc/config-helm/lighthouse/lighthouse-{{ env }}.yaml

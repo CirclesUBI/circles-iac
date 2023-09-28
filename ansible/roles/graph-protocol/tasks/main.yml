@@ -3,8 +3,19 @@
 
 # - name: Install cert-manager
 #   include_tasks: cert_manager.yml
+- name: Add helm repository
+  kubernetes.core.helm_repository:
+    name: circles-graph-helm-charts
+    repo_url: https://circlesubi.github.io/circles-helm/
 
-- name: Copy file with owner and permissions
+- name: Ensures graph-protocol  dir exists
+  file:
+    path: /etc/config-helm/graph-protocol/
+    state: directory
+    mode: '0644'
+
+
+- name: Copy values file depending on the env
   ansible.builtin.copy:
     src: values-{{ env }}.yaml
     dest: /etc/config-helm/graph-protocol
@@ -12,24 +23,16 @@
     group: root
     mode: '0644'
 
+- name: Install cert-manager
+  include_tasks: cert_manager.yml
 
-# workaround to install chart locally. Ideally we would have a repo in github with our charts
-- name: Copy chart to remote to install
-  ansible.builtin.copy:
-    src: "{{ graph_protocol_chart_path }}"
-    dest: /etc/config-helm/charts/
-    owner: root
-    group: root
-    mode: '0644'
-    
-
-- name: Install chart for xdai or sokol depending on group_vars
+- name: Install chart for xdai or chiado depending on group_vars
   kubernetes.core.helm:
     name: "graph-protocol"
-    namespace: "graph"
+    namespace: "graph-{{ ethereum_network  }}"
     kubeconfig: "{{ k8s_kubeconfig }}"
     chart_version: "{{ graph_protocol_chart_version }}"
-    chart_ref: /etc/config-helm/charts/circles-graphprotocol/
+    chart_ref: cirles-helm/graph-protocol
     create_namespace: true
     values_files: /etc/config-helm/graph-protocol/values-{{ env }}.yaml
-    
+
