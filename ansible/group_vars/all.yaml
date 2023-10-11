@@ -13,16 +13,16 @@ ethereum_network: xdai
 # k8s configuration
 k8s_kubeconfig: /etc/rancher/k3s/k3s.yaml
 
-# envinployment prd (gnosis - xdai) or stg (chiado)
+# enviroment deployment prd (gnosis/xdai) or stg (chiado) - only prd available
 env: prd
 
-# allowed users to connect to the xdainode base64 encoded
+# allowed users to connect to the eth node base64 encoded
 allowed_users:
   - amFjcXVlOnRyYWVmaWs6NmVmNmZiZGMyZWIwOTc2MGIzMDIwNGFiNjIxNjFlMGEK
   - ZG91c2VyOnRyYWVmaWs6MTcxMjhhZDk1NTZjMmVlZTBhOTk0NmRlNTk4NDNkNDgK
 
 # graph protocol chart
-graph_protocol_chart_version: 0.1.1
+graph_protocol_chart_version: 0.1.2
 
 
 host_server: "{{ lookup('env', 'HOST_SERVER') }}"
