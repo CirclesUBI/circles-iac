@@ -3,8 +3,6 @@
 - name: Install pre-requisites to run k8s
   pip:
     name:
-      - openshift
-      - pyyaml
       - kubernetes
 
 - name: Set secret digest authentication

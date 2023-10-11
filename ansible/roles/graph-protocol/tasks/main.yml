@@ -3,36 +3,39 @@
 
 # - name: Install cert-manager
 #   include_tasks: cert_manager.yml
-- name: Add helm repository
-  kubernetes.core.helm_repository:
-    name: circles-graph-helm-charts
-    repo_url: https://circlesubi.github.io/circles-helm/
+# - name: Add helm repository
+#   kubernetes.core.helm_repository:
+#     name: circles-graph
+#     repo_url: https://circlesubi.github.io/circles-helm/
+#   tags: [ graph ]
 
-- name: Ensures graph-protocol  dir exists
-  file:
-    path: /etc/config-helm/graph-protocol/
-    state: directory
-    mode: '0644'
+# - name: Ensures graph-protocol  dir exists
+#   file:
+#     path: /etc/config-helm/graph-protocol/
+#     state: directory
+#     mode: '0644'
+#   tags: [ graph ]
 
+# - name: Copy values file depending on the env
+#   ansible.builtin.copy:
+#     src: values-{{ env }}.yaml
+#     dest: /etc/config-helm/graph-protocol
+#     owner: root
+#     group: root
+#     mode: '0644'
+#   tags: [ graph ]
 
-- name: Copy values file depending on the env
-  ansible.builtin.copy:
-    src: values-{{ env }}.yaml
-    dest: /etc/config-helm/graph-protocol
-    owner: root
-    group: root
-    mode: '0644'
-
-- name: Install cert-manager
-  include_tasks: cert_manager.yml
+# - name: Install cert-manager
+#   include_tasks: cert_manager.yml
+#   tags: [ graph ]
 
 - name: Install chart for xdai or chiado depending on group_vars
   kubernetes.core.helm:
-    name: "graph-protocol"
-    namespace: "graph-{{ ethereum_network  }}"
+    name: "graph-protocol-{{ ethereum_network }}"
+    namespace: "graph-{{ ethereum_network }}"
     kubeconfig: "{{ k8s_kubeconfig }}"
     chart_version: "{{ graph_protocol_chart_version }}"
-    chart_ref: cirles-helm/graph-protocol
+    chart_ref: circles-graph/circles-graph-node
     create_namespace: true
     values_files: /etc/config-helm/graph-protocol/values-{{ env }}.yaml
-
+    tags: [ graph ]

@@ -17,3 +17,18 @@
     create_namespace: true
     values:
       installCRDs: true
+
+- name: Copy cluster issuer file to local
+  ansible.builtin.copy:
+    src: cluster-issuer.yaml
+    dest: /etc/config-helm/
+    owner: root
+    group: root
+    mode: '0644'
+
+- name: install cluster issuer
+  kubernetes.core.k8s:
+    apply: true
+    kubeconfig: "{{ k8s_kubeconfig }}"
+    state: present
+    src: /etc/config-helm/cluster-issuer.yaml
