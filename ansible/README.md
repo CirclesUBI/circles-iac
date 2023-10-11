@@ -10,7 +10,7 @@
 Ansible manages the installation of any software component using different [roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#roles).
 
 ### `group_vars`
-It contains all the variables used in every role. Please change accordingly to install a chiado  or xdai node.
+It contains all the variables used in every role.
 It also allows to add users for the Nethermind rpc node under `allowed_users`.
 
 ### roles
@@ -55,10 +55,11 @@ Update in `hosts.yaml` the target box where the software will be installed.
 
 ### Kwnown problems
 - In order to have running this setup in vagrant you would need a powerful PC (specs below) , as required to run Graph Node and an Ethereum Full Node. Otherwise the setup will be slow and eventually it can run out of memory. The recommendation is to carry on the installation in a different server than your own PC.
-- when url from chart changes then it throws error chart has been added already
 
-### Pending
-- For now, although the role is created for graphprotocol, this is for new installation from scratch. For our current deployment, we mantain our helm chart through helm only. There is a README under `helm/graphprotocol` with instructions.
+
+### Limitations
+
+- This is a very customised installation, meaning that only installs an ethereum node for xdai but not for chiado. It installs graphnode for both chiado and xdai that can be seen in the networks values. The subgraph job are for start indexing are installed separately check under `circles-iac/helm/circles-subgraphs`
 
 #### PC specs
 
