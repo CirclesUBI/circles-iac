@@ -1,6 +1,6 @@
 image:
   repository: nethermind/nethermind
-  tag: 1.20.1
+  tag: 1.20.4
   pullPolicy: IfNotPresent
 
 extraArgs:
@@ -21,7 +21,7 @@ ingress:
     cert-manager.io/cluster-issuer: letsencrypt-prod
     traefik.ingress.kubernetes.io/router.middlewares: xdai-authentication@kubernetescrd
   hosts:
-    - host: xdainode.provisioning.circles.garden
+    - host: xdainode.infra.circles.garden
       paths:
       - path: /
         pathType: Prefix
@@ -29,4 +29,4 @@ ingress:
   tls:
    - secretName: tls-xdainode
      hosts:
-       - xdainode.provisioning.circles.garden
+       - xdainode.infra.circles.garden

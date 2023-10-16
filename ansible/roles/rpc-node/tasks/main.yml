@@ -4,6 +4,7 @@
   kubernetes.core.helm_repository:
     name: ethereum-helm-charts
     repo_url:  "{{ ethereum_helm_chart_url }}"
+  tags: [ rpc ]
 
 - name: Separately update the repository cache
   kubernetes.core.helm:
@@ -12,13 +13,14 @@
     namespace: "{{ ethereum_network }}"
     state: absent
     update_repo_cache: true
+  tags: [ rpc ]
 
 - name: Ensures nethermind  dir exists
-  file: 
-    path: /etc/config-helm/nethermind/ 
+  file:
+    path: /etc/config-helm/nethermind/
     state: directory
     mode: '0644'
-
+  tags: [ rpc ]
 
 - name: Copy values file depending on the env
   ansible.builtin.copy:
@@ -27,9 +29,9 @@
     owner: root
     group: root
     mode: '0644'
+  tags: [ rpc ]
 
-
-- name: Install chart for xdai or sokol depending on group_vars
+- name: Install chart for xdai or chiado depending on group_vars
   kubernetes.core.helm:
     name: "{{ ethereum_network }}-nethermind"
     namespace: "{{ ethereum_network }}"
@@ -38,10 +40,12 @@
     chart_ref: ethereum-helm-charts/nethermind
     create_namespace: true
     values_files: /etc/config-helm/nethermind/nethermind-{{ env }}.yaml
-
+  tags: [ rpc ]
 
 - name: Install Consensus Layer - Lighthouse
   include_tasks: lighthouse.yml
+  tags: [ rpc ]
 
-- name: Install add-hoc resources with k8s 
+- name: Install add-hoc resources with k8s
   include_tasks: adhoc_resources.yml
+  tags: [ rpc ]

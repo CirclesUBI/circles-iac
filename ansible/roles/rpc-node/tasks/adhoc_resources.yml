@@ -1,13 +1,11 @@
 ---
 # task file to run ad-hoc installations of resources not included in helm installation
-- name: Install pre-requisites to run k8s 
+- name: Install pre-requisites to run k8s
   pip:
     name:
-      - openshift
-      - pyyaml
-      - kubernetes 
+      - kubernetes
 
-- name: Set secret digest authentication 
+- name: Set secret digest authentication
   kubernetes.core.k8s:
     state: present
     apply: true
@@ -16,7 +14,7 @@
     template:
       - path: 'templates/set_secret_authentication.j2'
 
-- name: Middleware to enable digest authentication 
+- name: Middleware to enable digest authentication
   kubernetes.core.k8s:
     state: present
     apply: true

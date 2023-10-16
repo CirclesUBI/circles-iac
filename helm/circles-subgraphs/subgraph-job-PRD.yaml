@@ -30,7 +30,7 @@ spec:
           valueFrom:
               configMapKeyRef:
                 key: GRAPH_ADMIN_NODE_ENDPOINT
-                name: env
+                name: graph-protocol-env
         - name: SUBGRAPH_NAME
           value: circlesubi/circles-ubi
         - name: SUBGRAPH_NETWORK
@@ -47,7 +47,7 @@ spec:
           valueFrom:
               configMapKeyRef:
                 key: IPFS_NODE_ENDPOINT
-                name: env
+                name: graph-protocol-env
         - name: postgres_host
           value: postgres
         - name: postgres_user

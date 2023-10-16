@@ -1,0 +1,26 @@
+# image details
+image:
+  repository: graphprotocol/graph-node
+  pullPolicy: IfNotPresent
+  tag: v0.32.0
+
+# querynode
+queryNodeHost: graph.infra.circles.garden
+queryNodeReplicas: 1
+#
+# ethereum networks:
+networks:
+  xdai:http://xdai-nethermind.xdai:8545
+  chiado:https://rpc.chiadochain.net
+
+# CORS entries allowed:
+CORS_allowed:
+  - "https://relay.circles.garden"
+  - "https://circles.garden"
+  - "https://relay.staging.circles.garden"
+  - "https://staging.circles.garden"
+
+CORS_allowed_regex:
+  - http[s]?:\/\/.*\.circles\.garden$
+  - http[s]?:\/\/.*\.staging\.circles\.garden$
+

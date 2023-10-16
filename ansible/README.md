@@ -10,16 +10,16 @@
 Ansible manages the installation of any software component using different [roles](https://docs.ansible.com/ansible/latest/user_guide/playbooks_reuse_roles.html#roles).
 
 ### `group_vars`
-It contains all the variables used in every role. Please change accordingly to install a sokol or xdai node.
+It contains all the variables used in every role.
 It also allows to add users for the Nethermind rpc node under `allowed_users`.
 
 ### roles
-- **basic-setup**: installs required packages and enable unattended security updates. 
-- **rpcnode**: installs a customised helm chart for nethermind node using the xdai network and adc hoc k8s resources required to secure the node + lighthouse CL. 
-    - Nethermind version  [v1.14.7](https://github.com/NethermindEth/nethermind/releases/tag/1.14.5)
-    - Lighthouse version [v3.3.0](https://github.com/sigp/lighthouse/releases/tag/v3.3.0)
+- **basic-setup**: installs required packages and enable unattended security updates.
+- **rpcnode**: installs a customised helm chart for nethermind node using the xdai network and adc hoc k8s resources required to secure the node + lighthouse CL.
+    - Nethermind version  [v1.20.3](https://github.com/NethermindEth/nethermind/releases/tag/1.20.3)
+    - Lighthouse version [v4.5.0](https://github.com/sigp/lighthouse/releases/tag/v4.5.0)
     - This node has security enabled and not everyone can connect to it. To be added please write to circlesubi@bitspossessed.org
-- **graph-protocol**: installs a customised helm chart for graph-protocol. 
+- **graph-protocol**: installs a customised helm chart for graph-protocol.
 
 ### `host.yaml`
 Target machine where `prd` provisioning will take place.
@@ -43,7 +43,7 @@ To know more please refer to [Vagrant CLI](https://www.vagrantup.com/docs/cli).
 
 ⚠️ Prior to run against the development machine check that the envinroment variables in `group_vars/all.yml` are set.
 
-### Against a server 
+### Against a server
 Update in `hosts.yaml` the target box where the software will be installed.
 
 ```ansible-playbook  playbook.yaml -i hosts.yaml```
@@ -54,11 +54,12 @@ Update in `hosts.yaml` the target box where the software will be installed.
 - The result add in `group_vars/all` under `allowed_users`
 
 ### Kwnown problems
-- In order to have running this setup in vagrant you would need a powerful PC (specs below) , as required to run Graph Node and an Ethereum Full Node. Otherwise the setup will be slow and eventually it can run out of memory. The recommendation is to carry on the installation in a different server than your own PC. 
-- when url from chart changes then it throws error chart has been added already
+- In order to have running this setup in vagrant you would need a powerful PC (specs below) , as required to run Graph Node and an Ethereum Full Node. Otherwise the setup will be slow and eventually it can run out of memory. The recommendation is to carry on the installation in a different server than your own PC.
 
-### Pending 
-- For now, although the role is created for graphprotocol, this is for new installation from scratch. For our current deployment, we mantain our helm chart through helm only. There is a README under `helm/graphprotocol` with instructions. 
+
+### Limitations
+
+- This is a very customised installation, meaning that only installs an ethereum node for xdai but not for chiado. It installs graphnode for both chiado and xdai that can be seen in the networks values. The subgraph job are for start indexing are installed separately check under `circles-iac/helm/circles-subgraphs`
 
 #### PC specs
 

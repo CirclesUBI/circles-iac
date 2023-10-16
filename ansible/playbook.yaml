@@ -8,4 +8,4 @@
   roles:
   - basic-setup
   - rpc-node
-  # - graph-protocol
+  - graph-protocol
