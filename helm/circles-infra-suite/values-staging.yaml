@@ -26,7 +26,7 @@ apiService:
 apiPaymentService:
   enabled: true
   # Docker image tag
-  imageTag: v1.0.1
+  imageTag: v1.1.0
 
   # Ingress
   host: payment.staging.circles.garden
@@ -34,7 +34,9 @@ apiPaymentService:
   # chain id
   chaindID: 10200
 
-  corsRegex: http[s]?:\/\/.*\.staging.circles\.garden.*
+  corsRegex: https://relayer.staging.circles.garden
+
+  fastifyLogs: info
 # circles-relayer Service
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
