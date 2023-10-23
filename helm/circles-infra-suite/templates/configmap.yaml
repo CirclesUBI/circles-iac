@@ -33,7 +33,8 @@ data:
   SAFE_CONTRACT_ADDRESS_CRC: {{.Values.contracts.safeAddressCRC}}
   SAFE_CONTRACT_ADDRESS_130: {{.Values.contracts.safeAddress130}}
   SAFE_DEFAULT_CALLBACK_HANDLER: {{.Values.contracts.fallBackAddress}}
-
+  MULTI_SEND_ADDRESS: {{.Values.contracts.multiSendAddress}}
+  MULTI_SEND_CALL_ONLY_ADDRESS: {{.Values.contracts.multiSendCallOnlyAddress}}
   # PostgreSQL Databases
   # ~~~~~~~~~~~~~~~~~~~~
   POSTGRES_DATABASE_API: api
