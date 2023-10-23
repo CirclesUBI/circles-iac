@@ -10,7 +10,7 @@ queryNodeReplicas: 1
 #
 # ethereum networks:
 networks:
-  xdai:http://xdai-nethermind.xdai:8545
+  gnosis:http://gnosis-nethermind.gnosis:8545
   chiado:https://rpc.chiadochain.net
 
 # CORS entries allowed:

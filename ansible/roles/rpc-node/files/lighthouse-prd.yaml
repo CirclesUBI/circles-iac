@@ -18,7 +18,7 @@ defaultBeaconCommandTemplate: |
     exec lighthouse
     beacon_node
     --network=gnosis
-    --execution-endpoint=http://xdai-nethermind.xdai:8551
+    --execution-endpoint=http://gnosis-nethermind.gnosis:8551
     --datadir=/data
     --disable-upnp
     --listen-address=0.0.0.0

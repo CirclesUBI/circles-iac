@@ -8,7 +8,7 @@ lighthouse_chart_version: 1.1.1
 
 
 # Change accordingly ->  gnosis(xdai) or chiado
-ethereum_network: xdai
+ethereum_network: gnosis
 
 # k8s configuration
 k8s_kubeconfig: /etc/rancher/k3s/k3s.yaml
@@ -23,7 +23,6 @@ allowed_users:
 
 # graph protocol chart
 graph_protocol_chart_version: 0.1.2
-
 
 host_server: "{{ lookup('env', 'HOST_SERVER') }}"
 
