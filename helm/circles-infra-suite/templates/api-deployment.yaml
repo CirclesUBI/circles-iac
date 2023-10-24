@@ -141,7 +141,17 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   key: SAFE_DEFAULT_CALLBACK_HANDLER
-                  name: env 
+                  name: env
+            - name: MULTI_SEND_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  key: MULTI_SEND_ADDRESS
+                  name: env
+            - name: MULTI_SEND_CALL_ONLY_ADDRESS
+              valueFrom:
+                configMapKeyRef:
+                  key: MULTI_SEND_CALL_ONLY_ADDRESS
+                  name: env
             # PostgreSQL Databases
             # ~~~~~~~~~~~~~~~~~~~~
             - name: POSTGRES_HOST
