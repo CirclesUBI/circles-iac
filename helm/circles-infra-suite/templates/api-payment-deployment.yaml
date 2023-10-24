@@ -46,6 +46,11 @@ spec:
                 configMapKeyRef:
                   key: CORS_REGEX
                   name: env
+            - name: FASTIFY_LOG_LEVEL
+              valueFrom:
+                configMapKeyRef:
+                  key: FASTIFY_LOG_LEVEL
+                  name: env
             # Ethereum Node Configuration
             # ~~~~~~~~~~~~~~~~~~~~~~~~~~~
             - name: RPC_URL
