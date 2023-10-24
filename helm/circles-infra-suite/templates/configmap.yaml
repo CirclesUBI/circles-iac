@@ -65,4 +65,3 @@ data:
   CHAIN_ID: '{{.Values.apiPaymentService.chaindID}}'
   CORS_REGEX: '{{.Values.apiPaymentService.corsRegex}}'
   FASTIFY_LOG_LEVEL: {{ .Values.apiPaymentService.fastifyLogs }}
-  
