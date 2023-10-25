@@ -3,6 +3,7 @@
     path: /etc/config-helm/lighthouse/
     state: directory
     mode: '0644'
+  tags: [ rpc ]
 
 - name: Copy values file depending on the env
   ansible.builtin.copy:
@@ -11,6 +12,7 @@
     owner: root
     group: root
     mode: '0644'
+  tags: [ rpc ]
 
 - name: Install lighthouse chart depending on group_vars
   kubernetes.core.helm:
@@ -21,3 +23,4 @@
     chart_ref: ethereum-helm-charts/lighthouse
     create_namespace: true
     values_files: /etc/config-helm/lighthouse/lighthouse-{{ env }}.yaml
+  tags: [ rpc ]
