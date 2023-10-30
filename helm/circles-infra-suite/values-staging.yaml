@@ -58,7 +58,7 @@ aws:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Graph node URL
-  endpoint: https://graph.testing.circles.garden
+  endpoint: https://graph.infra.circles.garden
 
   # Circles subgraph name
   subgraph: circlesubi/circles-ubi-stg
