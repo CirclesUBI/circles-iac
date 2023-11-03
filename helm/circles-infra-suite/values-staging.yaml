@@ -33,7 +33,6 @@ apiPaymentService:
 
   # chain id
   chaindID: 10200
-
   corsRegex: https://relayer.staging.circles.garden
   fastifyLogs: info
 # circles-relayer Service
@@ -58,7 +57,7 @@ aws:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Graph node URL
-  endpoint: https://graph.testing.circles.garden
+  endpoint: https://graph.infra.circles.garden
 
   # Circles subgraph name
   subgraph: circlesubi/circles-ubi-stg
