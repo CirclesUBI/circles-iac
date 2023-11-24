@@ -76,7 +76,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
   name      = "prod-primary-k8s-cluster"
   region    = "ams3"
   # Grab the latest version slug from `doctl kubernetes options versions`
-  version   = "1.25.12-do.0"
+  version   = "1.26.9-do.0"
   vpc_uuid  = digitalocean_vpc.primary.id
   tags      = ["prod"]
   node_pool {
@@ -84,7 +84,7 @@ resource "digitalocean_kubernetes_cluster" "primary" {
     size       = "s-4vcpu-8gb"
     node_count = 3
     labels = {
-     pool  = "b"
+      pool = "b"
     }
   }
 }
