@@ -50,7 +50,7 @@ aws:
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
 graph:
   # Graph node URL
-  endpoint: https://graph.infra.circles.garden
+  endpoint: https://api.thegraph.com
   # Circles subgraph name
   subgraph: circlesubi/circles-ubi
 
