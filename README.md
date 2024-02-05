@@ -43,10 +43,10 @@ Setup and deployment infrastructure using Terraform and Helm to manage volumes a
 
 ## Requirements
 
-* [`terraform`] 1.1.5
-* [`helm`] 3.8.1
-* [`kubectl`] 1.21
-* [`doctl`] 1.70.0
+- [`terraform`] 1.5.7
+- [`helm`] 3.8.1
+- [`kubectl`] 1.21
+- [`doctl`] 1.70.0
 
 [`doctl`]: https://docs.digitalocean.com/reference/doctl/how-to/install
 [`kubectl`]: https://kubernetes.io/docs/tasks/tools
@@ -55,9 +55,9 @@ Setup and deployment infrastructure using Terraform and Helm to manage volumes a
 
 ## Overview
 
-* [`do-infra-setup`]: Terraform files to deploy Circles staging and production infrastructure on DigitalOcean
-* [`helm/circles-infra-suite`]: Helm chart and templates to deploy Circles services from Docker images
-* [`secrets`]: Helpers to create secrets on Kubernetes cluster
+- [`do-infra-setup`]: Terraform files to deploy Circles staging and production infrastructure on DigitalOcean
+- [`helm/circles-infra-suite`]: Helm chart and templates to deploy Circles services from Docker images
+- [`secrets`]: Helpers to create secrets on Kubernetes cluster
 
 [`do-infra-setup`]: do-infra-setup
 [`helm/circles-infra-suite`]: helm/circles-infra-suite
@@ -85,21 +85,21 @@ This setup requires the following `Secret` objects to be created on the Kubernet
 
 **relayer:**
 
-* `SAFE_FUNDER_PRIVATE_KEY`: Wallet with funds to pay for Safe creation
-* `SAFE_TX_SENDER_PRIVATE_KEY`: Wallet with funds to pay for transactions
-* `DJANGO_SECRET_KEY`: Hashing salt for Relayer Django app
+- `SAFE_FUNDER_PRIVATE_KEY`: Wallet with funds to pay for Safe creation
+- `SAFE_TX_SENDER_PRIVATE_KEY`: Wallet with funds to pay for transactions
+- `DJANGO_SECRET_KEY`: Hashing salt for Relayer Django app
 
 **aws:**
 
-* `AWS_ACCESS_KEY_ID`
-* `AWS_SECRET_ACCESS_KEY`
+- `AWS_ACCESS_KEY_ID`
+- `AWS_SECRET_ACCESS_KEY`
 
 **db:**
 
-* `POSTGRES_HOST`
-* `POSTGRES_PASSWORD`
-* `POSTGRES_PORT`
-* `POSTGRES_USER`
+- `POSTGRES_HOST`
+- `POSTGRES_PASSWORD`
+- `POSTGRES_PORT`
+- `POSTGRES_USER`
 
 ### Images registry
 
