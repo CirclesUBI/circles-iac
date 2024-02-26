@@ -1,6 +1,6 @@
 image:
   repository: sigp/lighthouse
-  tag: v4.6.0
+  tag: v5.0.0
   pullPolicy: IfNotPresent
 
 mode: "beacon"
