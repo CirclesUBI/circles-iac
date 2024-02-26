@@ -1,6 +1,6 @@
 image:
   repository: nethermind/nethermind
-  tag: 1.21.0
+  tag: 1.25.3
   pullPolicy: IfNotPresent
 
 extraArgs:
