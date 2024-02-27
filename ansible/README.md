@@ -16,8 +16,8 @@ It also allows to add users for the Nethermind rpc node under `allowed_users`.
 ### roles
 - **basic-setup**: installs required packages and enable unattended security updates.
 - **rpcnode**: installs a customised helm chart for nethermind node using the xdai network and adc hoc k8s resources required to secure the node + lighthouse CL.
-    - Nethermind version  [v1.25.3](https://github.com/NethermindEth/nethermind/releases/tag/1.25.3)
-    - Lighthouse version [v4.6.0](https://github.com/sigp/lighthouse/releases/tag/v4.6.0)
+    - Nethermind version  [v1.25.4](https://github.com/NethermindEth/nethermind/releases/tag/1.25.4)
+    - Lighthouse version [v5.0.0](https://github.com/sigp/lighthouse/releases/tag/v5.0.0)
     - This node has security enabled and not everyone can connect to it. To be added please write to circlesubi@bitspossessed.org
 - **graph-protocol**: installs a customised helm chart for graph-protocol version [v0.1.2](https://github.com/CirclesUBI/circles-helm/releases/tag/circles-graph-node-0.1.2)
 
