@@ -9,7 +9,7 @@ checkpointSync:
   enabled: true
   url: "https://checkpoint.gnosischain.com/"
 
-jwt:
+jwt: 5067325748bcd5fb3dffe51169300ce05c28ff44a691f2dbdc9afc907143c1b2
 
 defaultBeaconCommandTemplate: |
   - sh

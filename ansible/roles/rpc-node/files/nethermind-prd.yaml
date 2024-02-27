@@ -11,7 +11,7 @@ extraArgs:
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
 
-jwt:
+jwt: 5067325748bcd5fb3dffe51169300ce05c28ff44a691f2dbdc9afc907143c1b2
 
 ingress:
   enabled: true
@@ -29,3 +29,24 @@ ingress:
    - secretName: tls-xdainode
      hosts:
        - xdainode.infra.circles.garden
+
+persistence:
+  # -- Uses an EmptyDir when not enabled
+  enabled: true
+  # -- Use an existing PVC when persistence.enabled
+  existingClaim: postgres-claim
+  # -- Access mode for the volume claim template
+  accessModes:
+  - ReadWriteOnce
+  # -- Requested size for volume claim template
+  size: 350Gi
+  # -- Use a specific storage class
+  # E.g 'local-path' for local storage to achieve best performance
+  # Read more (https://github.com/rancher/local-path-provisioner)
+  storageClassName: 'local-path'
+  # -- Annotations for volume claim template
+  annotations: {}
+  # -- Selector for volume claim template
+  selector: {}
+  #   matchLabels:
+  #     app.kubernetes.io/name: something
