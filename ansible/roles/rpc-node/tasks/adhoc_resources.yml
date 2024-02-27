@@ -23,11 +23,21 @@
     template:
       - path: 'templates/digest_authentication_middleware.j2'
 
+
+
+- name: Copy values file depending on the env
+  ansible.builtin.copy:
+    src: nethermind-pvc.yaml
+    dest: /etc/config-helm/nethermind/nethermind-pvc.yaml
+    owner: root
+    group: root
+    mode: '0644'
+  tags: [rpc]
+
 - name: Create PVC
   kubernetes.core.k8s:
     state: present
-    apply: true
     kubeconfig: "{{ k8s_kubeconfig }}"
     namespace: "{{ ethereum_network }}"
-    template:
-      - path: 'templates/nethermind-pvc.j2'
+    src: /etc/config-helm/nethermind/nethermind-pvc.yaml
+  tags: [rpc]

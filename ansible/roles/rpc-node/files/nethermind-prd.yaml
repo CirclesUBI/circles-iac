@@ -34,12 +34,12 @@ persistence:
   # -- Uses an EmptyDir when not enabled
   enabled: true
   # -- Use an existing PVC when persistence.enabled
-  existingClaim: postgres-claim
+  existingClaim: nethermind-pvc
   # -- Access mode for the volume claim template
   accessModes:
   - ReadWriteOnce
   # -- Requested size for volume claim template
-  size: 350Gi
+  size: 500Gi
   # -- Use a specific storage class
   # E.g 'local-path' for local storage to achieve best performance
   # Read more (https://github.com/rancher/local-path-provisioner)
