@@ -11,7 +11,7 @@ metadata:
   creationTimestamp: null
   labels:
     io.kompose.service: subgraph
-  name: subgraph-prod
+  name: subgraphprod
 spec:
   template:
     metadata:
@@ -34,7 +34,7 @@ spec:
         - name: SUBGRAPH_NAME
           value: circlesubi/circles-ubi
         - name: SUBGRAPH_NETWORK
-          value: xdai
+          value: gnosis
         - name: PROXY_FACTORY_ADDRESS
           value: 0xa6B71E26C5e0845f74c812102Ca7114b6a896AB2
         - name: PROXY_FACTORY_ADDRESS_CRC
