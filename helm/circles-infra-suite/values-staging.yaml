@@ -39,7 +39,7 @@ apiPaymentService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker image tag
-  imageTag: v5.0.3-2-g910a7f1
+  imageTag: v5.0.4-1-gb85b7b4
 
   # Ingress
   host: relay.staging.circles.garden
