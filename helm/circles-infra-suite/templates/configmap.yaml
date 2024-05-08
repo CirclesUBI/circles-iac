@@ -61,6 +61,7 @@ data:
   DJANGO_ALLOWED_HOSTS: .{{.Values.host}}
   DJANGO_SETTINGS_MODULE: config.settings.production
   RELAYER_REDIS_URL: redis://{{.Values.redisService.name}}:{{.Values.redisService.port}}/0
+  MIN_TRUST_CONNECTIONS: {{.Values.relayerService.minTrustConnections}}
 
   # Payment API Configuration
   CHAIN_ID: '{{.Values.apiPaymentService.chaindID}}'

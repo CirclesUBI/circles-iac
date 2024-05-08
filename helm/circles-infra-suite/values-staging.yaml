@@ -44,6 +44,9 @@ relayerService:
   # Ingress
   host: relay.staging.circles.garden
 
+  # Minimum trust connections needed to fund the Safe deployment
+  minTrustConnections: 1
+
 # AWS S3 Configuration
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
