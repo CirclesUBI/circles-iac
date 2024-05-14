@@ -26,7 +26,7 @@ relayerService:
   host: relay.circles.garden
 
   # Minimum trust connections needed to fund the Safe deployment
-  minTrustConnections: 3
+  minTrustConnections: 1
 
 # circles-payment-api Service
 # ~~~~~~~~~~~~~~~~~~~
