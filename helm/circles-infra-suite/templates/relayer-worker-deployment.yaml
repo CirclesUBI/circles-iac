@@ -57,6 +57,11 @@ spec:
                 secretKeyRef:
                   key: DJANGO_SECRET_KEY
                   name: relayer
+            - name: MIN_TRUST_CONNECTIONS
+              valueFrom:
+                configMapKeyRef:
+                  key: MIN_TRUST_CONNECTIONS
+                  name: env
             # ~~~~~~~~~~~~~~~~~~~~~
             - name: C_FORCE_ROOT
               value: "true"

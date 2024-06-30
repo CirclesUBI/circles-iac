@@ -8,7 +8,7 @@ host: staging.circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.10.0-48-ge50ea39
+  imageTag: v1.10.0
 
   # Ingress
   host: api.staging.circles.garden
@@ -39,10 +39,13 @@ apiPaymentService:
 # ~~~~~~~~~~~~~~~~~~~~~~~
 relayerService:
   # Docker image tag
-  imageTag: v5.0.3-2-g910a7f1
+  imageTag: v5.0.4-1-gb85b7b4
 
   # Ingress
   host: relay.staging.circles.garden
+
+  # Minimum trust connections needed to fund the Safe deployment
+  minTrustConnections: 1
 
 # AWS S3 Configuration
 # ~~~~~~~~~~~~~~~~~~~~

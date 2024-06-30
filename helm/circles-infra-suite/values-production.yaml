@@ -21,8 +21,12 @@ apiService:
 relayerService:
   # Docker image tag
   imageTag: v5.0.4-1-gb85b7b4
+
   # Ingress
   host: relay.circles.garden
+
+  # Minimum trust connections needed to fund the Safe deployment
+  minTrustConnections: 1
 
 # circles-payment-api Service
 # ~~~~~~~~~~~~~~~~~~~
