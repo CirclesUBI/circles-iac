@@ -67,7 +67,7 @@ redisService:
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
   # AWS region
-  region: eu-central-1
+  region: fra1
 
 # CORS
 # ~~~~~~~~~~~~~~~~~~~~
