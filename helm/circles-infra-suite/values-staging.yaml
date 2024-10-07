@@ -8,7 +8,7 @@ host: staging.circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.11.1
+  imageTag: v1.12.0
 
   # Ingress
   host: api.staging.circles.garden
@@ -51,7 +51,7 @@ relayerService:
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
   # Bucket for user content storage (via api)
-  bucketUserContent: circles-ubi-staging
+  bucketUserContent: circles-garden-profile-pictures
 
   # Bucket for trust edges file storage (via api-worker)
   bucketTrustNetwork: circles-ubi-network-staging
