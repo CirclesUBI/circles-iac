@@ -8,7 +8,7 @@ host: circles.garden
 # ~~~~~~~~~~~~~~~~~~~
 apiService:
   # Docker image tag
-  imageTag: v1.12.0
+  imageTag: v1.11.1
 
   # Ingress
   host: api.circles.garden
@@ -45,10 +45,13 @@ apiPaymentService:
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
   # Bucket for user content storage (via api)
-  bucketUserContent: circles-garden-profile-pictures
+  bucketUserContent: circles-ubi
 
   # Bucket for trust edges file storage (via api-worker)
   bucketTrustNetwork: circles-ubi-network
+
+  # Overwrite general value
+  region: eu-central-1
 
 # "The Graph" Configuration
 # ~~~~~~~~~~~~~~~~~~~~~~~~~
