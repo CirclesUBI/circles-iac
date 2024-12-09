@@ -45,7 +45,7 @@ apiPaymentService:
 # ~~~~~~~~~~~~~~~~~~~~
 aws:
   # Bucket for user content storage (via api)
-  bucketUserContent: garden-profile-pictures
+  bucketUserContent: circles-garden-profile-pictures
 
   # Bucket for trust edges file storage (via api-worker)
   bucketTrustNetwork: circles-ubi-network
