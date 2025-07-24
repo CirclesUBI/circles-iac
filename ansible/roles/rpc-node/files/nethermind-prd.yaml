@@ -7,7 +7,7 @@ extraArgs:
   - --config gnosis
   - --Init.MemoryHint 1500000000
   - --HealthChecks.Enabled true
-  - --Network.MaxActivePeers 50
+  - --Network.MaxActivePeers 25
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
   - --JsonRpc.MaxLogsPerResponse 0
