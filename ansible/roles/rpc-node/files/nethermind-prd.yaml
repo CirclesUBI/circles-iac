@@ -10,6 +10,7 @@ extraArgs:
   - --Network.MaxActivePeers 50
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
+  - --JsonRpc.MaxLogsPerResponse 0
 
 jwt:
 
