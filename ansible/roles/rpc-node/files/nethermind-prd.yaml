@@ -11,7 +11,7 @@ extraArgs:
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
   - --JsonRpc.MaxLogsPerResponse 0
-
+  - --JsonRpc.EnabledModules=Eth,Web3,Net
 jwt:
 
 ingress:
