@@ -1,9 +1,10 @@
 ---
 # task file to run ad-hoc installations of resources not included in helm installation
 - name: Install pre-requisites to run k8s
-  pip:
-    name:
-      - kubernetes
+  apt:
+    name: python3-kubernetes
+    state: present
+  become: yes
 
 - name: Set secret digest authentication
   kubernetes.core.k8s:
