@@ -2,7 +2,7 @@
 image:
   repository: graphprotocol/graph-node
   pullPolicy: IfNotPresent
-  tag: v0.38.0
+  tag: v0.39.1
 
 # querynode
 queryNodeHost: graph.infra.circles.garden

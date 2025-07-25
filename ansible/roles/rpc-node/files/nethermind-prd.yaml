@@ -1,17 +1,16 @@
 image:
   repository: nethermind/nethermind
-  tag: 1.31.10
+  tag: 1.32.3
   pullPolicy: IfNotPresent
 
 extraArgs:
   - --config gnosis
   - --Init.MemoryHint 1500000000
   - --HealthChecks.Enabled true
-  - --Network.MaxActivePeers 50
   - --Init.DiscoveryEnabled true
   - --Merge.Enabled true
   - --JsonRpc.MaxLogsPerResponse 0
-
+  - --JsonRpc.EnabledModules=Eth,Web3,Net
 
 jwt:
 
@@ -31,3 +30,16 @@ ingress:
    - secretName: tls-xdainode
      hosts:
        - xdainode.infra.circles.garden
+
+persistence:
+  # -- Uses an EmptyDir when not enabled
+  enabled: true
+  # -- Access mode for the volume claim template
+  accessModes:
+  - ReadWriteOnce
+  # -- Requested size for volume claim template
+  size: 500Gi
+  # -- Use a specific storage class
+  # E.g 'local-path' for local storage to achieve best performance
+  # Read more (https://github.com/rancher/local-path-provisioner)
+  storageClassName: local-path

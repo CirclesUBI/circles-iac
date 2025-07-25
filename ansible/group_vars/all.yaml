@@ -27,6 +27,6 @@ graph_protocol_chart_version: 0.1.5
 host_server: "{{ lookup('env', 'HOST_SERVER') }}"
 
 #k3s version
-k3s_version: v1.33.0+k3s1
+k3s_version: v1.33.1+k3s1
 
 
