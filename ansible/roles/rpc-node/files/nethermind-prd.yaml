@@ -33,7 +33,7 @@ ingress:
 
 persistence:
   # -- Uses an EmptyDir when not enabled
-  enabled: true
+  enabled: false
   # -- Access mode for the volume claim template
   accessModes:
   - ReadWriteOnce
