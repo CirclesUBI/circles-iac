@@ -1,10 +1,10 @@
 ethereum_helm_chart_url: https://ethpandaops.github.io/ethereum-helm-charts
 
 # Execution Layer: nethermind
-nethermind_chart_version: 1.0.14
+nethermind_chart_version: 1.1.0
 
 # Consesus Layer: lighthouse
-lighthouse_chart_version: 1.1.5
+lighthouse_chart_version: 1.1.7
 
 
 # Change accordingly ->  gnosis(xdai) or chiado
